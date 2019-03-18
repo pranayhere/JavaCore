@@ -75,7 +75,7 @@ public class frequencyQueries {
 		hm.put(key, count);
 	}
 	
-//	Java 8 Solution
+//	Java 8
 //	static List<Integer> freqQuery(List<List<Integer>> queries) {
 //        List<Integer> result = new ArrayList<>();
 //        List<Integer> data = new ArrayList<>();
