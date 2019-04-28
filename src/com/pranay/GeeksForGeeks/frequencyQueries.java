@@ -60,8 +60,11 @@ public class frequencyQueries {
 		if (hm.containsKey(key)) {
 			int count = hm.get(key);
 			count--;
-			if (count == 0)
+			if (count == 0) {
 				hm.remove(key);
+				return;
+			}
+
 			hm.put(key, count);
 		}
 	}
@@ -71,6 +74,7 @@ public class frequencyQueries {
 		if (hm.containsKey(key)) {
 			count = hm.get(key);
 			hm.put(key, ++count);
+			return;
 		}
 		hm.put(key, count);
 	}
