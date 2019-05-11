@@ -36,7 +36,6 @@ public class MinimumPlatforms {
 				minPlatform = platform;
 			}
 		}
-		
 		return minPlatform;
 	}
 }
