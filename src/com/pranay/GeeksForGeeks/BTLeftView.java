@@ -9,7 +9,7 @@ package com.pranay.GeeksForGeeks;
 public class BTLeftView {
 	static Node root;
 	static int max_level = 0;
-	
+
 	public void LeftView(Node node, int level) {
 		if(node == null) 
 			return;
@@ -20,6 +20,7 @@ public class BTLeftView {
 		LeftView(node.left, level+1);
 		LeftView(node.right, level+1);
 	}
+	
 	public static void main(String[] args) {
 		BTLeftView tree = new BTLeftView();
 		tree.root = new Node(12);

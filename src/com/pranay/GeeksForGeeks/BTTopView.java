@@ -11,8 +11,8 @@ package com.pranay.GeeksForGeeks;
                6
 	Top view of the above binary tree is
 	2 1 3 6
- *	
- */	
+*/	
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ import java.util.Set;
 
 class QItem  {
 	Node node;
-	int hd;
+	int hd; // horizontal distance
 	public QItem(Node n, int h) {
 		node = n;
 		hd = h;
@@ -44,12 +44,12 @@ public class BTTopView {
 			int hd = qi.hd;
 			Node n = qi.node;
 
-		// Top View	
-			if(!map.containsKey(hd)) {
+		//  Top View	
+			if(!map.containsKey(hd)) 
 				map.put(hd, n.data);
-			}
+			
 
-		//	Bottom View
+		//`	Bottom View
 		//	map.put(hd, n.data);
 
 			if(n.left != null)
@@ -58,13 +58,9 @@ public class BTTopView {
 				Q.add(new QItem(n.right, hd+1));
 		}
 
-		Set<Entry<Integer, Integer>> set = map.entrySet();
-		Iterator<Entry<Integer, Integer>> iterator = set.iterator();
-		while (iterator.hasNext())
-		{
-			Map.Entry<Integer, Integer> me = iterator.next();
-			System.out.print(me.getValue()+" ");
-		}
+		map.forEach((k, v) -> {
+			System.out.print(v + " ");
+		});
 	}
 
 	public static void main(String[] args) {

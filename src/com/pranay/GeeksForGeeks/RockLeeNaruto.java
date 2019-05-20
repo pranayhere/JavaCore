@@ -1,30 +1,34 @@
 package com.pranay.GeeksForGeeks;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class RockLeeNaruto {
 
 	public static void main(String[] args) {
-		int n = 10;
-		int m = 4;
-		int[] spots = {1, 5, 10, 5};
-		int mostVisited = mostVisitedSpot(n, m, spots);
+		int n = 5;
+//		int[] spots = {1, 5};
+		List<Integer> spots = new ArrayList<Integer>();
+		spots.add(1);
+		spots.add(5);
+		int mostVisited = mostVisitedSpot(n, spots);
 		System.out.println(mostVisited);
 	}
 
 	static Map<Integer, Integer> tm = new TreeMap<Integer, Integer>();
 	
-	private static int mostVisitedSpot(int n, int m, int[] spots) {
-		for (int i=0; i<m; i++) {
+	private static int mostVisitedSpot(int n, List<Integer> spot) {
+		for (int i=0; i<spot.size(); i++) {
 			if (i == 0) {
-				addToMap(spots[i]);
+				addToMap(spot.get(i));
 				continue;
 			}
 			
-			addToMap(spots[i-1]);
-			addToMap(spots[i]);
+			addToMap(spot.get(i-1));
+			addToMap(spot.get(i));
 		}
 		
 		tm.forEach((k, v) -> System.out.println("k = " +k+ " v = " +v)); // Print TreeMap

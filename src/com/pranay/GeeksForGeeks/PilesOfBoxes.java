@@ -11,14 +11,15 @@ public class PilesOfBoxes {
 
 	public static void main(String[] args) {
 		List<Integer> pilesOfBoxes = new ArrayList<Integer>();
+		
 		pilesOfBoxes.add(4);
-		pilesOfBoxes.add(5);
-		pilesOfBoxes.add(5);
-		pilesOfBoxes.add(2);
-		pilesOfBoxes.add(4);
+        pilesOfBoxes.add(5);
+        pilesOfBoxes.add(5);
+        pilesOfBoxes.add(2);
+        pilesOfBoxes.add(4);
 		
 		int steps = countSteps(pilesOfBoxes);
-//		System.out.println("Total Steps : ");
+		System.out.println("Total Steps : ");
 		System.out.println(steps);
 	}
 
@@ -41,22 +42,28 @@ public class PilesOfBoxes {
 		}
 		
 		for(Map.Entry<Integer, Integer> entry: tm.entrySet()) {
-			
-//			tm.forEach((k,v) -> System.out.println("Key = " + k + ", Value = " + v)); 
-			
+			System.out.println("Printing piles : ");
+			tm.forEach((k, v) -> System.out.println(" k : " +k+ " v : " +v));
 			prevKey = currentKey;
 			currentKey = entry.getKey();
 
+			System.out.println("current key : " + currentKey + " prev key : " + prevKey);
 			if (prevKey == 0) {
 				continue;
 			}
-			
+
 			prevVal = tm.get(prevKey);
 			currentVal = entry.getValue();
-			
-			int diff = 1;
+			System.out.println("current Val : " + currentVal + " prev Val : " + prevVal);
+
 			steps = steps + prevVal;
-			int newVal = currentVal * prevVal;
+
+			int newVal = 0;
+			if (currentVal > 1) {
+				newVal = currentVal * prevVal;
+			} else {
+				newVal = currentVal + prevVal;
+			}
 			tm.put(currentKey, newVal);
 		}
 		return steps;
