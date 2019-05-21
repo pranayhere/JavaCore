@@ -14,7 +14,7 @@ public class BookingReview {
 	public static void main(String[] args) {
 		String keywords = "breakfast beach citycenter location metro view staff price";
 
-		int[] hotelIds = {1,2,1,1,2};
+		int[] hotelIds = {1,2,3,2,2};
 		
 		List<String> reviews = new ArrayList<String>();
 		reviews.add("This hotel has a nice view of the citycenter. The location is perfect");
