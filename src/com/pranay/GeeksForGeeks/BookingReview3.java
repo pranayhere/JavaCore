@@ -1,16 +1,19 @@
 package com.pranay.GeeksForGeeks;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
-import static java.util.stream.Collectors.*;
+public class BookingReview3 {
 
-public class BookingReview {
 	public static void main(String[] args) {
 		String keywords = "breakfast beach citycenter location metro view staff price";
 
@@ -45,10 +48,10 @@ public class BookingReview {
 			int hotelId = hotelIds[i];
 			String[] review = reviews.get(i).replaceAll("[-+.^:,!']", "").toLowerCase().split(" ");
 			System.out.println("Processing for hotelId : " + hotelId);
-			for (String string : review) {
-				System.out.print(string + " ");
-			}
-			System.out.println();
+//			for (String string : review) {
+//				System.out.print(string + " ");
+//			}
+//			System.out.println();
 			for (String word : review) {
 				if (keywords.containsKey(word)) {
 					System.out.println(hotelId + " " + word);
@@ -65,15 +68,11 @@ public class BookingReview {
 
 		System.out.println("Hatels id with keyword count : " + hotelKeywordCount);
 
-		Map<Integer, Integer> sorted = (Map<Integer, Integer>) hotelKeywordCount.entrySet().stream()
+		Map<Integer, Integer> sorted = hotelKeywordCount.entrySet().stream()
 				.sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
-		
-//		Map<Integer, Integer> sorted = hotelKeywordCount.entrySet().stream()
-//                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-//                .collect(java.util.stream.Collectors.toMap(java.util.Map.Entry::getKey, java.util.Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+				.collect(java.util.stream.Collectors.toMap(java.util.Map.Entry::getKey, java.util.Map.Entry::getValue,
+						(e1, e2) -> e2, LinkedHashMap::new));
 
-		
 		System.out.println("Sorted Based on keys : " + sorted);
 		List<Integer> finalAns = sorted.keySet().stream().collect(Collectors.toList());
 		return finalAns;
