@@ -5,12 +5,14 @@ import java.util.Map;
 
 public class LongestSubstribgWithoutRepeatingCharacters {
 	public static void main(String[] args) {
-		String s = "bbbbb";
+		String s = " ";
 		int len = lengthOfLongestSubstring(s);
 		System.out.println(len);
 	}
 
 	private static int lengthOfLongestSubstring(String s) {
+		if (s.length() < 2)
+			return s.length();
 		int left = 0;
 		int right = 0;
 		int maxLength = 0;
@@ -24,6 +26,6 @@ public class LongestSubstribgWithoutRepeatingCharacters {
 			}
 			hm.put(ch, right);
 		}
-		return maxLength;
+		return Math.max(right - left, maxLength);
 	}
 }
