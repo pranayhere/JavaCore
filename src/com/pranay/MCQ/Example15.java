@@ -8,6 +8,5 @@ public class Example15 {
 		try {
 		File f = new File("a.txt");
 		}catch(Exception e){}
-		catch(IOException io){} 
 	}
 }

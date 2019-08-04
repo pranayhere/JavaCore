@@ -3,7 +3,7 @@ package com.pranay.GeeksForGeeks;
 public class BooksGS {
 
 	public static void main(String[] args) {
-		int totalScore = 58;
+		int totalScore = 6;
 		int count = noOfWaysToDrawTheGame(totalScore);
 		System.out.println("result : " + result);
 	}
