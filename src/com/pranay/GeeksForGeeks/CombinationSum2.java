@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CombinationSum {
+public class CombinationSum2 {
     public static void main(String[] args) {
-        int[] candidates = {2, 3, 5};
+        int[] candidates = {10, 1, 2, 7, 6, 1, 5};
         int target = 8;
 
         List<List<Integer>> list = combinationSum(candidates, target);
@@ -37,10 +37,12 @@ public class CombinationSum {
             return result;
         }
 
-        for(int i = startIndex; i<candidates.length; i++) {
-            combinations.add(candidates[i]);
-            result = getCombinations(combinations, result, candidates, target - candidates[i], i);
-            combinations.remove(combinations.size() - 1);
+        for (int i = startIndex; i < candidates.length; i++) {
+            if (i == startIndex || candidates[i] != candidates[i - 1]) {
+                combinations.add(candidates[i]);
+                result = getCombinations(combinations, result, candidates, target - candidates[i], i + 1);
+                combinations.remove(combinations.size() - 1);
+            }
         }
         return result;
     }
