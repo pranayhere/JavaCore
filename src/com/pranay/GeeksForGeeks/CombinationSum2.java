@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// https://leetcode.com/problems/combination-sum-ii/
+// This is same as combinationSum problem
+// In this we are increasing startIndex every time because we want coins to be different in a combination. i.e. [1, 1] is invalid
+
 public class CombinationSum2 {
     public static void main(String[] args) {
         int[] candidates = {10, 1, 2, 7, 6, 1, 5};
