@@ -1,0 +1,15 @@
+
+@squid:S14811")Remove this unused "list" local variable.(–ÍîÒ
+Osquid:S1854"8Remove this useless assignment to local variable "list".(áŒë
+Osquid:S18541"8Remove this useless assignment to local variable "list".(–ÍîÒ
+bsquid:CommentedOutCodeLine/"<This block of commented-out lines of code should be removed.(…¶×
+bsquid:CommentedOutCodeLine'"<This block of commented-out lines of code should be removed.(Û«Ü
+gsquid:CommentedOutCodeLine$"<This block of commented-out lines of code should be removed.(ÿÇÕ¯úÿÿÿÿ
+bsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(íºıŸ
+bsquid:CommentedOutCodeLine;"<This block of commented-out lines of code should be removed.(³½ÚÏ
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(”ß›Û
+@squid:S1481")Remove this unused "list" local variable.(áŒë
+bsquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(£÷Ï¹
+Bsquid:S1172"&Remove these unused method parameters.(œçºóÿÿÿÿÿ
+gsquid:CommentedOutCodeLineE"<This block of commented-out lines of code should be removed.(ØÄµëşÿÿÿÿ
+bsquid:CommentedOutCodeLine3"<This block of commented-out lines of code should be removed.(Úà
