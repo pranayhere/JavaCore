@@ -1,18 +1,4 @@
 
-nsquid:CommentedOutCodeLineK"<This block of commented-out lines of code should be removed.(Ççú§ÿÿÿÿÿ8©É„·Í-
-Rsquid:S1611#"/Remove the parentheses around the "t" parameter(’¼‚ûÿÿÿÿ8Ù£¹“Í-
-V
-squid:S106,"9Replace this use of System.out or System.err by a logger.(À°ã¡8žÔ³·Í-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(”ß›Û
 [
-squid:S106)"9Replace this use of System.out or System.err by a logger.(Ð¶„Žøÿÿÿÿ8ÀÃÈ¥Í-
-fsquid:S5361N"HReplace this call to "replaceAll()" by a call to the "replace()" method.(Â®‰ú8©É„·Í-
-hsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(§¼Ðo8©±·Í-
-jsquid:S00112C"FDefine and throw a dedicated exception instead of using a generic one.(¹ÍÝ ûÿÿÿÿ8¹â²·Í-
-jsquid:S00112;"FDefine and throw a dedicated exception instead of using a generic one.(¹ÍÝ ûÿÿÿÿ8Ò ­·Í-
-Rsquid:S1611""/Remove the parentheses around the "t" parameter(ª†’ÿÿÿÿÿ8ë¬“Í-
-V
-squid:S106'"9Replace this use of System.out or System.err by a logger.(ŒïÕÚ8ë¬“Í-
-Ysquid:UnusedPrivateMethodG"-Remove this unused private "stripXSS" method.(—ûüú8©±·Í-
-[
-squid:S106+"9Replace this use of System.out or System.err by a logger.(Àª—‘üÿÿÿÿ8è®·Í-
+squid:S106"9Replace this use of System.out or System.err by a logger.(®ýáëûÿÿÿÿ8«´¸†Ð-
