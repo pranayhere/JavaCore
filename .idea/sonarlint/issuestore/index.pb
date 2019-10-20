@@ -71,3 +71,5 @@ j
 0src/com/pranay/GeeksForGeeks/EqualSubstring.java,a/e/ae743e90a4bdcc3ff8d131c7e4fd76bb345d5e5c
 a
 1src/com/pranay/GeeksForGeeks/NextPermutation.java,4/8/482828e2b9559847b3210225ed6d1f999b709d10
+\
+,src/com/pranay/GeeksForGeeks/SonarFixes.java,7/f/7f6b78f3f5f6be59ded8053827a91072e4efb5d7
