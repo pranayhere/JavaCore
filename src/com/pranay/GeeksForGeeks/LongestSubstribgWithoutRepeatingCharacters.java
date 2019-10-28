@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LongestSubstribgWithoutRepeatingCharacters {
 	public static void main(String[] args) {
-		String s = " ";
+		String s = "abcabcb";
 		int len = lengthOfLongestSubstring(s);
 		System.out.println(len);
 	}
