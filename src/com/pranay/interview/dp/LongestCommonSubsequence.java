@@ -15,6 +15,7 @@ public class LongestCommonSubsequence {
 		String[] s2 = str2.split("");
 
 		int[][] T = new int[s2.length + 1][s1.length + 1];
+
 		for (int i=1; i<=s2.length; i++) {
 			for (int j=1; j<=s1.length; j++) {
 				if (s1[j-1].equals(s2[i-1])) {
