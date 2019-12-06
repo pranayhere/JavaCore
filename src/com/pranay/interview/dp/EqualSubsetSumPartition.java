@@ -14,7 +14,7 @@ public class EqualSubsetSumPartition {
 			sum += arr[i];
 		}
 
-		if (sum % 2 != 0) { // if some is odd, array can not be divided into two equal sum partitions
+		if (sum % 2 != 0) { // if sum is odd, array can not be divided into two equal sum partitions
 			return false;
 		}
 
