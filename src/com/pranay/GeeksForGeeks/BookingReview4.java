@@ -38,7 +38,6 @@ public class BookingReview4 {
 		long endTime = System.currentTimeMillis();
 		long duration = (endTime - startTime);
 		System.out.println("final : " +ans + "duration : " + duration + "ms");
-
 	}
 
 	private static List<Integer> processReviews(String keys, List<Integer> hotelIds, List<String> reviews) {
