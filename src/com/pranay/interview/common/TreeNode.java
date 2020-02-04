@@ -1,8 +1,8 @@
 package com.pranay.interview.common;
 
 public class TreeNode {
-	int data;
-	TreeNode left, right;
+	public int data;
+	public TreeNode left, right;
 	public TreeNode(int item)
 	{
 		data = item;
