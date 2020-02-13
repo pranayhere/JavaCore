@@ -30,6 +30,7 @@ public class KWeakestRowInMatrix {
 		int k = 1;
 		int[] ans = kWeakestRows(mat, k);
 		System.out.println(ans);
+
 	}
 
 	private static int[] kWeakestRows(int[][] mat, int k) {
