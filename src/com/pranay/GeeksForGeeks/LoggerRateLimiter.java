@@ -3,6 +3,11 @@ package com.pranay.GeeksForGeeks;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * https://leetcode.com/problems/logger-rate-limiter/
+ * 359. Logger Rate Limiter
+ */
+
 public class LoggerRateLimiter {
 	Map<String, Integer> hm;
 	public LoggerRateLimiter() {
