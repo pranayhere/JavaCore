@@ -41,7 +41,7 @@ public class BinaryTreeTraversalIterative {
 	}
 
 	private static void inOrder(Node node) {
-		if (root == null) {
+		if (node == null) {
 			return;
 		}
 
