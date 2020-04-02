@@ -17,11 +17,16 @@ public class MaxPathSum {
 	}
 
 	public static int maxPathSum(Node node) {
+		max_sum = Integer.MIN_VALUE;
+		findMaxPath(node);
+		return max_sum;
+	}
+
+	public static int findMaxPath(Node node) {
 		if (node == null) return 0;
-		int left_gain = Math.max(maxPathSum(node.left), 0);
-		int right_gain = Math.max(maxPathSum(node.right), 0);
-		int price_newpath = node.data + left_gain + right_gain;
-		max_sum = Math.max(max_sum, price_newpath);
-		return node.data + Math.max(left_gain, right_gain);
+		int left = Math.max(0, findMaxPath(node.left));
+		int right = Math.max(0, findMaxPath(node.right));
+		max_sum = Math.max(max_sum, left + right + node.data);
+		return Math.max(left, right) + node.data;
 	}
 }
