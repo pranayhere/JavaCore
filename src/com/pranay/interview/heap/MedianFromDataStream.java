@@ -1,17 +1,12 @@
-package com.pranay.GeeksForGeeks;
+package com.pranay.interview.heap;
 
 import java.util.PriorityQueue;
 
-/**
- * https://leetcode.com/problems/find-median-from-data-stream/
- * 295. Find Median from Data Stream
- */
-
-public class MedianFromDataStreamTwoHeaps {
+public class MedianFromDataStream {
 	private PriorityQueue<Integer> maxHeap;
 	private PriorityQueue<Integer> minHeap;
 
-	public MedianFromDataStreamTwoHeaps() {
+	public MedianFromDataStream() {
 		maxHeap = new PriorityQueue<>((a,b) -> b.compareTo(a));
 		minHeap = new PriorityQueue<>();
 	}
@@ -36,7 +31,7 @@ public class MedianFromDataStreamTwoHeaps {
 
 	private double findMedian() {
 		if (minHeap.size() == maxHeap.size()) {
-			return ((double) (minHeap.peek() + maxHeap.peek())) / 2;
+			return (double) minHeap.peek() + maxHeap.peek() / 2;
 		} else if (minHeap.size() > maxHeap.size()) {
 			return (double) minHeap.peek();
 		} else {
@@ -45,16 +40,12 @@ public class MedianFromDataStreamTwoHeaps {
 	}
 
 	public static void main(String[] args) {
-		MedianFromDataStreamTwoHeaps m = new MedianFromDataStreamTwoHeaps();
-		m.addNum(5);
-		System.out.println("5 median : "+m.findMedian());
-		m.addNum(4);
-		System.out.println("4 median : "+m.findMedian());
-		m.addNum(3);
-		System.out.println("3 median : "+m.findMedian());
-		m.addNum(2);
-		System.out.println("2 median : "+m.findMedian());
+		MedianFromDataStream m = new MedianFromDataStream();
 		m.addNum(1);
+		m.addNum(2);
+		m.addNum(3);
+		m.addNum(4);
+		m.addNum(5);
 		double median = m.findMedian();
 		System.out.println(median);
 	}
