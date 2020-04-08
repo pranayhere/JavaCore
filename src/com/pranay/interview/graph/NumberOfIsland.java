@@ -15,7 +15,7 @@ public class NumberOfIsland {
 				{'0','0','0','1','1'}
 		};
 
-		int count = numIslands(grid);
+		int count = numIsland2(grid);
 		System.out.println("No Of Island : " +count);
 	}
 
@@ -62,5 +62,42 @@ public class NumberOfIsland {
 		// dfs(grid, r+1, c-1);
 		// dfs(grid, r, c-1);
 		// dfs(grid, r, c+1);
+	}
+
+	public static int numIsland2(char[][] grid) {
+		if (grid == null || grid.length == 0) {
+			return 0;
+		}
+
+		int nr = grid.length;
+		int nc = grid[0].length;
+		int numIsland = 0;
+
+		for (int r=0; r<nr; r++) {
+			for (int c=0; c<nc; c++) {
+				if (grid[r][c] == '1') {
+					numIsland++;
+					dfs2(grid, r, c);
+				}
+			}
+		}
+
+		return numIsland;
+	}
+
+	private static void dfs2(char[][] grid, int r, int c) {
+		int nr = grid.length;
+		int nc = grid[0].length;
+
+		if (r < 0 || c < 0 || r >= nr || c >= nc || grid[r][c] == '0') {
+			return;
+		}
+
+		grid[r][c] = '0';
+		dfs2(grid, r-1, c);
+		dfs2(grid, r+1, c);
+		dfs2(grid, r, c-1);
+		dfs2(grid, r, c+1);
+
 	}
 }
