@@ -1,11 +1,10 @@
 package com.pranay.interview.graph;
 
 // solution : https://leetcode.com/articles/course-schedule/
+// https://www.youtube.com/watch?v=0LjVxtLnNOk - very good (implementation explanation)
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Stack;
 
 public class CourseScheduleTopologicalSort {
 	public static void main(String[] args) {
@@ -17,49 +16,35 @@ public class CourseScheduleTopologicalSort {
 	}
 
 	private static boolean canFinish(int numCourses, int[][] prerequisites) {
-		Map<Integer, List<Integer>> courseDict = new HashMap<>();
-		for (int[] relation: prerequisites) {
-			if (courseDict.containsKey(relation[1])) {
-				courseDict.get(relation[1]).add(relation[0]);
-			} else {
-				List<Integer> nextCourses = new LinkedList<>();
-				nextCourses.add(relation[0]);
-				courseDict.put(relation[1], nextCourses);
+		int[] inDegree = new int[numCourses];
+		int count = 0;
+
+		for (int i = 0; i<prerequisites.length; i++) {
+			inDegree[prerequisites[i][0]]++;
+		}
+
+		System.out.println(Arrays.toString(inDegree));
+		Stack<Integer> stk = new Stack<>();
+
+		for (int i=0; i< inDegree.length; i++) {
+			if (inDegree[i] == 0) {
+				stk.push(i);
 			}
 		}
 
-		courseDict.forEach((k, v) -> System.out.println(k + " - " + v));
+		while (!stk.isEmpty()) {
+			int curr = stk.pop();
+			count++;
 
-		boolean[] path = new boolean[numCourses];
-
-		for (int currCourse = 0; currCourse < numCourses; ++currCourse) {
-			if (isCyclic(currCourse, courseDict, path)) {
-				return false;
+			for (int i = 0; i < prerequisites.length; i++) {
+				if (prerequisites[i][1] == curr) {
+					inDegree[prerequisites[i][0]]--;
+					if (inDegree[prerequisites[i][0]] == 0) {
+						stk.push(prerequisites[i][0]);
+					}
+				}
 			}
 		}
-		return true;
-	}
-
-	private static boolean isCyclic(int currCourse, Map<Integer, List<Integer>> courseDict, boolean[] path) {
-		if (path[currCourse]) {
-			return true;
-		}
-
-		if (!courseDict.containsKey(currCourse)) {
-			return false;
-		}
-
-		path[currCourse] = true;
-
-		boolean ret = false;
-		for (Integer nextCourse: courseDict.get(currCourse)) {
-			ret = isCyclic(nextCourse, courseDict, path);
-			if (ret) {
-				break;
-			}
-		}
-
-		path[currCourse] = false;
-		return ret;
+		return count == numCourses;
 	}
 }

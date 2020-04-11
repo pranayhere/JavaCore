@@ -6,7 +6,7 @@ package com.pranay.interview.graph;
  * this number would be the number of islands since each DFS starting at some root identifies an island.
  */
 
-public class NumberOfIsland {
+public class NumberOfIslandDFS {
 	public static void main(String[] args) {
 		char[][] grid = {
 				{'1','1','0','0','0'},
