@@ -19,13 +19,13 @@ public class ProductOfArrayExceptSelf {
 		for (int i = 1; i<nums.length; i++) {
 			fwd[i] = fwd[i-1] * nums[i];
 		}
-//		System.out.println(Arrays.toString(fwd));
+		System.out.println(Arrays.toString(fwd));
 
 		bwd[bwd.length - 1] = nums[nums.length - 1];
 		for (int i = nums.length - 2; i >=0; i--) {
 			bwd[i] = bwd[i+1] * nums[i];
 		}
-//		System.out.println(Arrays.toString(bwd));
+		System.out.println(Arrays.toString(bwd));
 
 		for (int i = 0; i < nums.length; i++) {
 			if (i == 0) {
