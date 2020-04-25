@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class JumpGame2 {
 	public static void main(String[] args) {
-		int[] nums = {2,3,1,1,4};
+		int[] nums = {0,2,3};
 		int minJumps = jump(nums);
 		System.out.println(minJumps);
 	}
@@ -25,6 +25,7 @@ public class JumpGame2 {
 				}
 			}
 		}
+        System.out.println(Arrays.toString(count));
 		return count[count.length - 1];
 	}
 
@@ -39,6 +40,7 @@ public class JumpGame2 {
 				}
 			}
 		}
+        System.out.println(Arrays.toString(res));
 		return res[arr.length-1];
 	}
 }
