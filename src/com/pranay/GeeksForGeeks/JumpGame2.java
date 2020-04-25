@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class JumpGame2 {
 	public static void main(String[] args) {
 		int[] nums = {0,2,3};
-		int minJumps = jump(nums);
+		int minJumps = jump2(nums);
 		System.out.println(minJumps);
 	}
 
@@ -27,20 +27,5 @@ public class JumpGame2 {
 		}
         System.out.println(Arrays.toString(count));
 		return count[count.length - 1];
-	}
-
-	public static int jump(int arr[]){
-		int res[]=new int[arr.length];
-		Arrays.fill(res, Integer.MAX_VALUE);
-		res[0] = 0;
-		for(int i=0;i<arr.length;i++){
-			for(int j=i+1;j<arr.length;j++){
-				if((j-i) <= arr[i]) {
-					res[j]=Math.min(1+res[i], res[j]);
-				}
-			}
-		}
-        System.out.println(Arrays.toString(res));
-		return res[arr.length-1];
 	}
 }
