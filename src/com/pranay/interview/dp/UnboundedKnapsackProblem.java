@@ -18,9 +18,9 @@ import java.util.Arrays;
  */
 public class UnboundedKnapsackProblem {
 	public static void main(String[] args) {
-		int W = 5;
-		int[] val = {2, 5, 7, 8};
-		int[] wt = {1, 2, 3, 4};
+		int W = 8;
+		int[] val = {10, 40, 50, 70};
+		int[] wt = {1, 3, 4, 5};
 		int maxProfit = maxProfit(val, wt, W);
 		System.out.println(maxProfit);
 	}

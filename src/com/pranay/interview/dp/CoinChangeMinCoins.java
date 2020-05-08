@@ -1,6 +1,8 @@
 package com.pranay.interview.dp;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * You are given coins of different denominations and a total amount of money amount.
@@ -18,6 +20,16 @@ public class CoinChangeMinCoins {
 		int[] coins = {1, 5, 6, 8};
 		int total = 11;
 		System.out.println(minCoins(coins, total));
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        System.out.println(list);
+        System.out.println(list.get(0));
+        list.remove(0);
+        System.out.println(list);
+        System.out.println(list.get(0));
 	}
 
 	private static int minCoins(int[] coins, int total) {
