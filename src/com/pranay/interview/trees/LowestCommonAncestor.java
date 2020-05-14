@@ -2,6 +2,13 @@ package com.pranay.interview.trees;
 
 import java.util.ArrayList;
 
+/**
+ *             20
+ *           /   \
+ *          8     22
+ *        /  \    / \
+ *       4   12  10  14
+ */
 public class LowestCommonAncestor {
 	static Node root;
 

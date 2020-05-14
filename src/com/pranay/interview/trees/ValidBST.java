@@ -1,7 +1,9 @@
 package com.pranay.interview.trees;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Stack;
 
 public class ValidBST {
@@ -12,7 +14,7 @@ public class ValidBST {
 		tree.root.left = new Node(5);
 		tree.root.right = new Node(3);
 
-		boolean isValid = isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		boolean isValid = isValidBST3(root);
 		System.out.println(isValid);
 	}
 
@@ -45,4 +47,25 @@ public class ValidBST {
 		}
 		return true;
 	}
+
+	private static boolean isValidBST3(Node node) {
+        List<Integer> nums = new ArrayList<>();
+        inorder(node, nums);
+        System.out.println(nums);
+        for (int i = 0; i<nums.size() - 1; i++) {
+            if (nums.get(i) > nums.get(i + 1)) {
+               return false;
+            }
+        }
+        return true;
+    }
+
+    private static void inorder(Node node, List<Integer> nums) {
+	    if (node == null) return;
+	    inorder(node.left, nums);
+	    nums.add(node.data);
+	    inorder(node.right, nums);
+    }
+
+
 }

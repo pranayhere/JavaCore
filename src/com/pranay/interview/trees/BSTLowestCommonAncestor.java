@@ -25,6 +25,21 @@ public class BSTLowestCommonAncestor {
 		return node;
 	}
 
+	private Node lca2(Node node, int n1, int n2) {
+	    if (node == null) {
+	        return null;
+        }
+
+	    if (node.data > n1 && node.data > n2) {
+	        return lca2(node.left, n1, n2);
+        }
+
+	    if (node.data < n1 && node.data < n2) {
+	        return lca2(node.right, n1, n2);
+        }
+	    return node;
+    }
+
 	public static void main(String[] args) {
 		BSTLowestCommonAncestor tree = new BSTLowestCommonAncestor();
 
