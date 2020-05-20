@@ -1,5 +1,7 @@
 package com.pranay.GeeksForGeeks;
 
+// https://leetcode.com/problems/consecutive-characters/
+
 public class ConsecutiveCharacters {
     public static void main(String[] args) {
         String s = "cc";

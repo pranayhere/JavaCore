@@ -1,5 +1,7 @@
 package com.pranay.GeeksForGeeks;
 
+// https://leetcode.com/problems/count-good-nodes-in-binary-tree/
+
 public class GoodNodesInBinaryTree {
     static Node root;
     int count;

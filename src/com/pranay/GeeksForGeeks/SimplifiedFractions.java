@@ -1,5 +1,7 @@
 package com.pranay.GeeksForGeeks;
 
+// https://leetcode.com/problems/simplified-fractions/
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
