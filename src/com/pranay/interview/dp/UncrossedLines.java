@@ -1,12 +1,19 @@
 package com.pranay.interview.dp;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class UncrossedLines {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hmmss'Z'");
     public static void main(String[] args) {
         int[] A = {1, 4, 2};
         int[] B = {1, 2, 4};
         int max = maxUncrossedLines(A, B);
+
+        LocalDateTime currentDateTime = LocalDateTime.of(2020, 5, 5, 9, 15, 20);
+        String formattedDateTime = currentDateTime.format(formatter);
+        System.out.println(formattedDateTime);
         System.out.println("Max : " + max);
     }
 
