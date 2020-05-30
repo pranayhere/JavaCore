@@ -9,7 +9,7 @@ import java.util.Stack;
 public class CourseScheduleTopologicalSort {
 	public static void main(String[] args) {
 		int numCourses = 2;
-		int[][] prerequisites = {{1,0}, {0,1}};
+		int[][] prerequisites = {{0, 1}};
 
 		boolean canFinish = canFinish(numCourses, prerequisites);
 		System.out.println("can finish : " +canFinish);
@@ -35,10 +35,11 @@ public class CourseScheduleTopologicalSort {
 		while (!stk.isEmpty()) {
 			int curr = stk.pop();
 			count++;
-
+            System.out.println(curr);
 			for (int i = 0; i < prerequisites.length; i++) {
 				if (prerequisites[i][1] == curr) {
 					inDegree[prerequisites[i][0]]--;
+                    System.out.println(Arrays.toString(inDegree));
 					if (inDegree[prerequisites[i][0]] == 0) {
 						stk.push(prerequisites[i][0]);
 					}
