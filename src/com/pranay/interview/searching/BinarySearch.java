@@ -9,10 +9,13 @@ public class BinarySearch {
 	}
 
 	private static int binarySearch(int[] nums, int k) {
-		int lo = 0;
-		int hi = nums.length;
+		if (nums == null || nums.length == 0) {
+		    return 0;
+        }
+	    int lo = 0;
+		int hi = nums.length - 1;
 		while (lo <= hi) {
-			int mid = (lo + hi) / 2;
+			int mid = lo + (hi - lo) / 2;
 			if (nums[mid] == k) {
 				return mid;
 			} else if (nums[mid] > k) {
