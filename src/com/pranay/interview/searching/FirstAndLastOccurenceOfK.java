@@ -1,9 +1,11 @@
 package com.pranay.interview.searching;
 
+// Refer search for range for correct implementation
+
 public class FirstAndLastOccurenceOfK {
 	public static void main(String[] args) {
-		int[] nums = {-14, -10, 2, 108, 108, 243, 285, 285, 285, 401};
-		int k = 285;
+		int[] nums = {5,7,7,8,8,10};
+		int k = 5;
 		int first = firstOccurence(nums, k);
 		int last = lastOccurance(nums, k);
 
