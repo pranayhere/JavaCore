@@ -27,10 +27,9 @@ public class FloodFill {
         }
 
         image[r][c] = newColor;
-        dfs(image, r - 1, c, color, newColor);
-        dfs(image, r + 1, c, color, newColor);
-        dfs(image, r, c - 1, color, newColor);
-        dfs(image, r, c + 1, color, newColor);
-
+        dfs(image, r-1, c, color, newColor);
+        dfs(image, r+1, c, color, newColor);
+        dfs(image, r, c-1, color, newColor);
+        dfs(image, r, c+1, color, newColor);
     }
 }

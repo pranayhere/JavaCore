@@ -19,7 +19,7 @@ public class BTRightView {
 			max_level = level;
 		}
 		rightView(node.right, level+1);
-		rightView(node.right, level+1);
+		rightView(node.left, level+1);
 		
 	}
 	public static void main(String[] args) {
