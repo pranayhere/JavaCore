@@ -5,23 +5,21 @@ package com.pranay.Leetcode30DaysOfJune;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
 public class RandomizedCollections {
     public static void main(String[] args) {
         RandomizedCollections collection = new RandomizedCollections();
-        System.out.println("Insert 4 :" + collection.insert(4));
+        System.out.println("Insert 4 : " + collection.insert(4));
         collection.print();
-        System.out.println("Insert 3 :" +collection.insert(3));
+        System.out.println("Insert 3 : " + collection.insert(3));
         collection.print();
-        System.out.println("Insert 4 :" +collection.insert(4));
+        System.out.println("Insert 4 : " + collection.insert(4));
         collection.print();
-        System.out.println("Insert 2 :" +collection.insert(2));
+        System.out.println("Insert 2 : " + collection.insert(2));
         collection.print();
-        System.out.println("Insert 4 :" +collection.insert(4));
+        System.out.println("Insert 4 : " + collection.insert(4));
         collection.print();
         System.out.println("remove 4 : " + collection.remove(4));
         collection.print();
@@ -72,6 +70,7 @@ public class RandomizedCollections {
     private boolean insert(int val) {
         if (!idx.containsKey(val))
             idx.put(val, new LinkedHashSet<>());
+
         idx.get(val).add(lst.size());
         lst.add(val);
         return idx.get(val).size() == 1;
