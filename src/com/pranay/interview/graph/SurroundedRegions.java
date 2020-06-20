@@ -9,15 +9,6 @@ import java.util.List;
 
 public class SurroundedRegions {
     public static void main(String[] args) {
-//        char[][] board = {
-//                {'X','X','X','X','X','X'},
-//                {'X','X','0','X','X','X'},
-//                {'X','X','X','X','X','X'},
-//                {'0','0','X','X','X','X'},
-//                {'X','X','X','0','0','X'},
-//                {'X','X','X','X','0','X'},
-//        };
-//
         char[][] board = {
                 {'X', 'X', 'X', 'X'},
                 {'X', '0', '0', 'X'},
