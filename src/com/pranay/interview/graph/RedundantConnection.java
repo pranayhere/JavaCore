@@ -36,9 +36,12 @@ public class RedundantConnection {
     private boolean dfs(ArrayList<Integer>[] graph, int source, int target) {
         if (!seen.contains(source)) {
             seen.add(source);
-            if (source == target) return true;
+            if (source == target)
+                return true;
+
             for (int nei: graph[source]) {
-                if (dfs(graph, nei, target)) return true;
+                if (dfs(graph, nei, target))
+                    return true;
             }
         }
         return false;
