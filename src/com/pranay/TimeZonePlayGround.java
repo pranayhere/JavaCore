@@ -1,9 +1,13 @@
 package com.pranay;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * LocalDateTime ldt = LocalDateTime.now();
  * Instant instant = ldt.atZone(ZoneId.of("GMT+05:30")).toInstant();
@@ -16,16 +20,27 @@ import java.util.Date;
 
 
 public class TimeZonePlayGround {
-    public static void main(String[] args) {
-        LocalDateTime ldt = LocalDateTime.now();
-//        Instant instant = ldt.atZone(ZoneId.of("GMT+05:30")).toInstant();
-        Instant instant = ldt.atZone(ZoneId.of("GMT")).toInstant();
-        System.out.println("Instant : " + instant);
-        LocalDateTime gmtTime = LocalDateTime.ofInstant(instant, ZoneId.of("GMT"));
-        System.out.println("GMT : " + gmtTime);
+    static final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
 
-        Date gmtDate = Date.from(gmtTime.atZone(ZoneId.systemDefault()).toInstant());
-        System.out.println("GMT DATE : " +gmtDate);
+    public static void main(String[] args) {
+
+        Calendar pCalEnd = Calendar.getInstance(TimeZone.getTimeZone(TimeZone.getAvailableIDs(7200*1000)[0]));
+        System.out.println(pCalEnd.getTime());
+
+//        final SimpleDateFormat sdf = new SimpleDateFormat(DATEFORMAT);
+//        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+//        final String utcTime = sdf.format(new Date());
+//        System.out.println("UTC Now : " + utcTime);
+
+        //        LocalDateTime ldt = LocalDateTime.now();
+//        Instant instant = ldt.atZone(ZoneId.of("GMT+05:30")).toInstant();
+//        Instant instant = ldt.atZone(ZoneId.of("GMT")).toInstant();
+//        System.out.println("Instant : " + instant);
+//        LocalDateTime gmtTime = LocalDateTime.ofInstant(instant, ZoneId.of("GMT"));
+//        System.out.println("GMT : " + gmtTime);
+//
+//        Date gmtDate = Date.from(gmtTime.atZone(ZoneId.systemDefault()).toInstant());
+//        System.out.println("GMT DATE : " +gmtDate);
 
         // india time 19-6-2020:12.17.00 pm
 //        LocalDateTime ldt2 = LocalDateTime.of(2020, 6, 19, 14, 47, 0); //singapore
