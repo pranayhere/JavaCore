@@ -3,31 +3,34 @@ package com.pranay.interview.hashing;
 import java.util.LinkedHashMap;
 
 public class LRUCache {
-	LinkedHashMap<Integer, Integer> hm;
-	int capacity;
+    LinkedHashMap<Integer, Integer> hm;
+    int capacity;
 
 	public LRUCache (int capacity) {
-		this.capacity = capacity;
-		hm = new LinkedHashMap<>();
+	    hm = new LinkedHashMap<>();
+	    this.capacity = capacity;
 	}
 
 	public int get(int k) {
-		if (!hm.containsKey(k)) {
-			return -1;
-		}
-		int val = hm.get(k);
-		hm.remove(k);
-		hm.put(k, val);
-		return val;
+		int val = -1;
+	    if (hm.containsKey(k)) {
+		    val = hm.get(k);
+		    hm.remove(k);
+		    hm.put(k, val);
+        }
+	    return val;
 	}
 
 	public void put(int k, int v) {
-		if (hm.containsKey(k)) {
-			hm.remove(k);
-		} else if (!hm.containsKey(k) && hm.size() >= capacity) {
-			hm.remove(hm.keySet().iterator().next());
-		}
-		hm.put(k, v);
+	    if (!hm.containsKey(k) && hm.size() == capacity) {
+	        hm.remove(hm.keySet().iterator().next());
+	        hm.put(k, v);
+        } else if (hm.containsKey(k)) {
+	        hm.remove(k);
+	        hm.put(k, v);
+        } else {
+	        hm.put(k, v);
+        }
 	}
 
 	public static void main(String[] args) {
