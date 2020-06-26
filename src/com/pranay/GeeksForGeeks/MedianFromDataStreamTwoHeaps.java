@@ -32,6 +32,10 @@ public class MedianFromDataStreamTwoHeaps {
 				}
 			}
 		}
+        System.out.println("Num : " + num);
+        System.out.println("MaxHeap : " + maxHeap);
+        System.out.println("Minheap : " + minHeap);
+        System.out.println("=====================");
 	}
 
 	private double findMedian() {

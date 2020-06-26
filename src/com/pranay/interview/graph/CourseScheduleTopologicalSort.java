@@ -3,49 +3,48 @@ package com.pranay.interview.graph;
 // solution : https://leetcode.com/articles/course-schedule/
 // https://www.youtube.com/watch?v=0LjVxtLnNOk - very good (implementation explanation)
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Queue;
 import java.util.Stack;
 
 public class CourseScheduleTopologicalSort {
 	public static void main(String[] args) {
 		int numCourses = 2;
-		int[][] prerequisites = {{0, 1}};
+		int[][] prerequisites = {{0, 1}, {1, 0}};
 
 		boolean canFinish = canFinish(numCourses, prerequisites);
 		System.out.println("can finish : " +canFinish);
 	}
 
 	private static boolean canFinish(int numCourses, int[][] prerequisites) {
-		int[] inDegree = new int[numCourses];
-		int count = 0;
+		int[] indegree = new int[numCourses];
+		for (int[] prerequisite: prerequisites) {
+		    indegree[prerequisite[0]]++;
+        }
 
-		for (int i = 0; i<prerequisites.length; i++) {
-			inDegree[prerequisites[i][0]]++;
-		}
+        System.out.println(Arrays.toString(indegree));
 
-		System.out.println(Arrays.toString(inDegree));
-		Stack<Integer> stk = new Stack<>();
+        Queue<Integer> q = new ArrayDeque<>();
+        for (int i=0; i<indegree.length; i++) {
+            if (indegree[i] == 0) {
+                q.offer(i);
+            }
+        }
 
-		for (int i=0; i< inDegree.length; i++) {
-			if (inDegree[i] == 0) {
-				stk.push(i);
-			}
-		}
-
-		while (!stk.isEmpty()) {
-			int curr = stk.pop();
-			count++;
-            System.out.println(curr);
-			for (int i = 0; i < prerequisites.length; i++) {
-				if (prerequisites[i][1] == curr) {
-					inDegree[prerequisites[i][0]]--;
-                    System.out.println(Arrays.toString(inDegree));
-					if (inDegree[prerequisites[i][0]] == 0) {
-						stk.push(prerequisites[i][0]);
-					}
-				}
-			}
-		}
+        int count = 0;
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            count++;
+            for (int i = 0; i<prerequisites.length; i++) {
+                if (prerequisites[i][1] == curr) {
+                    indegree[prerequisites[i][0]]--;
+                    if (indegree[prerequisites[i][0]] == 0) {
+                        q.offer(prerequisites[i][0]);
+                    }
+                }
+            }
+        }
 		return count == numCourses;
 	}
 }
