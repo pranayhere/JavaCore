@@ -3,6 +3,22 @@ package com.pranay.interview.trees;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/sum-root-to-leaf-numbers/
+ *
+ * Input: [4,9,0,5,1]
+ *     4
+ *    / \
+ *   9   0
+ *  / \
+ * 5   1
+ * Output: 1026
+ * Explanation:
+ * The root-to-leaf path 4->9->5 represents the number 495.
+ * The root-to-leaf path 4->9->1 represents the number 491.
+ * The root-to-leaf path 4->0 represents the number 40.
+ * Therefore, sum = 495 + 491 + 40 = 1026.
+ */
 public class SumRootToLeaf {
     static Node root;
     public static void main(String[] args) {
@@ -46,8 +62,8 @@ public class SumRootToLeaf {
         if (root == null) {
             return;
         }
-        currPath.add(root.data);
 
+        currPath.add(root.data);
         if (root.left == null && root.right == null) {
             allPaths.add(new ArrayList<>(currPath));
         }
@@ -55,5 +71,22 @@ public class SumRootToLeaf {
         dfs(root.left, allPaths, currPath);
         dfs(root.right, allPaths, currPath);
         currPath.remove(currPath.size() - 1);
+    }
+
+    // solution 2 :
+    public int sumNumbers2(Node root) {
+        int[] sum = new int[1];
+        preOrderDfs(root, sum, 0);
+        return sum[0];
+    }
+
+    private void preOrderDfs(Node node, int[] sum, int num) {
+        if (node == null) return;
+        num = 10 * num + node.data;
+        if (node.left == null && node.right == null) {
+            sum[0] += num;
+        }
+        preOrderDfs(node.left, sum, num);
+        preOrderDfs(node.right, sum, num);
     }
 }
