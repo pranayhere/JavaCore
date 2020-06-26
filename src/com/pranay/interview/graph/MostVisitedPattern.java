@@ -40,44 +40,50 @@ public class MostVisitedPattern {
     }
 
     private static List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {
-        List<Event> events = new ArrayList<>();
-        for (int i = 0; i<username.length; i++) {
-            events.add(new Event(username[i], timestamp[i], website[i]));
-        }
+        Set<String> res = new HashSet<>();
+        List<String> arr = Arrays.asList("a", "b", "c", "d", "e");
+        dfs(arr, 0, new ArrayList<>(), res);
+        System.out.println(res);
+        return null;
 
-        Collections.sort(events, (a, b) -> a.timestamp - b.timestamp);
-        System.out.println(events);
-
-        Map<String, List<String>> userToWeb = new HashMap<>();
-        for (Event e : events) {
-            userToWeb.computeIfAbsent(e.user, k -> new ArrayList<>()).add(e.web);
-        }
-
-        System.out.println(userToWeb);
-
-        Map<String, Integer> webTofreq = new HashMap<>();
-        for (String user: userToWeb.keySet()) {
-            Set<String> seqs = get3Seq(userToWeb.get(user));
-            for (String seq : seqs)
-                webTofreq.put(seq, webTofreq.getOrDefault(seq, 0) + 1);
-        }
-
-        System.out.println(webTofreq);
-
-        int max = 0;
-        String ans = "";
-        for (String seq : webTofreq.keySet()) {
-            int freq = webTofreq.get(seq);
-            if (freq < max) {
-            } else if (freq == max) {
-                ans = seq.compareTo(ans) < 0 ? seq : ans;
-            } else { // freq > max
-                ans = seq;
-                max = freq;
-            }
-
-        }
-        return Arrays.asList(ans.split("#"));
+//        List<Event> events = new ArrayList<>();
+//        for (int i = 0; i<username.length; i++) {
+//            events.add(new Event(username[i], timestamp[i], website[i]));
+//        }
+//
+//        Collections.sort(events, (a, b) -> a.timestamp - b.timestamp);
+//        System.out.println(events);
+//
+//        Map<String, List<String>> userToWeb = new HashMap<>();
+//        for (Event e : events) {
+//            userToWeb.computeIfAbsent(e.user, k -> new ArrayList<>()).add(e.web);
+//        }
+//
+//        System.out.println(userToWeb);
+//
+//        Map<String, Integer> webTofreq = new HashMap<>();
+//        for (String user: userToWeb.keySet()) {
+//            Set<String> seqs = get3Seq(userToWeb.get(user));
+//            for (String seq : seqs)
+//                webTofreq.put(seq, webTofreq.getOrDefault(seq, 0) + 1);
+//        }
+//
+//        System.out.println(webTofreq);
+//
+//        int max = 0;
+//        String ans = "";
+//        for (String seq : webTofreq.keySet()) {
+//            int freq = webTofreq.get(seq);
+//            if (freq < max) {
+//            } else if (freq == max) {
+//                ans = seq.compareTo(ans) < 0 ? seq : ans;
+//            } else { // freq > max
+//                ans = seq;
+//                max = freq;
+//            }
+//
+//        }
+//        return Arrays.asList(ans.split("#"));
     }
 
     private static Set<String> get3Seq(List<String> webs) {
