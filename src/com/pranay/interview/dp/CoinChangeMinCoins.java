@@ -18,7 +18,7 @@ import java.util.List;
 public class CoinChangeMinCoins {
 	public static void main(String[] args) {
 		int[] coins = {1, 5, 6, 8};
-		int total = 11;
+		int total = 10;
 		System.out.println(minCoins(coins, total));
 	}
 

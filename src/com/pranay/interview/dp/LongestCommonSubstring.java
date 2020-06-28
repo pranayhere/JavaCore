@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class LongestCommonSubstring {
 	public static void main(String[] args) {
-		String str1 = "abcdaf";
+		String str1 = "acbcdaf";
 		String str2 = "zbcdf";
 		int len = longestCommonSubstring(str1, str2);
 		System.out.println(len);

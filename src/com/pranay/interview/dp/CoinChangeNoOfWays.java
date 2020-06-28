@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class CoinChangeNoOfWays {
 	public static void main(String[] args) {
-		int[] coins = {2};
-		int total = 3;
+		int[] coins = {1,2,5};
+		int total = 5;
 		int ways = numberOfWays(coins, total);
 		System.out.println(ways);
 	}
