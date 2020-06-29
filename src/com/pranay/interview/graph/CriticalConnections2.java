@@ -53,7 +53,7 @@ public class CriticalConnections2 {
             }
             // node -> n is visited at this point, so update low
             low[node] = Math.min(low[node], low[n]);
-            if (low[node] < low[n]) { // neighbour is visited after the current node (no earlier path found)
+            if (disc[node] < low[n]) { // neighbour is visited after the current node (no earlier path found)
                 ans.add(List.of(node, n));
             }
         }
