@@ -13,7 +13,7 @@ public class CourseSchedule2 {
         int numCourses = 2;
 
         int[] topologicalOrder = findOrder(numCourses, prerequisites);
-        System.out.println(Arrays.toString(topologicalOrder));
+        System.out.println("Topological order : " + Arrays.toString(topologicalOrder));
     }
 
     private static int[] findOrder(int numCourses, int[][] prerequisites) {
