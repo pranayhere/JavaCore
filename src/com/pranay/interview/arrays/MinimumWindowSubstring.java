@@ -12,46 +12,50 @@ public class MinimumWindowSubstring {
 	}
 
 	private static String minWindow(String s, String t) {
-		if (s.length() == 0 || t.length() == 0) {
-			return "";
-		}
+        if (s.length() == 0 || t.length() == 0) {
+            return "";
+        }
 
-		Map<Character, Integer> map = new HashMap<>();
-		for (char ch : t.toCharArray()) {
-			map.put(ch, map.getOrDefault(ch, 0) + 1);
-		}
+        Map<Character, Integer> dictT = new HashMap<>();
+        for (char ch: t.toCharArray()) {
+            dictT.put(ch, dictT.getOrDefault(ch, 0) + 1);
+        }
 
-		int required = map.size();
-		int l = 0, r = 0;
-		int formed = 0;
-		Map<Character, Integer> windowCount = new HashMap<>();
+        int required = dictT.size(); // unique char in T
+        int l = 0, r = 0;
 
-		int[] ans = {-1, 0, 0};
+        int[] ans = {Integer.MAX_VALUE, 0, 0};
 
-		while (r < s.length()) {
-			char ch = s.charAt(r);
-			windowCount.put(ch, windowCount.getOrDefault(ch, 0) + 1);
-			if (map.containsKey(ch) && map.get(ch).intValue() == windowCount.get(ch).intValue()) {
-				formed++;
-			}
+        Map<Character, Integer> windowCounts = new HashMap<>();
+        int formed = 0;
 
-			while (l <= r && formed == required) {
-				ch = s.charAt(l);
-				if (ans[0] == -1 || r - l + 1 < ans[0]) {
-					ans[0] = r - l + 1;
-					ans[1] = l;
-					ans[2] = r;
-				}
+        while (r < s.length()) {
+            char ch = s.charAt(r);
+            windowCounts.put(ch, windowCounts.getOrDefault(ch, 0) + 1);
 
-				windowCount.put(ch, windowCount.get(ch) - 1);
-				if (map.containsKey(ch) && windowCount.get(ch) < map.get(ch)) {
-					formed--;
-				}
+            if (dictT.containsKey(ch) && dictT.get(ch).intValue() == windowCounts.get(ch).intValue()) {
+                formed++;
+            }
 
-				l++;
-			}
-			r++;
-		}
-		return ans[0] == -1 ? "" : s.substring(ans[1], ans[2] + 1);
+            while (formed == required && l <= r) {
+                char rm = s.charAt(l);
+
+                if (r - l + 1 < ans[0]) {
+                    ans[0] = r - l + 1;
+                    ans[1] = l;
+                    ans[2] = r;
+                }
+
+                windowCounts.put(rm, windowCounts.get(rm) - 1);
+                if (dictT.containsKey(rm) && windowCounts.get(rm) < dictT.get(rm)) {
+                    formed--;
+                }
+                l++;
+            }
+
+            r++;
+        }
+
+	    return ans[0] == Integer.MAX_VALUE ? "" : s.substring(ans[1], ans[2] + 1);
 	}
 }

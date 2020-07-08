@@ -51,14 +51,14 @@ public class AutocompleteSystem {
                 curr.childrens.put(c, next);
             }
             curr = next;
-            curr.counts.put(s, count);
+            curr.counts.put(s, curr.counts.getOrDefault(s, 0) + count); // Important, as the answer is called, we need to increase the times.
         }
         curr.isW = true;
     }
 
     public List<String> input(char c) {
         if (c == '#') {
-            add(prefix, 1);
+            add(prefix, 1); // Important, as the word ends, we need to increase the counter.
             prefix = "";
             return new ArrayList<String>();
         }
