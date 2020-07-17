@@ -30,26 +30,30 @@ public class TimeZonePlayGround {
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("Hmmss");
 
     public static void main(String[] args) throws ParseException {
-        Long startDate = 1594339200000L;
-        String inputString = "01:00";
+        TimeZone tz = TimeZone.getTimeZone("Asia/sahdesg");
+        Integer val = tz.getOffset(Calendar.ZONE_OFFSET) / 1000;
+        System.out.println("value is : " + val);
+
+        //        Long startDate = 1594339200000L;
+//        String inputString = "01:00";
 
 //
 //        Timestamp ts = new Timestamp(startDate);
 //        System.out.println(ts);
 //        LocalDateTime singaporeTime = ts.toInstant().atZone(ZoneId.of("Asia/Singapore")).toLocalDateTime();
 //        System.out.println("Singapore time : " + singaporeTime);
-        LocalDateTime triggerTime =
-                LocalDateTime.ofInstant(Instant.ofEpochMilli(startDate), TimeZone.getTimeZone("GMT-0").toZoneId());
-
-        String[] split = inputString.split(":");
-        triggerTime.plusHours(Integer.parseInt(split[0]));
-        triggerTime.plusMinutes(Integer.parseInt(split[1]));
-
-        System.out.println(triggerTime);
-
-        ZonedDateTime zdt = triggerTime.atZone(ZoneId.of("Asia/Singapore"));
-        System.out.println(zdt);
-        System.out.println(zdt.withZoneSameInstant(ZoneId.of("Asia/Kolkata")));
+//        LocalDateTime triggerTime =
+//                LocalDateTime.ofInstant(Instant.ofEpochMilli(startDate), TimeZone.getTimeZone("GMT-0").toZoneId());
+//
+//        String[] split = inputString.split(":");
+//        triggerTime.plusHours(Integer.parseInt(split[0]));
+//        triggerTime.plusMinutes(Integer.parseInt(split[1]));
+//
+//        System.out.println(triggerTime);
+//
+//        ZonedDateTime zdt = triggerTime.atZone(ZoneId.of("Asia/Singapore"));
+//        System.out.println(zdt);
+//        System.out.println(zdt.withZoneSameInstant(ZoneId.of("Asia/Kolkata")));
 
 //        SimpleDateFormat onlyDate = new SimpleDateFormat("yyyy-MM-dd");
 //        Date date = new Date(startDate);

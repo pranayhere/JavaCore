@@ -1,12 +1,9 @@
-package com.pranay.interview.arrays;
+package com.pranay.interview.stacks;
 
 import java.util.Arrays;
 import java.util.Stack;
 
-/**
- * https://leetcode.com/problems/count-submatrices-with-all-ones/discuss/720265/Java-Detailed-Explanation-From-O(MNM)-to-O(MN)-by-using-Stack
- */
-public class SubmatricesWithAllOnes {
+public class SubmatrixWithAllOnesStack {
     public static void main(String[] args) {
         int[][] twoDMatrix = {
                 {1, 0, 1},
@@ -19,17 +16,17 @@ public class SubmatricesWithAllOnes {
     }
 
     private static int numSubmat(int[][] mat) {
-        int M = mat.length, N = mat[0].length;
-
+        int M = mat.length;
+        int N = mat[0].length;
         int res = 0;
-        int[] h = new int[N];
 
+        int[] height = new int[N];
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
-                h[j] = (mat[i][j] == 0 ? 0 : h[j] + 1);
+                height[j] = mat[i][j] == 0 ? 0 : height[j] + 1;
             }
-            System.out.println(Arrays.toString(h));
-            res += helper(h);
+            System.out.println(Arrays.toString(height));
+            res += helper(height);
         }
         return res;
     }
@@ -49,6 +46,7 @@ public class SubmatricesWithAllOnes {
             } else {
                 sum[i] = A[i] * (i + 1);
             }
+
             stk.push(i);
         }
         int res = 0;

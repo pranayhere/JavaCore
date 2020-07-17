@@ -3,9 +3,22 @@ package com.pranay.interview.graph;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/24-game/discuss/179363/Thinking-Process-Backtracking
+ *
+ * Explanation:
+ * Let's say, we pick any two numbers, a and b, and apply any operator +, -, *, /, assuming that the expression is surrounded
+ * with parenthesis, e.g. (a + b). Then, the result of (a + b) instead of a and b would participate in the following calculations.
+ * Take nums = [4, 3, 2, 1] for example, assuming that we pick 4, 3 and apply +, nums would become [7, 2, 1].
+ *
+ * We keep enumerating until there is only one element left in nums, and return true only if the last element equals to 24.
+ *
+ * DIFF_TOLERANT is established because division between Double data type may cause loss of precision.
+ */
+
 public class The24Game {
     public static void main(String[] args) {
-        int[] nums = {4, 1, 8, 7};
+        int[] nums = {3, 3, 8, 8};
         boolean ans = judgePoint24(nums);
         System.out.println("Ans : " + ans);
     }
@@ -18,41 +31,33 @@ public class The24Game {
         return dfs(list);
     }
 
-    private static boolean dfs(List<Double> list) {
-        if (list.size() == 1) {
-            if (Math.abs(list.get(0) - 24.0) < 0.001) {
-                return true;
-            }
-            return false;
+    private static boolean dfs(List<Double> nums) {
+        double DIFF_TOLERANT = 0.1;
+        if (nums.size() == 1) {
+            System.out.println("Printing evaluated expression : " + nums.get(0));
+            return Math.abs(nums.get(0) - 24) <= DIFF_TOLERANT;
         }
 
-        for (int i = 0; i< list.size(); i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                for (double c : generatePossibleResults(list.get(i), list.get(j))) {
-                    List<Double> nextRound = new ArrayList<>();
-                    nextRound.add(c);
-                    for (int k = 0; k < list.size(); k++) {
-                        if (k == j || k == i)
-                            continue;
-                        nextRound.add(list.get(k));
-                    }
-                    if (dfs(nextRound))
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < i; j++) {
+                double a = nums.get(i);
+                double b = nums.get(j);
+
+                List<Double> eval = List.of(a+b, a-b, b-a, a*b, a/b, b/a);
+                List<Double> copyNums = new ArrayList<>(nums);
+                copyNums.remove(i);
+                copyNums.remove(j);
+
+                for (double val: eval) {
+                    copyNums.add(val);
+
+                    if (dfs (copyNums)) {
                         return true;
+                    }
+                    copyNums.remove(copyNums.size() - 1);
                 }
             }
         }
-
         return false;
-    }
-
-    private static List<Double> generatePossibleResults(Double a, Double b) {
-        List<Double> res = new ArrayList<>();
-        res.add(a + b);
-        res.add(a - b);
-        res.add(b - a);
-        res.add(a * b);
-        res.add(a / b);
-        res.add(b / a);
-        return res;
     }
 }
