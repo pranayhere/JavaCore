@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -26,13 +27,39 @@ import java.util.TimeZone;
 
 public class TimeZonePlayGround {
     static final String DATEFORMAT = "yyyy-MM-dd HH:mm:ss";
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hmmss'Z'");
-    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("Hmmss");
+    private static final DateTimeFormatter dtformatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'Hmmss'Z'");
+    private static final SimpleDateFormat sdformatter = new SimpleDateFormat("yyyyMMdd'T'Hmmss'Z'");
 
     public static void main(String[] args) throws ParseException {
-        TimeZone tz = TimeZone.getTimeZone("Asia/sahdesg");
-        Integer val = tz.getOffset(Calendar.ZONE_OFFSET) / 1000;
-        System.out.println("value is : " + val);
+        String startDate = "20200717T192411Z";
+        LocalDateTime ldt = LocalDateTime.parse(startDate, dtformatter);
+
+        ZonedDateTime utcZoned = ldt.atZone(ZoneId.of("UTC"));
+        ZonedDateTime ldtZoned = utcZoned.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
+
+        System.out.println(utcZoned + " -> " + ldtZoned);
+
+        // Convert Instant to Date.
+        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ldtZoned.toString().substring(0, 19).replace("T", " "));
+        LocalDateTime finalStartDate = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        System.out.println(finalStartDate);
+
+        ZonedDateTime utcZonedNow = ZonedDateTime.now();
+        ZonedDateTime localZonedNow = utcZonedNow.withZoneSameInstant(ZoneId.of("Europe/London"));
+
+        Date dateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(localZonedNow.toString().substring(0, 19).replace("T", " "));
+        LocalDateTime finalNowDate = dateNow.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        System.out.println("Now : " + finalNowDate);
+
+//        TimeZone tz = TimeZone.getTimeZone("Asia/sahdesg");
+//        Integer val = tz.getOffset(Calendar.ZONE_OFFSET) / 1000;
+//        System.out.println("value is : " + val);
 
         //        Long startDate = 1594339200000L;
 //        String inputString = "01:00";

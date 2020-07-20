@@ -10,7 +10,8 @@ public class SubarraySumEqualToK {
 		int k = 2;
 		int count = subarraySum(nums, k);
 		int count2 = subarraySum2(nums, k);
-		System.out.println("Count : " + count);
+		int count3 = subarraySum3(nums, k);
+		System.out.println("Count : " + count3);
 	}
 
 	private static int subarraySum2(int[] nums, int k) {
@@ -48,5 +49,21 @@ public class SubarraySumEqualToK {
 		return count;
 	}
 
+//    Time complexity : O(n) Space : O(n)
+	private static int subarraySum3(int[] nums, int k) {
+	    int count = 0;
+	    int sum = 0;
+	    HashMap<Integer, Integer> hm = new HashMap<>();
+	    hm.put(0, 1);
+	    for (int i = 0; i < nums.length; i++) {
+	        sum += nums[i];
+	        if (hm.containsKey(sum - k)) {
+	            count += hm.get(sum - k);
+            }
+	        hm.put(sum, hm.getOrDefault(sum, 0) + 1);
+            System.out.println(hm + " - " + count);
+        }
+	    return count;
+    }
 
 }
