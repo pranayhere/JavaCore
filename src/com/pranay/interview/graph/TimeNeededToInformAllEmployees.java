@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 1376. Time Needed to Inform All Employees
+ * https://leetcode.com/problems/time-needed-to-inform-all-employees/submissions/
+ */
 public class TimeNeededToInformAllEmployees {
     public static void main(String[] args) {
         int n = 6;
@@ -12,32 +16,31 @@ public class TimeNeededToInformAllEmployees {
         int[] manager = {2,2,-1,2,2,2};
         int[] informTime = {0,0,1,0,0,0};
 
-        int mins = numOfMinutes(n, headID, manager, informTime);
+        TimeNeededToInformAllEmployees t = new TimeNeededToInformAllEmployees();
+        int mins = t.numOfMinutes(n, headID, manager, informTime);
         System.out.println("Mins : " + mins);
     }
 
-    private static int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int i = 0; i < manager.length; i++) {
-            int j = manager[i];
-            if (!graph.containsKey(j))
-                graph.put(j, new ArrayList<>());
-            graph.get(j).add(i);
-        }
+    Map<Integer, List<Integer>> g = new HashMap<>();
+    int[] time;
 
-        System.out.println("graph : " + graph);
-        return dfs(graph, informTime, headID);
+    private int numOfMinutes(int n, int headId, int[] manager, int[] informTime) {
+        time = informTime;
+        for (int i = 0; i < manager.length; i++)
+            g.computeIfAbsent(manager[i], k -> new ArrayList<>()).add(i);
+
+        return dfs(headId);
     }
 
-    private static int dfs(Map<Integer, List<Integer>> graph, int[] informTime, int curr) {
+    private int dfs(int curr) {
         int max = 0;
-        if (!graph.containsKey(curr))
+        if (!g.containsKey(curr))
             return max;
 
-        for (int next : graph.get(curr)) {
-            int currMax = dfs(graph, informTime, next);
+        for (int next : g.get(curr)) {
+            int currMax = dfs(next);
             max = Math.max(max, currMax);
         }
-        return max + informTime[curr];
+        return max + time[curr];
     }
 }

@@ -81,10 +81,8 @@ public class WordSearch {
                 || dfs(board, visited, word, r, c + 1, i + 1)
                 || dfs(board, visited, word, r, c - 1, i + 1);
 
-        // Backtracking in DFS
-        if (ans)
-            return true;
+
         visited[r][c] = false;
-        return false;
+        return ans;
     }
 }

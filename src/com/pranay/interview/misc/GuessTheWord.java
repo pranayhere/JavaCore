@@ -7,7 +7,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+/**
+ * 843. Guess the Word
+ * https://leetcode.com/problems/guess-the-word/
+ */
 class Master {
     String secret;
 
@@ -26,8 +31,12 @@ class Master {
 
 public class GuessTheWord {
     public static void main(String[] args) {
-        String secret = "acckzz";
-        String[] wordlist = {"acckzz","ccbazz","eiowzz","abcczz"};
+//        String secret = "acckzz";
+//        String[] wordlist = {"acckzz","ccbazz","eiowzz","abcczz"};
+
+        String secret = "ccoyyo";
+        String[] wordlist = {"wichbx","oahwep","tpulot","eqznzs","vvmplb","eywinm","dqefpt","kmjmxr","ihkovg","trbzyb","xqulhc","bcsbfw","rwzslk","abpjhw","mpubps","viyzbc","kodlta","ckfzjh","phuepp","rokoro","nxcwmo","awvqlr","uooeon","hhfuzz","sajxgr","oxgaix","fnugyu","lkxwru","mhtrvb","xxonmg","tqxlbr","euxtzg","tjwvad","uslult","rtjosi","hsygda","vyuica","mbnagm","uinqur","pikenp","szgupv","qpxmsw","vunxdn","jahhfn","kmbeok","biywow","yvgwho","hwzodo","loffxk","xavzqd","vwzpfe","uairjw","itufkt","kaklud","jjinfa","kqbttl","zocgux","ucwjig","meesxb","uysfyc","kdfvtw","vizxrv","rpbdjh","wynohw","lhqxvx","kaadty","dxxwut","vjtskm","yrdswc","byzjxm","jeomdc","saevda","himevi","ydltnu","wrrpoc","khuopg","ooxarg","vcvfry","thaawc","bssybb","ccoyyo","ajcwbj","arwfnl","nafmtm","xoaumd","vbejda","kaefne","swcrkh","reeyhj","vmcwaf","chxitv","qkwjna","vklpkp","xfnayl","ktgmfn","xrmzzm","fgtuki","zcffuv","srxuus","pydgmq"};
+
         Master master = new Master();
         master.secret = secret;
         GuessTheWord gw = new GuessTheWord();
@@ -35,38 +44,27 @@ public class GuessTheWord {
     }
 
     public void findSecretWord(String[] wordlist, Master master) {
-        List<String> list = Arrays.asList(wordlist);
+        Random ran = new Random();
+        ArrayList<String> possibles = new ArrayList<>();
+        for (String word: wordlist) {
+            possibles.add(word);
+        }
 
-        for(int i = 0; i < 10; i++) {
-            Map<String, Integer> zeroWord = new HashMap<>();
-            for (String cand: list)
-                for (String comp : list)
-                    if (match(cand, comp) == 0)
-                        zeroWord.put(comp, zeroWord.getOrDefault(comp, 0) + 1);
+        for (int i = 0; i < 10; i++) { // Given, 10 trials allowed
+            int index = ran.nextInt(possibles.size());
+            String testWord = possibles.get(index);
+            int matches = master.guess(testWord);
+            if (matches == 6)
+                return;
 
-            int min = Integer.MAX_VALUE;
-            String wrd = list.get(0);
-            for (String w: zeroWord.keySet()) {
-                int cnt = zeroWord.get(w);
-                if (cnt < min) {
-                    min = cnt;
-                    wrd = w;
-                }
-            }
-            // System.out.println(list);
-            // System.out.println("Guess word : " + wrd);
-            int guess = master.guess(wrd);
-            if (guess == 6)
-                break;
-
-            List<String> tmp = new ArrayList<>();
-            for (String w : list) {
-                int cnt = match(w, wrd);
-                if (cnt == guess)
-                    tmp.add(w);
+            ArrayList<String> newPossibles = new ArrayList<>();
+            for (String w: possibles) {
+                int matchCount = match(w, testWord);
+                if (matchCount == matches)
+                    newPossibles.add(w);
             }
 
-            list = tmp;
+            possibles = newPossibles;
         }
     }
 

@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * 752. Open the Lock
+ * https://leetcode.com/problems/open-the-lock/
+ */
 public class OpenTheLock {
     public static void main(String[] args) {
         String[] deadends = {"0201", "0101", "0102", "1212", "2002"};
@@ -27,31 +31,32 @@ public class OpenTheLock {
         Queue<String> q = new ArrayDeque<>();
         q.offer("0000");
 
-        Set<String> seen = new HashSet<>();
-        int depth = 0;
+        int steps = 0;
+        Set<String> visited = new HashSet<>();
+
         while (!q.isEmpty()) {
             int size = q.size();
-            for (int n = 0; n < size; n++) {
-                String node = q.poll();
 
-                if (node.equals(target)) {
-                    return depth;
+            for (int n = 0; n < size; n++) {
+                String cur = q.poll();
+
+                if (cur.equals(target)) {
+                    return steps;
                 }
 
                 for (int i = 0; i < 4; i++) {
-                    for (int d = -1; d <= 1; d += 2) {
-                        int y = ((node.charAt(i) - '0') + d + 10) % 10;
-                        String neighbour = node.substring(0, i) + ("" + y) + node.substring(i + 1);
-                        System.out.println("Neighbour : " + neighbour);
+                    for (int d = -1; d <= 1; d = d + 2) {
+                        int num = ((cur.charAt(i) - '0') + d + 10) % 10;
+                        String next = cur.substring(0, i) + ("" + num) + cur.substring(i + 1);
 
-                        if (!seen.contains(neighbour) && !deadends.contains(neighbour)) {
-                            q.add(neighbour);
-                        }
-                        seen.add(neighbour);
+                        if (!deadends.contains(next) && !visited.contains(next))
+                            q.offer(next);
+
+                        visited.add(next);
                     }
                 }
             }
-            depth++;
+            steps++;
         }
         return -1;
     }

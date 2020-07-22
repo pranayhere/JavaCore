@@ -3,6 +3,10 @@ package com.pranay.interview.hashing;
 import java.util.Arrays;
 import java.util.TreeMap;
 
+/**
+ * 846. Hand of Straights
+ * https://leetcode.com/problems/hand-of-straights/
+ */
 public class HandOfStraights {
     public static void main(String[] args) {
         int[] hand = {1,2,3,6,2,3,4,7,8};

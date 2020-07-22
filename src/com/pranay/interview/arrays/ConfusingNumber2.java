@@ -65,7 +65,7 @@ public class ConfusingNumber2 {
         }
 
         for (int i = start == 0 ? 1 : 0; i<5; i++) {
-            if (start * 10 + nums[i] < N)
+            if (start * 10 + nums[i] <= N)
                 dfs(start * 10 + nums[i]);
         }
     }

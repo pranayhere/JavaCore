@@ -3,9 +3,10 @@ package com.pranay.interview.graph;
 public class FriendCirclesDFS {
     public static void main(String[] args) {
         int[][] M = {
-                {1, 1, 0},
-                {1, 1, 0},
-                {0, 0, 1}
+                {1,0,0,1},
+                {0,1,1,0},
+                {0,1,1,1},
+                {1,0,1,1}
         };
 
         int count = findCircleNumDfs(M);

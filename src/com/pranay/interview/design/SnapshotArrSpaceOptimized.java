@@ -3,6 +3,10 @@ package com.pranay.interview.design;
 import java.util.Arrays;
 import java.util.TreeMap;
 
+/**
+ * 1146. Snapshot Array
+ * https://leetcode.com/problems/snapshot-array/
+ */
 public class SnapshotArrSpaceOptimized {
     TreeMap<Integer, Integer>[] A;
     int snap_id = 0;

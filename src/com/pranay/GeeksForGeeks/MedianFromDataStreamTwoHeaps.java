@@ -17,21 +17,27 @@ public class MedianFromDataStreamTwoHeaps {
 	}
 
 	private void addNum(int num) {
-		if (maxHeap.isEmpty()) {
-			maxHeap.add(num);
-		} else {
-			if (num > maxHeap.peek()) {
-				minHeap.add(num);
-				if (minHeap.size() > maxHeap.size()) {
-					maxHeap.add(minHeap.poll());
-				}
-			} else {
-				maxHeap.add(num);
-				if (maxHeap.size() > minHeap.size() + 1) {
-					minHeap.add(maxHeap.poll());
-				}
-			}
-		}
+//		if (maxHeap.isEmpty()) {
+//			maxHeap.add(num);
+//		} else {
+//			if (num > maxHeap.peek()) {
+//				minHeap.add(num);
+//				if (minHeap.size() > maxHeap.size()) {
+//					maxHeap.add(minHeap.poll());
+//				}
+//			} else {
+//				maxHeap.add(num);
+//				if (maxHeap.size() > minHeap.size() + 1) {
+//					minHeap.add(maxHeap.poll());
+//				}
+//			}
+//		}
+        maxHeap.add(num);
+        minHeap.add(maxHeap.poll());
+
+        if (minHeap.size() > maxHeap.size())
+            maxHeap.add(minHeap.poll());
+
         System.out.println("Num : " + num);
         System.out.println("MaxHeap : " + maxHeap);
         System.out.println("Minheap : " + minHeap);
@@ -41,11 +47,8 @@ public class MedianFromDataStreamTwoHeaps {
 	private double findMedian() {
 		if (minHeap.size() == maxHeap.size()) {
 			return ((double) (minHeap.peek() + maxHeap.peek())) / 2;
-		} else if (minHeap.size() > maxHeap.size()) {
-			return (double) minHeap.peek();
-		} else {
-			return (double) maxHeap.peek();
 		}
+		return (double) maxHeap.peek();
 	}
 
 	public static void main(String[] args) {
