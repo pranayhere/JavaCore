@@ -2,6 +2,7 @@ package com.pranay.interview.trees;
 
 import com.pranay.interview.common.TreeNode;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ZigZagLevelOrderTraversal {
         root.right.left = new Node(15);
         root.right.right = new Node(7);
 
-        List<List<Integer>> zzLot = tree.zigzagLevelOrder(root);
+        List<List<Integer>> zzLot = tree.zigzagLevelOrder2(root);
         System.out.println(zzLot);
     }
 
@@ -51,6 +52,39 @@ public class ZigZagLevelOrderTraversal {
                 if (!q.isEmpty())
                     q.add(new Node(Integer.MAX_VALUE));
             }
+        }
+        return res;
+    }
+
+    private List<List<Integer>> zigzagLevelOrder2(Node root) {
+        if (root == null)
+            return null;
+
+        Queue<Node> q = new ArrayDeque<>();
+        q.offer(root);
+
+        List<List<Integer>> res = new ArrayList<>();
+        boolean flip = false;
+
+        while (!q.isEmpty()) {
+            int size = q.size();
+            LinkedList<Integer> level = new LinkedList<>();
+            for (int i = 0; i < size; i++) {
+                Node curr = q.poll();
+
+                if (flip)
+                    level.addFirst(curr.data);
+                else
+                    level.addLast(curr.data);
+
+                if (curr.left != null)
+                    q.offer(curr.left);
+                if (curr.right != null)
+                    q.offer(curr.right);
+            }
+            res.add(new ArrayList<>(level));
+            level.clear();
+            flip = !flip;
         }
         return res;
     }
