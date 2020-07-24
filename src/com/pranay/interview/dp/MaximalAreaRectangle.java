@@ -2,6 +2,10 @@ package com.pranay.interview.dp;
 
 import java.util.Arrays;
 
+/**
+ * 85. Maximal Rectangle
+ * https://leetcode.com/problems/maximal-rectangle/submissions/
+ */
 public class MaximalAreaRectangle {
     public static void main(String[] args) {
         char[][] matrix = {

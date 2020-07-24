@@ -33,7 +33,7 @@ import java.util.Set;
  * The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
  */
 
-public class EvaluateExpressionDFS {
+public class EvaluateDivisionDFS {
     public static void main(String[] args) {
         List<List<String>> equations = new ArrayList<>();
         equations.add(List.of("a", "b"));
@@ -44,7 +44,7 @@ public class EvaluateExpressionDFS {
         List<List<String>> queries = new ArrayList<>();
         queries.add(List.of("a", "c"));
         queries.add(List.of("b", "a"));
-        EvaluateExpressionDFS ee = new EvaluateExpressionDFS();
+        EvaluateDivisionDFS ee = new EvaluateDivisionDFS();
         double ans[] = ee.calcEquation(equations, values, queries);
         System.out.println("Result : " + Arrays.toString(ans));
     }
@@ -58,6 +58,7 @@ public class EvaluateExpressionDFS {
         for (int i = 0; i < equations.size(); i++) {
             String src = equations.get(i).get(0);
             String dest = equations.get(i).get(1);
+
             g.computeIfAbsent(src, k -> new HashMap<>()).put(dest, values[i]);
             g.computeIfAbsent(dest, k -> new HashMap<>()).put(src, 1 / values[i]);
         }
@@ -67,11 +68,12 @@ public class EvaluateExpressionDFS {
                 dfs(x, x, 1);
         }
 
-        System.out.println(root);
+        System.out.println(g);
         System.out.println(vals);
+        System.out.println(root);
 
         int m = queries.size();
-        double[] res = new double[m];
+        double[] res    = new double[m];
         for (int i = 0; i < m; ++i) {
             String x = queries.get(i).get(0), y = queries.get(i).get(1);
             String px = root.getOrDefault(x, x), py = root.getOrDefault(y, y);
