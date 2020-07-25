@@ -1,6 +1,7 @@
 package com.pranay.interview.graph;
 
 /**
+ * 79. Word Search
  * https://leetcode.com/problems/word-search/
  *
  * Given a 2D board and a word, find if the word exists in the grid.
@@ -39,7 +40,7 @@ public class WordSearch {
                 {'A','D','E','E'}
         };
 
-        String word = "ABCESEEEFS";
+        String word = "ABCESEEEFSD";
         boolean wordExists = exist(board, word);
 
         System.out.println("Word Exists : " + wordExists);
@@ -67,22 +68,19 @@ public class WordSearch {
         int nr = board.length;
         int nc = board[0].length;
 
-        if (r < 0 || r >= nr || c < 0 || c >= nc || i >= word.length() || board[r][c] != word.charAt(i) || visited[r][c]) {
+        if (r < 0 || r >= nr || c < 0 || c >= nc || i >= word.length() || board[r][c] != word.charAt(i) || visited[r][c])
             return false;
-        }
 
         visited[r][c] = true;
-        if (i == word.length() - 1) {
+        if (i == word.length() - 1)
             return true;
-        }
 
-        boolean ans =  dfs(board, visited, word, r + 1, c, i + 1)
+        boolean exists = dfs(board, visited, word, r + 1, c, i + 1)
                 || dfs(board, visited, word, r - 1, c, i + 1)
                 || dfs(board, visited, word, r, c + 1, i + 1)
                 || dfs(board, visited, word, r, c - 1, i + 1);
 
-
         visited[r][c] = false;
-        return ans;
+        return exists;
     }
 }

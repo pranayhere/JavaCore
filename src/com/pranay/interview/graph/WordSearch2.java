@@ -7,32 +7,35 @@ import java.util.List;
 // Simple Trie
 
 /**
+ * 212. Word Search II
  * https://leetcode.com/problems/word-search-ii/
- * 
+ * <p>
  * Given a 2D board and a list of words from the dictionary, find all words in the board.
- *
+ * <p>
  * Each word must be constructed from letters of sequentially adjacent cell,
  * where "adjacent" cells are those horizontally or vertically neighboring.
  * The same letter cell may not be used more than once in a word.
- *
+ * <p>
  * Example:
- *
+ * <p>
  * Input:
  * board = [
- *   ['o','a','a','n'],
- *   ['e','t','a','e'],
- *   ['i','h','k','r'],
- *   ['i','f','l','v']
+ * ['o','a','a','n'],
+ * ['e','t','a','e'],
+ * ['i','h','k','r'],
+ * ['i','f','l','v']
  * ]
  * words = ["oath","pea","eat","rain"]
- *
+ * <p>
  * Output: ["eat","oath"]
  */
 
 class TrieNode {
     HashMap<Character, TrieNode> children = new HashMap<>();
     String word = null;
-    public TrieNode() {}
+
+    public TrieNode() {
+    }
 
     @Override
     public String toString() {
@@ -46,14 +49,14 @@ class TrieNode {
 public class WordSearch2 {
     public static void main(String[] args) {
         char[][] board = {
-                {'o','a','a','n'},
-                {'e','t','a','e'},
-                {'i','h','k','r'},
-                {'i','f','l','v'}
+                {'o', 'a', 'a', 'n'},
+                {'e', 't', 'a', 'e'},
+                {'i', 'h', 'k', 'r'},
+                {'i', 'f', 'l', 'v'}
         };
 
         WordSearch2 ws2 = new WordSearch2();
-        String[] words = {"oath","pea","eat","rain"};
+        String[] words = {"oath", "pea", "eat", "rain"};
         List<String> wordsInBoard = ws2.findWords(board, words);
         System.out.println("Words in board : " + wordsInBoard);
     }
@@ -63,10 +66,10 @@ public class WordSearch2 {
 
     private List<String> findWords(char[][] board, String[] words) {
         TrieNode root = new TrieNode();
-        for (String word: words) {
+        for (String word : words) {
             TrieNode node = root;
 
-            for (Character letter: word.toCharArray()) {
+            for (Character letter : word.toCharArray()) {
                 if (node.children.containsKey(letter)) {
                     node = node.children.get(letter);
                 } else {
@@ -86,7 +89,7 @@ public class WordSearch2 {
         for (int r = 0; r < nr; r++) {
             for (int c = 0; c < nc; c++) {
                 if (root.children.containsKey(board[r][c])) {
-                    dfs (r, c, root);
+                    dfs(r, c, root);
                 }
             }
         }
@@ -109,7 +112,7 @@ public class WordSearch2 {
         int[] rowOffset = {-1, 0, 1, 0};
         int[] colOffset = {0, 1, 0, -1};
 
-        for (int i = 0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             int newRow = r + rowOffset[i];
             int newCol = c + colOffset[i];
 

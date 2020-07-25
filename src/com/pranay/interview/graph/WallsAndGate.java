@@ -1,12 +1,14 @@
 package com.pranay.interview.graph;
 
-//https://leetcode.com/problems/walls-and-gates/
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * 286. Walls and Gates
+ * https://leetcode.com/problems/walls-and-gates/
+ */
 public class WallsAndGate {
     public static void main(String[] args) {
         System.out.println(Integer.MAX_VALUE);

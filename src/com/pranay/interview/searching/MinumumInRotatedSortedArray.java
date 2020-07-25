@@ -30,4 +30,23 @@ public class MinumumInRotatedSortedArray {
         }
         return -1;
     }
+
+    private static int findMin2(int[] nums) {
+        int lo = 0;
+        int hi = nums.length - 1;
+        if (nums.length == 1 || nums[0] < nums[hi])
+            return nums[0];
+
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int M = nums[mid];
+
+            if (M < nums[0])
+                hi = mid - 1;
+            else
+                lo = mid + 1;
+        }
+
+        return lo >= nums.length ? nums[0] : nums[lo];
+    }
 }

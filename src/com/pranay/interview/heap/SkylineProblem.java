@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
+ * 218. The Skyline Problem
  * https://leetcode.com/problems/the-skyline-problem/
  */
 
@@ -24,9 +25,7 @@ public class SkylineProblem {
             heights.add(List.of(b[1], b[2]));
         }
 
-        heights.sort((a, b) -> {
-            return !a.get(0).equals(b.get(0)) ? a.get(0) - b.get(0) : a.get(1) - b.get(1);
-        });
+        heights.sort((a, b) -> !a.get(0).equals(b.get(0)) ? a.get(0) - b.get(0) : a.get(1) - b.get(1));
 
         System.out.println(heights);
         PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
