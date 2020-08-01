@@ -28,4 +28,24 @@ public class JumpGame2 {
         System.out.println(Arrays.toString(count));
 		return count[count.length - 1];
 	}
+
+	private static int jump2Greedy(int[] nums) {
+	    int n = nums.length;
+
+	    int maxPos = nums[0];
+	    int maxSteps = nums[0];
+
+	    int jumps = 1;
+
+	    for (int i = 1; i < n; i++) {
+	        if (maxSteps < i) {
+                ++jumps;
+                maxSteps = maxPos;
+            }
+
+            maxPos = Math.max(maxPos, nums[i] + i);
+        }
+
+	    return jumps;
+    }
 }

@@ -32,4 +32,18 @@ public class JumpGame {
         }
         return lastPos == 0;
     }
+
+    private boolean jumpGreedy(int[] nums) {
+        int n = nums.length;
+
+        int maxPos = nums[0];
+        for (int i = 1; i < n; i++) {
+            if (maxPos < i)
+                return false;
+
+            maxPos = Math.max(maxPos, nums[i] + i);
+        }
+
+        return true;
+    }
 }
