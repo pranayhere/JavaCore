@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.Deque;
 
 /**
+ * 862. Shortest Subarray with Sum at Least K
+ * https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/
+ *
  * Explanation
  * https://www.youtube.com/watch?v=_JDpJXzTGbs
- *
- * https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/submissions/
+ * https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/discuss/143726/C%2B%2BJavaPython-O(N)-Using-Deque
  */
 
 public class ShortestSubarrayWithSumAtleastK {
@@ -34,12 +36,17 @@ public class ShortestSubarrayWithSumAtleastK {
         System.out.println(Arrays.toString(B));
         Deque<Integer> d = new ArrayDeque<>();
         for (int i = 0; i < N + 1; i++) {
+            System.out.println(d);
             while (d.size() > 0 && B[i] - B[d.getFirst()] >= K)
                 res = Math.min(res, i - d.pollFirst());
-            while (d.size()> 0 && B[i] <= B[d.getLast()])
+
+            while (d.size()> 0 && B[i] <= B[d.getLast()]) {
+                System.out.println(B[i] + " - " + B[d.getLast()]);
                 d.pollLast();
+            }
+
+
             d.addLast(i);
-            System.out.println(d);
         }
         return res <= N ? res : -1;
     }

@@ -28,7 +28,7 @@ public class NetworkDelay {
         }
 
         //distance, node into pq
-        Queue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0])); //  important to use PQ
+        Queue<int[]> pq = new PriorityQueue<>((a, b) -> (a[0] - b[0])); //  important to use PQ, minHeap based on min distance
         pq.add(new int[]{0, K});
 
         boolean[] visited = new boolean[N + 1];

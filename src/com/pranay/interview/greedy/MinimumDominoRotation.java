@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 1007. Minimum Domino Rotations For Equal Row
  * https://leetcode.com/problems/minimum-domino-rotations-for-equal-row/
  *
  * We find all possible number of rotations to make all the values in A are the same,

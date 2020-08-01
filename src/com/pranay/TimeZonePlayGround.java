@@ -1,25 +1,15 @@
 package com.pranay;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * LocalDateTime ldt = LocalDateTime.now();
  * Instant instant = ldt.atZone(ZoneId.of("GMT+05:30")).toInstant();
  * Instant instant = ldt.atZone(ZoneId.systemDefault()).toInstant();
  * System.out.println("Date (Local) : " + ldt);
- *
+ * <p>
  * LocalDateTime gmtTime = LocalDateTime.ofInstant(instant, ZoneId.of("GMT"));
  * System.out.println("GMT : " + gmtTime);
  */
@@ -31,32 +21,40 @@ public class TimeZonePlayGround {
     private static final SimpleDateFormat sdformatter = new SimpleDateFormat("yyyyMMdd'T'Hmmss'Z'");
 
     public static void main(String[] args) throws ParseException {
-        String startDate = "20200717T192411Z";
-        LocalDateTime ldt = LocalDateTime.parse(startDate, dtformatter);
+        String localStartDateZoned = "2020-07-29T14:05Z[Africa/Abidjan]";
+//        int idx = localStartDateZoned.lastIndexOf("-");
 
-        ZonedDateTime utcZoned = ldt.atZone(ZoneId.of("UTC"));
-        ZonedDateTime ldtZoned = utcZoned.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
+//        int idx = localStartDateZoned.lastIndexOf("+") > 0 ? localStartDateZoned.lastIndexOf("+") : localStartDateZoned.lastIndexOf("-");
+        String localStartDateZonedString = localStartDateZoned.substring(0, 16).replace("T", " ");
 
-        System.out.println(utcZoned + " -> " + ldtZoned);
+        System.out.println("localStartDateZonedString : " + localStartDateZonedString);
 
-        // Convert Instant to Date.
-        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ldtZoned.toString().substring(0, 19).replace("T", " "));
-        LocalDateTime finalStartDate = date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
-
-        System.out.println(finalStartDate);
-
-        ZonedDateTime utcZonedNow = ZonedDateTime.now();
-        ZonedDateTime localZonedNow = utcZonedNow.withZoneSameInstant(ZoneId.of("Europe/London"));
-
-        Date dateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(localZonedNow.toString().substring(0, 19).replace("T", " "));
-        LocalDateTime finalNowDate = dateNow.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
-
-        System.out.println("Now : " + finalNowDate);
-
+        //        String startDate = "20200717T192411Z";
+//        LocalDateTime ldt = LocalDateTime.parse(startDate, dtformatter);
+//
+//        ZonedDateTime utcZoned = ldt.atZone(ZoneId.of("UTC"));
+//        ZonedDateTime ldtZoned = utcZoned.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
+//
+//        System.out.println(utcZoned + " -> " + ldtZoned);
+//
+//        // Convert Instant to Date.
+//        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(ldtZoned.toString().substring(0, 19).replace("T", " "));
+//        LocalDateTime finalStartDate = date.toInstant()
+//                .atZone(ZoneId.systemDefault())
+//                .toLocalDateTime();
+//
+//        System.out.println(finalStartDate);
+//
+//        ZonedDateTime utcZonedNow = ZonedDateTime.now();
+//        ZonedDateTime localZonedNow = utcZonedNow.withZoneSameInstant(ZoneId.of("Europe/London"));
+//
+//        Date dateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(localZonedNow.toString().substring(0, 19).replace("T", " "));
+//        LocalDateTime finalNowDate = dateNow.toInstant()
+//                .atZone(ZoneId.systemDefault())
+//                .toLocalDateTime();
+//
+//        System.out.println("Now : " + finalNowDate);
+//---------------------------------------
 //        TimeZone tz = TimeZone.getTimeZone("Asia/sahdesg");
 //        Integer val = tz.getOffset(Calendar.ZONE_OFFSET) / 1000;
 //        System.out.println("value is : " + val);

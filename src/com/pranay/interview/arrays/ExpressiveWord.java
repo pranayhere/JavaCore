@@ -18,16 +18,31 @@ public class ExpressiveWord {
         return res;
     }
 
-    private static boolean check(String S, String W) {
-        char[] s = S.toCharArray();
-        char[] w = W.toCharArray();
-        int n = s.length, m = w.length, j = 0;
-        for (int i = 0; i < s.length; i++) {
-            if (j < m && s[i] == w[j]) j++;
-            else if (i > 1 && s[i-2] == s[i - 1] && s[i - 1] == s[i]);
-            else if (0 < i && s[i-1] == s[i] && s[i] == s[i + 1]);
-            else return false;
+    private static boolean check(String s, String w) {
+        int i = 0;
+        int j = 0;
+        while(j < w.length() && i < s.length()) {
+            int counts = 1;
+            while(i+1 < s.length() && s.charAt(i) == s.charAt(i+1)) {
+                counts++;
+                i++;
+            }
+            int countw = 1;
+            while(j+1 < w.length() && w.charAt(j) == w.charAt(j+1)) {
+                countw++;
+                j++;
+            }
+            if(i< s.length() && j< w.length() && s.charAt(i) == w.charAt(j)) {
+                if(counts == countw || (counts > 2 && countw < counts)){
+                    i++;
+                    j++;
+                } else {
+                    return false;
+                }
+            } else {
+                break;
+            }
         }
-        return j == m;
+        return i==s.length() && j==w.length();
     }
 }
