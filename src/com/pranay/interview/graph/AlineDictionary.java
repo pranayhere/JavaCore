@@ -29,11 +29,13 @@ import java.util.Queue;
  * ]
  *
  * Output: "wertf"
+ * similar question : Sequence Reconstruction
  */
 public class AlineDictionary {
     public static void main(String[] args) {
-        String[] words = {"wrt", "wrf", "er", "ett", "rftt"};
-
+        String[] words = {"za","zb","ca","cb"};
+//["wrt","wrf","er","ett","rftt"]
+//["za","zb","ca","cb"]
         AlineDictionary ad = new AlineDictionary();
         String orderOfLetters = ad.alienOrder(words);
         System.out.println("Order Of Letters : " + orderOfLetters);
@@ -49,6 +51,9 @@ public class AlineDictionary {
                 adjList.putIfAbsent(ch, new ArrayList<>());
             }
         }
+
+        System.out.println("Indegree : " + indegree);
+        System.out.println("Adjacency List : " + adjList);
 
         for (int i = 0; i<words.length - 1; i++) {
             String word1 = words[i];
