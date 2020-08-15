@@ -2,49 +2,45 @@ package com.pranay.interview.graph;
 
 public class StudentAttendanceRecord2 {
     public static void main(String[] args) {
-        int n = 3;
+        int n = 2;
         StudentAttendanceRecord2 sar = new StudentAttendanceRecord2();
-        int record = sar.checkRecordDP(n);
+        int record = sar.checkRecord(n);
         System.out.println("Record : " + record);
     }
 
-    //Set<String> hs = new HashSet<>();
     int N;
-    int count, M = 1000000007;
+    int count = 0;
+    int M = 1000000007;
 
     private int checkRecord(int n) {
         N = n;
         dfs("", 0);
-        //System.out.println(hs);
         return count;
     }
 
-    public void dfs(String s, int start) {
+    public void dfs(String att, int start) { // att = attendance pattern
         if (start > N)
             return;
 
-        if (isValid(s))
+        if (isValid(att)) {
             count = (count + 1) % M;
-
-        dfs(s + "A", start + 1);
-        dfs(s + "L", start + 1);
-        dfs(s + "P", start + 1);
-    }
-
-    private boolean isValid(String s) {
-        if (s.length() < N || s.contains("LLL"))
-            return false;
-
-        int count = 0;
-        for (char ch : s.toCharArray()) {
-            if (ch == 'A')
-                count++;
         }
 
-        if (count >= 2)
+        dfs(att + "A", start + 1);
+        dfs(att + "L", start + 1);
+        dfs(att + "P", start + 1);
+    }
+
+    public boolean isValid(String str) {
+        if (str.length() < N || str.contains("LLL"))
             return false;
 
-        return true;
+        int aCnt = 0;
+        for (char c: str.toCharArray()) {
+            if (c == 'A')
+                aCnt++;
+        }
+        return aCnt < 2;
     }
 
     private int checkRecordDP(int n) {
