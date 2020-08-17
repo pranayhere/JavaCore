@@ -82,9 +82,11 @@ public class LongestIncreasingPathInMatrix {
                 continue;
 
             len = Math.max(len, dfs(nums, newR, newC)); // since there can be more than one path starting from the (r, c). 1->2->6->9 and 1->6->8,
-            // so we need to choose the path with max length, if not ans returned will be the length of the path that is visited last. i.e. 1->6->8
+            // so we need to choose the path with max length, if not, ans returned will be the length of the path that is visited last. i.e. 1->6->8
         }
 
         return len + 1;
     }
+    
+    
 }

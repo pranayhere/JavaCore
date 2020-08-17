@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class SmallerNumberAfterSelf {
 	public static void main(String[] args) {
-		int[] nums = {5, 2, 6, 1};
+		int[] nums = {5, 3, 6, 1};
 
         SmallerNumberAfterSelf snas = new SmallerNumberAfterSelf();
 		List<Integer> ans2 = snas.countSmallerBinary(nums);
@@ -23,8 +23,11 @@ public class SmallerNumberAfterSelf {
 	private List<Integer> countSmallerBinary(int[] nums) {
         res = new Integer[nums.length];
 
-        for (int i = nums.length - 1; i >= 0; i--)
+        for (int i = nums.length - 1; i >= 0; i--) {
             addNum(nums[i], i);
+            System.out.println(list);
+        }
+
         return Arrays.asList(res);
 	}
 
