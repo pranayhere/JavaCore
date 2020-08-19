@@ -53,6 +53,7 @@ public class EvaluateDivisionDFS {
     Set<String> seen = new HashSet<>();
     HashMap<String, String> root = new HashMap<>();
     HashMap<String, Double> vals = new HashMap<>();
+
     private double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
 
         for (int i = 0; i < equations.size(); i++) {

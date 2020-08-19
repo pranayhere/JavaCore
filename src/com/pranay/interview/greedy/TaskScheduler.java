@@ -7,9 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+/**
+ * 621. Task Scheduler
+ * https://leetcode.com/problems/task-scheduler/
+ */
 public class TaskScheduler {
     public static void main(String[] args) {
-        char[] tasks = {'A','A','A','A','A','A','B','C','D','E','F','G'}; // ans = 16
+//        char[] tasks = {'A','A','A','A','A','A','B','C','D','E','F','G'}; // ans = 16
+        char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
         int n = 2;
 
         int time = leastInterval2(tasks, n);

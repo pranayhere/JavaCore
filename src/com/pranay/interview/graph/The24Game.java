@@ -19,7 +19,8 @@ import java.util.List;
 
 public class The24Game {
     public static void main(String[] args) {
-        int[] nums = {3, 3, 8, 8};
+        int[] nums = {4, 3, 2, 1};
+        // int[] nums = {3, 3, 8, 8};
         boolean ans = judgePoint24(nums);
         System.out.println("Ans : " + ans);
     }
