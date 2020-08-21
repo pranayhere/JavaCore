@@ -2,6 +2,10 @@ package com.pranay.interview.arrays;
 
 import java.util.Arrays;
 
+/**
+ * 1477. Find Two Non-overlapping Sub-arrays Each With Target Sum
+ * https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/
+ */
 public class NonOverlappingSubarrayWithTarget {
     public static void main(String[] args) {
         int[] arr = {1, 2, 2, 3, 4, 3, 4, 1, 1, 1};

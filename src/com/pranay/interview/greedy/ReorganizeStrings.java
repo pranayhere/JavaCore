@@ -7,6 +7,8 @@ import java.util.PriorityQueue;
 /**
  * 767. Reorganize String
  * https://leetcode.com/problems/reorganize-string/
+ *
+ * similar: task scheduler https://leetcode.com/problems/task-scheduler/
  */
 public class ReorganizeStrings {
     public static void main(String[] args) {
