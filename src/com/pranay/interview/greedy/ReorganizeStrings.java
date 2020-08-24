@@ -52,4 +52,39 @@ public class ReorganizeStrings {
         }
         return sb.toString();
     }
+
+    private static String reorganizeString2(String S) {
+        Map<Character, Integer> hm = new HashMap<>();
+        int n = S.length();
+
+        for (char ch: S.toCharArray()) {
+            hm.put(ch, hm.getOrDefault(ch, 0) + 1);
+            if (hm.get(ch) > (n - 1) / 2)
+                return "";
+        }
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
+        for (char ch: hm.keySet()) {
+            pq.add(new int[]{ch, hm.get(ch)});
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while (!pq.isEmpty()) {
+            int[] first = pq.poll();
+
+            if (sb.length() == 0 || sb.charAt(sb.length() - 1) != first[0]) {
+                sb.append(first[0]);
+                if (--first[1] > 0)
+                    pq.offer(first);
+            } else {
+                int[] second = pq.poll();
+                sb.append(second[0]);
+                if (--second[1] > 0)
+                    pq.offer(second);
+
+                pq.offer(first);
+            }
+        }
+        return sb.toString();
+    }
 }

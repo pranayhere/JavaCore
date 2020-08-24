@@ -38,7 +38,7 @@ public class TaskScheduler {
         return idealTime + tasks.length;
     }
 
-    // Priority Queue Time: O()
+    // Priority Queue Time: O(n.logn)
     private static int leastInterval2(char[] tasks, int n) {
         Map<Character, Integer> count = new HashMap<>();
         for (char ch: tasks)
