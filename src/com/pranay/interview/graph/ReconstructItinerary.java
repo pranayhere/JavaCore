@@ -7,6 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 332. Reconstruct Itinerary
+ * https://leetcode.com/problems/reconstruct-itinerary/
+ */
 public class ReconstructItinerary {
     public static void main(String[] args) {
         List<List<String>> tickets = new ArrayList<>();

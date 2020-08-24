@@ -41,63 +41,65 @@ public class AlineDictionary {
         System.out.println("Order Of Letters : " + orderOfLetters);
     }
 
-    private Map<Character, List<Character>> adjList = new HashMap<>();
-    private Map<Character, Integer> indegree = new HashMap<>();
+    Map<Character, List<Character>> graph = new HashMap<>();
+    Map<Character, Integer> indegree = new HashMap<>();
 
-    private String alienOrder(String[] words) {
-        for (int i = 0; i<words.length; i++) {
-            for (Character ch: words[i].toCharArray()) {
+    public String alienOrder(String[] words) {
+        for (String word: words) {
+            for (char ch: word.toCharArray()) {
                 indegree.put(ch, 0);
-                adjList.putIfAbsent(ch, new ArrayList<>());
+                graph.put(ch, new ArrayList<>());
             }
         }
 
         System.out.println("Indegree : " + indegree);
-        System.out.println("Adjacency List : " + adjList);
+        System.out.println("Adjacency List : " + graph);
 
-        for (int i = 0; i<words.length - 1; i++) {
-            String word1 = words[i];
-            String word2 = words[i + 1];
+        for (int i = 0; i < words.length - 1; i++) {
+            String w1 = words[i];
+            String w2 = words[i + 1];
 
-            if (word1.length() > word2.length() && word1.startsWith(word2)) {
+            if (w1.length() > w2.length() && w1.startsWith(w2)) {
                 return ""; // to avoid conditions like {appium, app}
             }
 
-            for (int j = 0; j < Math.min(word1.length(), word2.length()); j++) {
-                if (word1.charAt(j) != word2.charAt(j)) {
-                    adjList.get(word1.charAt(j)).add(word2.charAt(j));
-                    indegree.put(word2.charAt(j), indegree.get(word2.charAt(j)) + 1);
+            for (int j = 0; j < Math.min(w1.length(), w2.length()); j++) {
+                if (w1.charAt(j) != w2.charAt(j)) {
+                    graph.get(w1.charAt(j)).add(w2.charAt(j));
+                    indegree.put(w2.charAt(j), indegree.get(w2.charAt(j)) + 1);
                     break;
                 }
             }
         }
 
-        System.out.println("Indegree : " + indegree);
-        System.out.println("Adjacency List : " + adjList);
+        System.out.println(graph);
+        System.out.println(indegree);
 
-        StringBuilder sb = new StringBuilder();
         Queue<Character> q = new ArrayDeque<>();
-
-        for (Character ch: indegree.keySet()) {
-            if (indegree.get(ch) == 0) {
-                q.offer(ch);
-            }
+        for (char node: indegree.keySet()) {
+            if (indegree.get(node) == 0)
+                q.offer(node);
         }
 
-        while (!q.isEmpty()) {
-            Character ch = q.remove();
-            sb.append(ch);
 
-            for (Character next: adjList.get(ch)) {
+        String topologicalSort = "";
+        while (!q.isEmpty()) {
+            char node = q.poll();
+            topologicalSort += node;
+
+            for (char next: graph.get(node)) {
                 indegree.put(next, indegree.get(next) - 1);
+
                 if (indegree.get(next) == 0)
                     q.offer(next);
             }
         }
 
-        if (sb.length() < indegree.size()) {
+        System.out.println(topologicalSort);
+        if (topologicalSort.length() < indegree.size()) {
             return "";
         }
-        return sb.toString();
+
+        return topologicalSort;
     }
 }

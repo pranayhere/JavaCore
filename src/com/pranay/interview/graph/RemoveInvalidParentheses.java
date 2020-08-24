@@ -1,6 +1,7 @@
 package com.pranay.interview.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,19 +18,19 @@ public class RemoveInvalidParentheses {
     }
 
     private static List<String> removeInvalidParentheses(String s) {
-        int left = 0, right = 0, count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(')
+        int left = 0, right = 0;
+        for (char ch: s.toCharArray()) {
+            if (ch == '(')
                 left++;
-            else if (s.charAt(i) == ')' && left > 0)
+            else if (ch == ')' && left > 0)
                 left--;
-            else if (s.charAt(i) == ')')
+            else if (ch == ')')
                 right++;
         }
 
-        // Find how many min. no. of changes are required
-        count = left + right;
+        int count = left + right;
         Set<String> res = new HashSet<>();
+
         dfs(s, 0, res, new StringBuilder(), count);
         return new ArrayList<>(res);
     }
@@ -40,21 +41,20 @@ public class RemoveInvalidParentheses {
 
         if (i == s.length()) {
             if (count == 0) {
-                if (isValid(sb.toString())) {
+                if (isValid(sb.toString()))
                     res.add(sb.toString());
-                }
             }
             return;
         }
 
-        char c = s.charAt(i);
+        char ch = s.charAt(i);
         int len = sb.length();
 
-        if (c == '(' || c == ')') {
-            dfs(s, i + 1, res, sb, count - 1); // don't add parentheses
-            dfs(s, i + 1, res, sb.append(c), count); // add parentheses
+        if (ch == '(' || ch == ')') {
+            dfs(s, i + 1, res, sb, count - 1); // removed parenthesis
+            dfs(s, i + 1, res, sb.append(ch), count); // don't remove parenthesis
         } else {
-            dfs(s, i + 1, res, sb.append(c), count); // any other letter
+            dfs(s, i + 1, res, sb.append(ch), count); // any other char
         }
 
         sb.setLength(len);
@@ -62,11 +62,11 @@ public class RemoveInvalidParentheses {
 
     private static boolean isValid(String s) {
         int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
+
+        for (char ch: s.toCharArray()) {
             if (ch == '(')
                 count++;
-            if (ch == ')' && count-- == 0)
+            else if (ch == ')' && count-- == 0)
                 return false;
         }
         return count == 0;

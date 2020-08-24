@@ -53,7 +53,7 @@ public class SumOfPairEqualToK {
         return ans;
     }
 
-    private static List<List<Integer>> findPairsInList(List<Integer> nums, int k) {
+    private static List<List<Integer>> findPairsInList(List<Integer> nums, int k) { // just solve it as Two sum problem
         List<List<Integer>> pairs = new ArrayList<>();
         int lo = 0;
         int hi = nums.size() - 1;
