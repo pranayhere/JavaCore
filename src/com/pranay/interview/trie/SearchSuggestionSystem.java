@@ -5,7 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
-// https://leetcode.com/problems/search-suggestions-system/discuss/673886/Java-sort-then-try-with-suggestion-Cache-VS-trie-wo-cache
+/**
+ * 1268. Search Suggestions System
+ * https://leetcode.com/problems/search-suggestions-system/
+ * https://leetcode.com/problems/search-suggestions-system/discuss/673886/Java-sort-then-try-with-suggestion-Cache-VS-trie-wo-cache
+ */
 
 class TrieNode {
     TrieNode[] nodes;
@@ -37,11 +41,11 @@ public class SearchSuggestionSystem {
 
     private void add(String s) {
         TrieNode node = root;
-        for (char c: s.toCharArray()) {
-            if (node.nodes[c - 'a'] == null) {
-                node.nodes[c - 'a'] = new TrieNode();
+        for (char ch: s.toCharArray()) {
+            if (node.nodes[ch - 'a'] == null) {
+                node.nodes[ch - 'a'] = new TrieNode();
             }
-            node = node.nodes[c - 'a'];
+            node = node.nodes[ch - 'a'];
         }
         node.isW = true;
     }
@@ -88,6 +92,4 @@ public class SearchSuggestionSystem {
             dfs(node.nodes[c - 'a'], path + String.valueOf(c), pq);
         }
     }
-
-
 }

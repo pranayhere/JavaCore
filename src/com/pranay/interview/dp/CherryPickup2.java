@@ -28,7 +28,6 @@ public class CherryPickup2 {
         System.out.println("Cherries picked : " + cherries);
     }
 
-    int itrs = 0;
     int[][][] dp;
     private int cherryPickup(int[][] grid) {
         int nr = grid.length;
@@ -37,7 +36,6 @@ public class CherryPickup2 {
         dp = new int[nr][nc][nc];
 
         int ans = dfs(grid,0, 0, nc - 1);
-        System.out.println("Itrs : " + itrs);
         return ans;
     }
 
@@ -52,8 +50,6 @@ public class CherryPickup2 {
             return dp[r][c1][c2];
 
         int ans = 0;
-
-        itrs++;
 
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {

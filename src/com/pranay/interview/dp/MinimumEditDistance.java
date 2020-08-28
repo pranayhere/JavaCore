@@ -28,21 +28,12 @@ public class MinimumEditDistance {
 				if (s1[i-1].equals(s2[j-1])) {
 					T[i][j] = T[i-1][j-1];
 				} else {
-					T[i][j] = 1 + getMin(T[i-1][j], T[i][j-1], T[i-1][j-1]);
+					T[i][j] = 1 + Math.min(Math.min(T[i - 1][j], T[i][j - 1]), T[i - 1][j - 1]);
 				}
 			}
 		}
 		print2d(T);
 		return T[s1.length][s2.length];
-	}
-
-	private static int getMin(int a, int b, int c) {
-		if (a < b && a < c)
-			return a;
-		else if (b < a && b < c)
-			return b;
-		else
-			return c;
 	}
 
 	private static void print2d(int[][] arr) {

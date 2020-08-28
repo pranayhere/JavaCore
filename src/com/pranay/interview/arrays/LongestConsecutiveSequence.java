@@ -1,4 +1,4 @@
-package com.pranay.interview;
+package com.pranay.interview.arrays;
 
 import java.util.HashMap;
 import java.util.Map;
