@@ -12,8 +12,24 @@ public class ContainPattern {
         int[] arr = {1,2,3,1,2};
         int m = 2, k = 2;
 
-        boolean ans = containsPattern(arr, m, k);
+        boolean ans = containsPatternShort(arr, m, k);
         System.out.println("Ans : " + ans);
+    }
+
+    public static boolean containsPatternShort(int[] arr, int m, int k) {
+        int count = 0;
+
+        for (int i = 0; i + m < arr.length; i++) {
+            if (arr[i] == arr[i + m])
+                count++;
+            else
+                count = 0;
+
+            if (count == m * (k - 1))
+                return true;
+        }
+
+        return false;
     }
 
     public static boolean containsPattern(int[] arr, int m, int k) {
