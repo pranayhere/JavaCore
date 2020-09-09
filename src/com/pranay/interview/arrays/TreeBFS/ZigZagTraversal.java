@@ -38,11 +38,11 @@ public class ZigZagTraversal {
 
 		while (!queue.isEmpty()) {
 			TreeNode node = queue.remove();
-			if (node.data != Integer.MIN_VALUE) {
+			if (node.val != Integer.MIN_VALUE) {
 				if (flip)
-					level.addFirst(node.data);
+					level.addFirst(node.val);
 				else
-					level.addLast(node.data);
+					level.addLast(node.val);
 
 				if (node.left != null) queue.add(node.left);
 				if (node.right != null) queue.add(node.right);

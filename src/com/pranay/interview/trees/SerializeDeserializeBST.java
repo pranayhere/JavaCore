@@ -30,7 +30,7 @@ public class SerializeDeserializeBST {
         if (node == null)
             return;
 
-        sb.append(node.data).append(",");
+        sb.append(node.val).append(",");
         preorder(node.left, sb);
         preorder(node.right, sb);
     }
@@ -48,7 +48,7 @@ public class SerializeDeserializeBST {
         if (node == null)
             return new TreeNode(val);
 
-        if (val < node.data)
+        if (val < node.val)
             node.left = buildBST(node.left, val);
         else
             node.right = buildBST(node.right, val);

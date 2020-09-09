@@ -1,11 +1,11 @@
 package com.pranay.interview.common;
 
 public class TreeNode {
-	public int data;
+	public int val;
 	public TreeNode left, right;
 	public TreeNode(int data)
 	{
-		this.data = data;
+		this.val = data;
 		left = right = null;
 	}
 }

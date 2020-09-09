@@ -34,8 +34,8 @@ public class BinaryTreeLevelOrderTraversal {
 
 		while(!queue.isEmpty()) {
 			TreeNode node = queue.remove();
-			if (node.data != Integer.MIN_VALUE) {
-				level.add(node.data);
+			if (node.val != Integer.MIN_VALUE) {
+				level.add(node.val);
 			} else {
 				ans.add(new ArrayList<>(level));
 				level.clear();

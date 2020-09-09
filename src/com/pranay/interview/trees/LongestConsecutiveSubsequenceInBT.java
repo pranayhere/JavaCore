@@ -46,19 +46,19 @@ public class LongestConsecutiveSubsequenceInBT {
         curr.dec = 1;
 
         if (left != null) {
-            if (node.data - left.node.data == 1) {
+            if (node.val - left.node.val == 1) {
                 curr.inc = Math.max(curr.inc, left.inc + 1);
             }
-            else if (node.data - left.node.data == -1) {
+            else if (node.val - left.node.val == -1) {
                 curr.dec = Math.max(curr.dec, left.dec + 1);
             }
         }
 
         if (right != null) {
-            if (node.data - right.node.data == 1) {
+            if (node.val - right.node.val == 1) {
                 curr.inc = Math.max(curr.inc, right.inc + 1);
             }
-            else if (node.data - right.node.data == -1) {
+            else if (node.val - right.node.val == -1) {
                 curr.dec = Math.max(curr.dec, right.dec + 1);
             }
         }

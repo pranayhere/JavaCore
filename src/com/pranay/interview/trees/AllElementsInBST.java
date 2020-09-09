@@ -54,7 +54,7 @@ public class AllElementsInBST {
             return;
 
         inorder(node.left, q);
-        q.offer(node.data);
+        q.offer(node.val);
         inorder(node.right, q);
     }
 
