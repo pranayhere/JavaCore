@@ -5,10 +5,10 @@ import java.util.PriorityQueue;
 /**
  * 1584. Min Cost to Connect All Points
  * https://leetcode.com/problems/min-cost-to-connect-all-points/
- *
+ * <p>
  * This problem is minimum spanning tree (mst) problem where we need to find the minimum cost to connect every point.
  * Step:
- *
+ * <p>
  * 1. Consider each point as a single set
  * 2. Get the distance of each point from every point
  * 3. Sort the distance on increasing order because we need to consider the nearest point first (aka: greedy )
@@ -69,7 +69,7 @@ public class MinimumCostToConnectAllPoints {
     }
 
     public int getParent(int x) {
-        if(x!=parent[x])
+        if (x != parent[x])
             parent[x] = getParent(parent[x]);
         return parent[x];
     }
