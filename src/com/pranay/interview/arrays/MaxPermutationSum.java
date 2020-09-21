@@ -29,6 +29,9 @@ import java.util.List;
  * Complexity
  * Time O(NlogN) for sorting
  * Space O(N)
+ *
+ * Similar : https://leetcode.com/problems/car-pooling/
+ *
  */
 public class MaxPermutationSum {
     public static void main(String[] args) {
