@@ -28,25 +28,26 @@ public class ReverseKGroup {
 
         if (count == k) {
             ListNode reversedHead = reverseLinkedList(head, k);
-            head.next = reverseKGroup(ptr, k);
+            head.next = reverseKGroup(ptr, k); // head is now the last node after reverse
             return reversedHead;
         }
         return head;
     }
 
     private static ListNode reverseLinkedList(ListNode head, int k) {
-        ListNode newHead = null;
-        ListNode ptr = head;
+        ListNode prev = null;
+        ListNode curr = head;
 
         while (k > 0) {
-            ListNode nextNode = ptr.next;
+            ListNode next = curr.next;
+            curr.next = prev;
 
-            ptr.next = newHead;
-            newHead = ptr;
+            prev = curr;
+            curr = next;
 
-            ptr = nextNode;
             k--;
         }
-        return newHead;
+
+        return prev;
     }
 }
