@@ -3,9 +3,17 @@ package com.pranay.interview.common;
 public class TreeNode {
 	public int val;
 	public TreeNode left, right;
-	public TreeNode(int data)
-	{
-		this.val = data;
+	public TreeNode(int val) {
+		this.val = val;
 		left = right = null;
 	}
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "val=" + val +
+                ", left=" + left +
+                ", right=" + right +
+                "} \n";
+    }
 }
