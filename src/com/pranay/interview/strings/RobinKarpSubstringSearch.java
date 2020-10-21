@@ -20,7 +20,7 @@ public class RobinKarpSubstringSearch {
         long textHash = createHash(text, m - 1);
 
         for (int i = 1; i <= n - m + 1; i++) {
-            if (patternHash == textHash && checkEquals(text, i-1, i+m-2, pattern, 0, m -1)) {
+            if (patternHash == textHash && checkEquals(text, i - 1, i + m - 2, pattern, 0, m - 1)) {
                 return i - 1;
             }
 
@@ -57,7 +57,7 @@ public class RobinKarpSubstringSearch {
     private long createHash(char[] str, int end) {
         long hash = 0;
 
-        for (int i = 0; i<=end; i++) {
+        for (int i = 0; i <= end; i++) {
             hash += str[i] * Math.pow(prime, i);
         }
         return hash;
