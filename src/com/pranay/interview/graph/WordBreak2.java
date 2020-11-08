@@ -24,11 +24,11 @@ public class WordBreak2 {
 
     private List<String> wordBreak(String s, List<String> wordDict) {
         dict = wordDict;
-//        dfs(s, "");
-//        return res;
+        dfs(s, "");
+        return res;
 
         // dfs + cache
-        return dfs2(s);
+//        return dfs2(s);
     }
 
     private void dfs(String s, String curr) {
