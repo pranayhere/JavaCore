@@ -5,7 +5,8 @@ import java.util.Stack;
 
 public class DecodeString {
     public static void main(String[] args) {
-        String s = "3[a2[c]]";
+        String s = "3[a]2[bc]";
+        // String s = "3[a2[c]]";
         String output = decodeString(s);
         System.out.println("Output : " + output);
     }

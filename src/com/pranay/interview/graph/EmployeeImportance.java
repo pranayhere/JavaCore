@@ -36,15 +36,19 @@ public class EmployeeImportance {
         for (Employee e: employees) {
             emap.put(e.id, e);
         }
+
         return dfs(id);
     }
 
-    private int dfs(int id) {
-        Employee emp = emap.get(id);
-        int ans = emp.importance;
+    public int dfs(int empId) {
+        Employee curr = emap.get(empId);
 
-        for (Integer next: emp.subordinates)
-            ans += dfs(next);
-        return ans;
+        int imp = 0;
+
+        for (Integer subordinate: curr.subordinates) {
+            imp += dfs(subordinate);
+        }
+
+        return imp + curr.importance;
     }
 }
