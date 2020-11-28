@@ -14,10 +14,13 @@ public class BasicCalculator2 {
         int val = 0;
         Stack<Integer> stack = new Stack<>();
 
+        s = (s.replaceAll(" ", "") + '+');
+
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (Character.isDigit(ch)) {
                 val = val * 10 + (s.charAt(i) - '0');
+                continue;
             }
 
             if (sign == '+') {
