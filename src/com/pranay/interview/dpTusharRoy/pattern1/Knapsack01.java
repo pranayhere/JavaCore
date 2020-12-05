@@ -1,4 +1,4 @@
-package com.pranay.interview.dpTusharRoy;
+package com.pranay.interview.dpTusharRoy.pattern1;
 
 import java.util.Arrays;
 

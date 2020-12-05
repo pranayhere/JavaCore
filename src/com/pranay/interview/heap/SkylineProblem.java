@@ -1,6 +1,8 @@
 package com.pranay.interview.heap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -49,5 +51,38 @@ public class SkylineProblem {
         }
 
         return res;
+    }
+
+    public List<List<Integer>> getSkyline2(int[][] buildings) {
+        List<int[]> A = new ArrayList<>();
+        for (int[] b: buildings) {
+            A.add(new int[]{b[0], b[2]});
+            A.add(new int[]{b[1], -b[2]});
+        }
+
+        Collections.sort(A, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+        for (int[] a: A)
+            System.out.println(Arrays.toString(a));
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
+        pq.offer(0);
+        int prev = 0;
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        for (int[] a: A) {
+            if (a[1] > 0)
+                pq.offer(a[1]);
+            else
+                pq.remove(-a[1]);
+
+            int curr = pq.peek();
+            if (curr != prev) {
+                ans.add(List.of(a[0], curr));
+                prev = curr;
+            }
+        }
+
+        return ans;
     }
 }

@@ -1,8 +1,6 @@
 package com.pranay.interview.dp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * You are given coins of different denominations and a total amount of money amount.
