@@ -39,7 +39,7 @@ class LinkedBlockingQueueCustom<E> implements BlockingQueueCustom<E> {
 
 public class BlockingQueueImpl {
 	public static void main(String[] args) throws InterruptedException {
-		BlockingQueueCustom<Integer> q = new LinkedBlockingQueueCustom<Integer>(10);
+		BlockingQueueCustom<Integer> q = new LinkedBlockingQueueCustom<Integer>(2);
 		q.put(11);
 		q.put(12);
 		System.out.println(q.take());

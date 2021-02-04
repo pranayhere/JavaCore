@@ -46,11 +46,12 @@ public class ExecutorServiceDemo {
 			this.url = url;
 			
 		}
- 
-		@Override
-		public void run() {
+
+        @Override
+		public void run(){
 			System.out.println("started : "+Thread.currentThread().getName());
 			String result = "";
+
 			int code = 200;
 			try {
 				URL siteURL = new URL(url);
