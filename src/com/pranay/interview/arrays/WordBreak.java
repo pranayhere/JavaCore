@@ -55,7 +55,33 @@ public class WordBreak {
                 }
                 visited[start] = true;
             }
+
         }
         return false;
     }
+
+    // few test cases will fail 36/40 passed
+//    public boolean wordBreak(String s, List<String> wordDict) {
+//        Set<String> hs = new HashSet<>(wordDict);
+//        dfs(s, hs);
+//
+//        return ans;
+//    }
+//
+//    public void dfs(String s, Set<String> hs) {
+//        if (ans == true)
+//            return;
+//
+//        if (s.equals("")) {
+//            ans = true;
+//            return;
+//        }
+//
+//        for (String str: hs) {
+//            if (s.startsWith(str)) {
+//                String st = s.substring(str.length());
+//                dfs(st, hs);
+//            }
+//        }
+//    }
 }
