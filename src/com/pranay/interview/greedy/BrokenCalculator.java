@@ -1,10 +1,5 @@
 package com.pranay.interview.greedy;
 
-import java.util.ArrayDeque;
-import java.util.HashSet;
-import java.util.Queue;
-import java.util.Set;
-
 public class BrokenCalculator {
     public static void main(String[] args) {
         int X = 3, Y = 10;
