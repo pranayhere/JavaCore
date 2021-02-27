@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class SubsetSum {
     public static void main(String[] args) {
-        int total = 11;
+        int total = 30;
         int[] nums = {2, 3, 7, 8, 10};
 
         boolean ans = subsetSum(nums, total);

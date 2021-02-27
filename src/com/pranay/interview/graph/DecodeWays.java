@@ -59,4 +59,33 @@ public class DecodeWays {
         cache.put(i, ans);
         return ans;
     }
+
+    /**
+     * class Solution(object):
+     *     def numDecodings(self, s):
+     *         """
+     *         :type s: str
+     *         :rtype: int
+     *         """
+     *
+     *         arr = [0]*len(s)
+     *         for i in range(len(s)):
+     *             if (i==0 ):
+     *                 if (int(s[i]) >0):
+     *                     arr[i] = 1
+     *                     continue
+     *             if (i==1):
+     *                 if (int(s[i-1]+s[i]) <= 26 and int(s[i-1]+s[i]) >= 10):
+     *                     arr[i] += 1
+     *                 if (int(s[i]) >0):
+     *                     arr[i] += arr[i-1]
+     *
+     *             else:
+     *                 if (int(s[i-1]+s[i]) <= 26 and int(s[i-1]+s[i]) >= 10):
+     *                     arr[i] += arr[i-2]
+     *                 if (int(s[i]) >0):
+     *                     arr[i] += arr[i-1]
+     *         print(arr)
+     *         return arr[-1]
+     */
 }

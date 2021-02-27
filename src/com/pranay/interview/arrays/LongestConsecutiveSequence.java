@@ -1,7 +1,9 @@
 package com.pranay.interview.arrays;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -17,26 +19,28 @@ public class LongestConsecutiveSequence {
 
     // O(n) // glue neighbours
     private static int longestConsecutiveOptimised(int[] nums) {
-        Map<Integer, Integer> hm = new HashMap<>();
-        int res = 0;
+        Set<Integer> hs = new HashSet<>();
+        for (int n: nums)
+            hs.add(n);
 
-        for (int n: nums) {
-            if (!hm.containsKey(n)) {
-                int l = hm.getOrDefault(n - 1, 0);
-                int r = hm.getOrDefault(n + 1, 0);
+        int longestStreak = 0;
 
-                int sum = l + r + 1;
-                res = Math.max(sum, res);
+        for (int n: hs) {
+            if (!hs.contains(n - 1)) {
+                int currNum = n;
+                int currStreak = 1;
 
-                hm.put(n, sum);
-                hm.put(n - l, sum);
-                hm.put(n + r, sum);
+                while (hs.contains(currNum + 1)) {
+                    currNum = currNum + 1;
+                    currStreak++;
+                }
+
+                longestStreak = Math.max(longestStreak, currStreak);
             }
         }
 
-        return res;
+        return longestStreak;
     }
-
 
     // O(n.logn)
     private static int longestConsecutive(int[] nums) {
