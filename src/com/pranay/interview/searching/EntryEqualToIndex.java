@@ -9,7 +9,7 @@ public class EntryEqualToIndex {
 
 	private static int findEntryEqualToIndex(int[] nums) {
 		int lo = 0;
-		int hi = nums.length;
+		int hi = nums.length - 1;
 		while (lo <= hi) {
 			int mid = lo + ((hi - lo) / 2);
 			int diff = nums[mid] - mid;

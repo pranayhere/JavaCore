@@ -1,7 +1,5 @@
 package com.pranay.interview.trees;
 
-import com.pranay.interview.common.TreeNode;
-
 public class BTLowestCommonAncestor {
 	static Node root;
 
@@ -33,7 +31,7 @@ public class BTLowestCommonAncestor {
 		tree.root.right.right = new Node(7);
 		tree.root.left.left.left = new Node(8);
 		Node node = tree.findLCA(root, 8, 6);
-		
+
 		System.out.println("LCA(4, 5) " + node.data);
 	}
 }

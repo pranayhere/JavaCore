@@ -1,5 +1,9 @@
 package com.pranay.interview.searching;
 
+/**
+ * 1095. Find in Mountain Array
+ * https://leetcode.com/problems/find-in-mountain-array/
+ */
 public class FindInMountainArray {
     public static void main(String[] args) {
         int[] A = {1, 2, 3, 5, 4, 1};

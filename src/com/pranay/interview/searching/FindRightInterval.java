@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 436. Find Right Interval
+ * https://leetcode.com/problems/find-right-interval/
+ */
 public class FindRightInterval {
     public static void main(String[] args) {
         int[][] intervals = {{3,4},{2,3},{1,2}};

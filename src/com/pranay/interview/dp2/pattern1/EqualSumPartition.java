@@ -1,8 +1,8 @@
-package com.pranay.interview.dp2;
+package com.pranay.interview.dp2.pattern1;
 
 public class EqualSumPartition {
     public static void main(String[] args) {
-        int[] nums = {1, 8, 5};
+        int[] nums = {1, 4, 5};
         boolean ans = equalSumPartition(nums);
         System.out.println("Ans : " + ans);
     }
