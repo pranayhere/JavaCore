@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public class SubsetSum {
     public static void main(String[] args) {
-        int[] nums = {2, 3, 7, 8, 10};
+        int[] nums = {1,1,1,4};
 //        int sum = 17;
 //        int sum = 0;
 //        int sum = 11;
 //        int sum = 14;
-        int sum = 30;
+        int sum = 7;
 
         boolean ans = subsetSumRec(nums, sum, nums.length);
         System.out.println("Recursive : " + ans);
@@ -71,6 +71,8 @@ public class SubsetSum {
             }
         }
 
+
+        System.out.println(Arrays.deepToString(dp));
         return dp[dp.length - 1][dp[0].length - 1];
     }
 }
