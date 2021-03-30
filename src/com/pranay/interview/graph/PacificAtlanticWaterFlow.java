@@ -42,6 +42,7 @@ public class PacificAtlanticWaterFlow {
             dfs(A, pacific, 0, c, A[0][c]);
             dfs(A, atlantic, nr - 1, c, A[nr - 1][c]);
         }
+
         for (int r = 0; r < nr; r++) {
             dfs(A, pacific, r, 0, A[r][0]);
             dfs(A, atlantic, r, nc - 1, A[r][nc - 1]);
