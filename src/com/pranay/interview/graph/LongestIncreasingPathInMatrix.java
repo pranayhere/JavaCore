@@ -20,7 +20,10 @@ public class LongestIncreasingPathInMatrix {
 //                {2, 2, 1}
 //        };
 
-        int size = LongestIncreasingPathInMatrix.longestIncreasingPath(nums);
+//        int size = LongestIncreasingPathInMatrix.longestIncreasingPath(nums);
+
+        LongestIncreasingPathInMatrix lpm = new LongestIncreasingPathInMatrix();
+        int size = lpm.longestIncreasingPath2(nums);
         System.out.println("Size of longest increasing path : " + size);
     }
 
@@ -87,6 +90,40 @@ public class LongestIncreasingPathInMatrix {
 
         return len + 1;
     }
-    
+
+
+    int ans = Integer.MIN_VALUE;
+    public int longestIncreasingPath2(int[][] matrix) {
+        int nr = matrix.length;
+        int nc = matrix[0].length;
+
+        for (int r = 0; r < nr; r++) {
+            for (int c = 0; c < nc; c++) {
+                boolean[][] seen = new boolean[nr][nc];
+                dfs(matrix, r, c, 0, -1, seen);
+            }
+        }
+
+        return ans;
+    }
+
+    public void dfs(int[][] grid, int r, int c, int cnt, int prev, boolean[][] seen) {
+        int nr = grid.length;
+        int nc = grid[0].length;
+
+        if (r < 0 || r >= nr || c < 0 || c >= nc || grid[r][c] <= prev || seen[r][c])
+            return;
+
+        seen[r][c] = true;
+        cnt += 1;
+
+        if (cnt > ans)
+            ans = cnt;
+
+        dfs(grid, r + 1, c, cnt, grid[r][c], seen);
+        dfs(grid, r - 1, c, cnt, grid[r][c], seen);
+        dfs(grid, r, c + 1, cnt, grid[r][c], seen);
+        dfs(grid, r, c - 1, cnt, grid[r][c], seen);
+    }
     
 }

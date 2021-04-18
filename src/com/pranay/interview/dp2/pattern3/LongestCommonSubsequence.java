@@ -1,5 +1,7 @@
 package com.pranay.interview.dp2.pattern3;
 
+import java.util.Arrays;
+
 /**
  * 1143. Longest Common Subsequence
  * https://leetcode.com/problems/longest-common-subsequence/
@@ -10,7 +12,8 @@ public class LongestCommonSubsequence {
 
         LongestCommonSubsequence lcs = new LongestCommonSubsequence();
         int len = lcs.longestCommonSubsequence(text1, text2);
-        System.out.println("Longest common subsequence : "  + len);
+        int len2 = lcs.longestCommonSubsequenceTopDown(text1, text2);
+        System.out.println("Longest common subsequence : "  + len + " ---- " + len2);
     }
 
     public int longestCommonSubsequence(String text1, String text2) {
@@ -32,5 +35,27 @@ public class LongestCommonSubsequence {
             return memo[m - 1][n - 1] = 1 + lcs(s1, s2, m - 1, n - 1, memo);
         else
             return memo[m - 1][n - 1] = Math.max(lcs(s1, s2, m - 1, n, memo), lcs(s1, s2, m, n - 1, memo));
+    }
+
+    public int longestCommonSubsequenceTopDown(String s1, String s2) {
+        int n = s1.length();
+        int m = s2.length();
+
+        int[][] dp = new int[n + 1][m + 1];
+
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1))
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                else
+                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+            }
+        }
+
+        for (int[] row: dp) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        return dp[n][m];
     }
 }

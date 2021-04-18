@@ -1,12 +1,16 @@
 package com.pranay.interview.graph;
 
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+
+/**
+ * 743. Network Delay Time
+ * https://leetcode.com/problems/network-delay-time/
+ */
 
 // Dijkstra
 public class NetworkDelay {
@@ -51,8 +55,8 @@ public class NetworkDelay {
                     pq.add(new int[]{currDist + hm.get(currNode).get(next), next});
                 }
             }
-
         }
+
         return N == 0 ? res : -1;
     }
 
