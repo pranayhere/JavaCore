@@ -17,16 +17,18 @@ public class ReverseLinkedList {
         }
     }
 
-    public static ListNode reverseList(ListNode node) {
-        if (node == null)
-            return null;
+    public static ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null;
 
-        ListNode curr = node;
-        ListNode revNode = reverseList(node.next);
-        
-        System.out.println(curr.val);
-        
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
 
-        return curr;
+        return prev;
     }
 }

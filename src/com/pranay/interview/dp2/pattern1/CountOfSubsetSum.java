@@ -7,10 +7,10 @@ public class CountOfSubsetSum {
         int[] nums = {2, 3, 5, 6, 8, 10};
         int sum = 10;
         int count = countOfSubsetSum(nums, sum, nums.length);
-        System.out.println("Count Rec : " + count + " iterations : " + itrs);
+        System.out.println("Count Rec : " + count );
 
         int countMemo = countOfSubsetMemo(nums, sum, nums.length);
-        System.out.println("Count memo : " + countMemo + " iterations : " + itrs2);
+        System.out.println("Count memo : " + countMemo);
 //        System.out.println(Arrays.deepToString(dp));
 
         int countTd = countOfSubsetSumTD(nums, sum, nums.length);
@@ -18,8 +18,6 @@ public class CountOfSubsetSum {
     }
 
 
-    static int itrs = 0;
-    static int itrs2 = 0;
     // -------------------------- Recursive ------------------------------
     private static int countOfSubsetSum(int[] nums, int sum, int n) {
         if (sum == 0)
@@ -28,7 +26,6 @@ public class CountOfSubsetSum {
         if (n == 0)
             return 0;
 
-        itrs++;
         if (nums[n - 1] <= sum)
             return countOfSubsetSum(nums, sum - nums[n - 1], n - 1) + countOfSubsetSum(nums, sum, n - 1);
         else
@@ -47,7 +44,6 @@ public class CountOfSubsetSum {
         if (dp[n][sum] > 0)
             return dp[n][sum];
 
-        itrs2++;
         if (nums[n - 1] <= sum)
             return dp[n][sum] = countOfSubsetMemo(nums, sum - nums[n - 1], n - 1) + countOfSubsetMemo(nums, sum, n - 1);
         else
