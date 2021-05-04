@@ -45,7 +45,7 @@ public class CriticalConnections {
     Map<Integer, List<Integer>> graph;
     List<List<Integer>> res;
 
-    private List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
+    public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
         graph = new HashMap<>();
         res = new LinkedList<>();
 
