@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class RemoveDuplicateLetters {
     public static void main(String[] args) {
-        String s = "cbacdcbc";
+        String s = "abbbaac";
         String ans = removeDuplicateLetters(s);
         System.out.println("Ans : " + ans);
     }

@@ -14,8 +14,9 @@ import java.util.PriorityQueue;
 public class TaskScheduler {
     public static void main(String[] args) {
 //        char[] tasks = {'A','A','A','A','A','A','B','C','D','E','F','G'}; // ans = 16
-        char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
-        int n = 2;
+//        char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
+        char[] tasks = {'0', '0', '0', '1', '1', '0'};
+        int n = 1;
 
         int time = leastInterval2(tasks, n);
         System.out.println("Time : " + time);
@@ -71,5 +72,18 @@ public class TaskScheduler {
         }
 
         return allTime;
+    }
+
+    static boolean isPossible(int[] A, int H, int K) {
+        double time = 0;
+        int n = A.length;
+
+        for (int i = 0; i < n; ++i) {
+            time += (double) (A[i] - 1) / (K + 1);
+            if (i < n - 1)
+                time = Math.ceil(time);
+        }
+
+        return time <= H;
     }
 }

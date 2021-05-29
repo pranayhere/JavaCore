@@ -14,6 +14,8 @@ public class BasicCalculator3 {
     }
 
     private static int calculate(String s) {
+        System.out.println((int)Math.ceil((double) -8/31*-1));
+
         Deque<Integer> stack = new ArrayDeque<>();
         Map<Integer, Integer> hm = new HashMap<>();
 
