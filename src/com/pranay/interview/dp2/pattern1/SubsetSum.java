@@ -71,7 +71,6 @@ public class SubsetSum {
             }
         }
 
-
         System.out.println(Arrays.deepToString(dp));
         return dp[dp.length - 1][dp[0].length - 1];
     }

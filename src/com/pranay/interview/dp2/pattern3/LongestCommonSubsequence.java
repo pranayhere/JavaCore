@@ -21,8 +21,22 @@ public class LongestCommonSubsequence {
         int n = text2.length();
 
         int[][] memo = new int[m][n];
-        return lcs(text1, text2, text1.length(), text2.length(), memo);
+        int ans = lcs(text1, text2, text1.length(), text2.length(), memo);
+        int ans2 = lcsRec(text1, text2, m, n);
+
+        return ans2;
     }
+
+    private int lcsRec(String s1, String s2, int m, int n) {
+        if (m == 0 || n == 0)
+            return 0;
+
+        if (s1.charAt(m - 1) == s2.charAt(n - 1))
+            return 1 + lcsRec(s1, s2, m - 1, n - 1);
+        else
+            return Math.max(lcsRec(s1, s2, m - 1, n), lcsRec(s1, s2, m, n - 1));
+    }
+
 
     public int lcs(String s1, String s2, int m, int n, int[][] memo) {
         if (m == 0 || n == 0)

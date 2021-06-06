@@ -41,35 +41,34 @@ public class MinCostToHireKWorkers {
         System.out.println("Min cost : " + cost);
     }
 
-    private static double mincostToHireWorkers(int[] quality, int[] wage, int K) {
-        int minCost = Integer.MAX_VALUE;
-        int N = quality.length;
-
-        for (int captain = 0; captain < N; captain++) {
-            double factor = (double) wage[captain]/quality[captain];
-
-            List<Double> prices = new ArrayList<>();
-
-            for (int worker = 0; worker < N; worker++) {
-                double price = quality[worker] * factor;
-                if (price < wage[worker])
-                    continue;
-                prices.add(price);
-            }
-
-            if (prices.size() < K)
-                continue;
-
-            Collections.sort(prices);
-            int cost = 0;
-            for (int i = 0; i < K; i++) {
-                cost += prices.get(i);
-            }
-            minCost = Math.min(cost, minCost);
-        }
-        return minCost;
-    }
-
+//    private static double mincostToHireWorkers(int[] quality, int[] wage, int K) {
+//        int minCost = Integer.MAX_VALUE;
+//        int N = quality.length;
+//
+//        for (int captain = 0; captain < N; captain++) {
+//            double factor = (double) wage[captain]/quality[captain];
+//
+//            List<Double> prices = new ArrayList<>();
+//
+//            for (int worker = 0; worker < N; worker++) {
+//                double price = quality[worker] * factor;
+//                if (price < wage[worker])
+//                    continue;
+//                prices.add(price);
+//            }
+//
+//            if (prices.size() < K)
+//                continue;
+//
+//            Collections.sort(prices);
+//            int cost = 0;
+//            for (int i = 0; i < K; i++) {
+//                cost += prices.get(i);
+//            }
+//            minCost = Math.min(cost, minCost);
+//        }
+//        return minCost;
+//    }
 
     private static double mincostToHireWorkersHeap(int[] quality, int[] wage, int K) {
         double minCost = 1e9;

@@ -1,5 +1,7 @@
 package com.pranay.interview.dp2.pattern1;
 
+import com.pranay.GeeksForGeeks.Knapsack;
+
 import java.util.Arrays;
 
 public class Knapsack01 {

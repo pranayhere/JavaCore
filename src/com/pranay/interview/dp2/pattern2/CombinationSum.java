@@ -2,14 +2,13 @@ package com.pranay.interview.dp2.pattern2;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class CombinationSum {
     public static void main(String[] args) {
-        int[] candidates = {2,3,6,7};
-        int target = 7;
+        int[] candidates = {29,65,70,100,153,172,186,195,220,237,245};
+        int target = 195;
 
         CombinationSum cs = new CombinationSum();
         List<List<Integer>> ans = cs.combinationSum(candidates, target);
