@@ -17,38 +17,28 @@ public class PaintHouse {
         System.out.println("Min cost : " + cost);
     }
 
-    private int[][] costs;
-    private Map<String, Integer> memo;
+    public int minCost(int[][] costs) {
+        int n = costs.length;
+        int[][] memo = new int[n + 1][costs[0].length];
+        return Math.min(dfs(costs, n, 0, memo), Math.min(dfs(costs, n, 1, memo), dfs(costs, n, 2, memo)));
+    }
 
-    private int minCost(int[][] costs) {
-        if (costs.length == 0) {
+    public int dfs(int[][] costs, int n, int idx, int[][] memo) {
+        if (n == 0)
             return 0;
-        }
-        this.costs = costs;
-        this.memo = new HashMap<>();
-        int min = Math.min(paintCost(0, 0), Math.min(paintCost(0, 1), paintCost(0, 2)));
-        System.out.println(memo);
-        return min;
-    }
 
-    private int paintCost(int n, int color) {
-        if (memo.containsKey(getKey(n, color))) {
-            return memo.get(getKey(n, color));
-        }
-        int totalCost = costs[n][color];
-        if (n == costs.length - 1) {
-        } else if (color == 0) {
-            totalCost += Math.min(paintCost(n + 1, 1), paintCost(n + 1, 2));
-        } else if (color == 1) {
-            totalCost += Math.min(paintCost(n + 1, 0), paintCost(n + 1, 2));
+        if (memo[n][idx] > 0)
+            return memo[n][idx];
+
+        int c = 0;
+        if (idx == 0) {
+            c += costs[n - 1][idx] + Math.min(dfs(costs, n - 1, 1, memo), dfs(costs, n - 1, 2, memo));
+        } else if (idx == 1) {
+            c += costs[n - 1][idx] + Math.min(dfs(costs, n - 1, 0, memo), dfs(costs, n - 1, 2, memo));
         } else {
-            totalCost += Math.min(paintCost(n + 1, 0), paintCost(n + 1, 1));
+            c += costs[n - 1][idx] + Math.min(dfs(costs, n - 1, 0, memo), dfs(costs, n - 1, 1, memo));
         }
-        memo.put(getKey(n, color), totalCost);
-        return totalCost;
-    }
 
-    private String getKey(int n, int color) {
-        return String.valueOf(n) + "-" + String.valueOf(color);
+        return memo[n][idx] = c;
     }
 }
