@@ -14,11 +14,11 @@ public class MinVerticesToReachAllVertices {
     public static void main(String[] args) {
         int n = 6;
         List<List<Integer>> edges = new ArrayList<>();
-        edges.add(List.of(0, 1));
-        edges.add(List.of(0, 2));
-        edges.add(List.of(2, 5));
-        edges.add(List.of(3, 4));
-        edges.add(List.of(4, 2));
+        edges.add(Arrays.asList(0, 1));
+        edges.add(Arrays.asList(0, 2));
+        edges.add(Arrays.asList(2, 5));
+        edges.add(Arrays.asList(3, 4));
+        edges.add(Arrays.asList(4, 2));
 
         MinVerticesToReachAllVertices vert = new MinVerticesToReachAllVertices();
         List<Integer> vertices = vert.findSmallestSetOfVertices(n, edges);

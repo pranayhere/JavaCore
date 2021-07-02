@@ -36,14 +36,14 @@ import java.util.Set;
 public class EvaluateDivisionDFS {
     public static void main(String[] args) {
         List<List<String>> equations = new ArrayList<>();
-        equations.add(List.of("a", "b"));
-        equations.add(List.of("b", "c"));
+        equations.add(Arrays.asList("a", "b"));
+        equations.add(Arrays.asList("b", "c"));
 
         double[] values = {2.0, 3.0};
 
         List<List<String>> queries = new ArrayList<>();
-        queries.add(List.of("a", "c"));
-        queries.add(List.of("b", "a"));
+        queries.add(Arrays.asList("a", "c"));
+        queries.add(Arrays.asList("b", "a"));
         EvaluateDivisionDFS ee = new EvaluateDivisionDFS();
         double ans[] = ee.calcEquation(equations, values, queries);
         System.out.println("Result : " + Arrays.toString(ans));

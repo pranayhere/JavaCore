@@ -1,6 +1,7 @@
 package com.pranay.interview.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -45,7 +46,7 @@ public class The24Game {
                 double a = nums.get(i);
                 double b = nums.get(j);
 
-                List<Double> eval = List.of(a+b, a-b, b-a, a*b, a/b, b/a);
+                List<Double> eval = Arrays.asList(a+b, a-b, b-a, a*b, a/b, b/a);
                 List<Double> copyNums = new ArrayList<>(nums);
                 copyNums.remove(i);
                 copyNums.remove(j);

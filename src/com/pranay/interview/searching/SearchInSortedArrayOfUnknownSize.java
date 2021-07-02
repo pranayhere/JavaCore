@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SearchInSortedArrayOfUnknownSize {
     public static void main(String[] args) {
-        List<Integer> list = List.of(-1,0,3,5,9,12);
+        List<Integer> list = Arrays.asList(-1,0,3,5,9,12);
         int target = 9;
 
         int idx = search(list, target);

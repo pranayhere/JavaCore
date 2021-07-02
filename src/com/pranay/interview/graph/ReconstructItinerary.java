@@ -1,11 +1,6 @@
 package com.pranay.interview.graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 332. Reconstruct Itinerary
@@ -14,11 +9,11 @@ import java.util.Map;
 public class ReconstructItinerary {
     public static void main(String[] args) {
         List<List<String>> tickets = new ArrayList<>();
-        tickets.add(List.of("JFK", "SFO"));
-        tickets.add(List.of("JFK", "ATL"));
-        tickets.add(List.of("SFO", "ATL"));
-        tickets.add(List.of("ATL", "JFK"));
-        tickets.add(List.of("ATL", "SFO"));
+        tickets.add(Arrays.asList("JFK", "SFO"));
+        tickets.add(Arrays.asList("JFK", "ATL"));
+        tickets.add(Arrays.asList("SFO", "ATL"));
+        tickets.add(Arrays.asList("ATL", "JFK"));
+        tickets.add(Arrays.asList("ATL", "SFO"));
 
         ReconstructItinerary ri = new ReconstructItinerary();
         List<String> topologicalSort = ri.findItinerary(tickets);

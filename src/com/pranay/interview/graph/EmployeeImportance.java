@@ -1,9 +1,6 @@
 package com.pranay.interview.graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class Employee {
     public int id;
@@ -20,7 +17,7 @@ class Employee {
 public class EmployeeImportance {
     public static void main(String[] args) {
         List<Employee> employees = new ArrayList<>();
-        employees.add(new Employee(1, 5, List.of(2, 3)));
+        employees.add(new Employee(1, 5, Arrays.asList(2, 3)));
         employees.add(new Employee(2, 3, new ArrayList<>()));
         employees.add(new Employee(3, 3, new ArrayList<>()));
 

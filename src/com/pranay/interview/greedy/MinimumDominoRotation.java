@@ -1,5 +1,6 @@
 package com.pranay.interview.greedy;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class MinimumDominoRotation {
     }
 
     private static int minDominoRotations(int[] A, int[] B) {
-        List<Integer> rotations = List.of(
+        List<Integer> rotations = Arrays.asList(
                 find(A[0], A, B),
                 find(B[0], A, B),
                 find(A[0], B, A),

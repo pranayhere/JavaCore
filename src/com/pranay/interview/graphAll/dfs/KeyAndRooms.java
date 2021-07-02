@@ -1,6 +1,7 @@
 package com.pranay.interview.graphAll.dfs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -11,10 +12,10 @@ import java.util.List;
 public class KeyAndRooms {
     public static void main(String[] args) {
         List<List<Integer>> rooms = new ArrayList<>();
-        rooms.add(List.of(1, 3));
-        rooms.add(List.of(3, 0, 1));
-        rooms.add(List.of(2));
-        rooms.add(List.of(0));
+        rooms.add(Arrays.asList(1, 3));
+        rooms.add(Arrays.asList(3, 0, 1));
+        rooms.add(Arrays.asList(2));
+        rooms.add(Arrays.asList(0));
 
 //        rooms.add(List.of(1));
 //        rooms.add(List.of(2));

@@ -1,9 +1,6 @@
 package com.pranay.GeeksForGeeks;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ReformatDate {
     public static void main(String[] args) {
@@ -28,7 +25,7 @@ public class ReformatDate {
         mm.put("Nov", "11");
         mm.put("Dec", "12");
 
-        List<String> abbr = List.of("th", "st", "rd", "nd");
+        List<String> abbr = Arrays.asList("th", "st", "rd", "nd");
 
         for (String str : abbr) {
             if (arr[0].indexOf(str) > 0) {

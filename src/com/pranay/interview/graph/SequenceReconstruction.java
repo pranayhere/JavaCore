@@ -1,11 +1,6 @@
 package com.pranay.interview.graph;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * 444. Sequence Reconstruction
@@ -15,8 +10,8 @@ public class SequenceReconstruction {
     public static void main(String[] args) {
         int[] org = {4,1,5,2,6,3};
         List<List<Integer>> seqs = new ArrayList<>();
-        seqs.add(List.of(5,2,6,3));
-        seqs.add(List.of(4,1,5,2));
+        seqs.add(Arrays.asList(5,2,6,3));
+        seqs.add(Arrays.asList(4,1,5,2));
 
         SequenceReconstruction sr = new SequenceReconstruction();
         boolean ans = sr.sequenceReconstruction(org, seqs);

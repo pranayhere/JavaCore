@@ -1,6 +1,7 @@
 package com.pranay.interview.arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,18 +18,18 @@ public class PascalsTriangle {
     public static List<Integer> getRow(int n) {
         List<Integer> ans = new ArrayList<>();
         if (n == 1) {
-            ans = List.of(1);
+            ans = Arrays.asList(1);
             return ans;
         }
 
         if (n == 2) {
             ans.clear();
-            ans = List.of(1, 1);
+            ans = Arrays.asList(1, 1);
             return ans;
         }
 
         if (n >= 3) {
-            ans = List.of(1, 2, 1);
+            ans = Arrays.asList(1, 2, 1);
         }
 
         while (n > 3) {

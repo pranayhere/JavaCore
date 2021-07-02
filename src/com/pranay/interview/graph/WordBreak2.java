@@ -1,17 +1,11 @@
 package com.pranay.interview.graph;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class WordBreak2 {
     public static void main(String[] args) {
         String s = "pineapplepenapple";
-        List<String> wordDict = List.of("apple", "pen", "applepen", "pine", "pineapple");
+        List<String> wordDict = Arrays.asList("apple", "pen", "applepen", "pine", "pineapple");
 
         WordBreak2 wb = new WordBreak2();
         List<String> ans = wb.wordBreak(s, wordDict);

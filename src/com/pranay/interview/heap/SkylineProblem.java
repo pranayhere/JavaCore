@@ -23,8 +23,8 @@ public class SkylineProblem {
         List<List<Integer>> heights = new ArrayList<>();
 
         for (int[] b : buildings) {
-            heights.add(List.of(b[0], -b[2]));
-            heights.add(List.of(b[1], b[2]));
+            heights.add(Arrays.asList(b[0], -b[2]));
+            heights.add(Arrays.asList(b[1], b[2]));
         }
 
         heights.sort((a, b) -> !a.get(0).equals(b.get(0)) ? a.get(0) - b.get(0) : a.get(1) - b.get(1));
@@ -45,7 +45,7 @@ public class SkylineProblem {
             System.out.println("height : " + h + " Curr : " + curr + " Prev : " + prev);
             System.out.println(pq);
             if (curr != prev) {
-                res.add(List.of(h.get(0), curr));
+                res.add(Arrays.asList(h.get(0), curr));
                 prev = curr;
             }
         }
@@ -78,7 +78,7 @@ public class SkylineProblem {
 
             int curr = pq.peek();
             if (curr != prev) {
-                ans.add(List.of(a[0], curr));
+                ans.add(Arrays.asList(a[0], curr));
                 prev = curr;
             }
         }
