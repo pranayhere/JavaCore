@@ -1,11 +1,9 @@
 package com.pranay.interview.graph;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 
 public class CourseSchedule {
 	public static void main(String[] args) {
