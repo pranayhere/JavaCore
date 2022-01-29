@@ -33,7 +33,7 @@ public class CountOfSubsetSum {
     }
 
     // -------------------------- Memo ------------------------------------
-    static int[][] dp = new int[7][11];
+    static int[][] dp = new int[7][11]; // [nums.length + 1][sum + 1]
     private static int countOfSubsetMemo(int[] nums, int sum, int n) {
         if (sum == 0)
             return 1;

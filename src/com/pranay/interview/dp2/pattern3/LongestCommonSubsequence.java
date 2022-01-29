@@ -21,7 +21,7 @@ public class LongestCommonSubsequence {
         int n = text2.length();
 
         int[][] memo = new int[m][n];
-        int ans = lcs(text1, text2, text1.length(), text2.length(), memo);
+        int ans = lcs(text1, text2, m, n, memo);
         int ans2 = lcsRec(text1, text2, m, n);
 
         return ans2;

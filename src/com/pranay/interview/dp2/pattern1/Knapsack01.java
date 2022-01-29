@@ -29,10 +29,11 @@ public class Knapsack01 {
         if (n == 0 || W == 0)
             return 0;
 
-        if (wt[n - 1] <= W)
+        if (wt[n - 1] <= W) {
             return Math.max(val[n - 1] + knapsack(wt, val, W - wt[n - 1], n - 1), knapsack(wt, val, W, n - 1));
-        else
+        } else {
             return knapsack(wt, val, W, n - 1);
+        }
     }
 
     // ---------------------------------- Memo Recursive ----------------------
