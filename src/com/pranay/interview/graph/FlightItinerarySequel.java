@@ -29,6 +29,15 @@ import java.util.PriorityQueue;
  * Output
  * ["JFK", "YYZ", "SEA", "JFK"]
  *
+ * Input: flights = [QJY, EGM]
+ * [EGM, AOI]
+ * [AOI, EGM]
+ * [HTA, QJY]
+ * [EGM, EGM] <--- notice self loop
+ *
+ * Output:
+ * ["HTA", "QJY", "EGM", "AOI", "EGM", "EGM"]
+ *
  * Eulerian path, Eulerian circuit or Eulerian cycle
  */
 public class FlightItinerarySequel {
