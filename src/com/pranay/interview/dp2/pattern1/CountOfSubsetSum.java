@@ -13,7 +13,7 @@ public class CountOfSubsetSum {
         System.out.println("Count memo : " + countMemo);
 //        System.out.println(Arrays.deepToString(dp));
 
-        int countTd = countOfSubsetSumTD(nums, sum, nums.length);
+        int countTd = countOfSubsetSumTabulation(nums, sum, nums.length);
         System.out.println("Count top down : " + countTd);
     }
 
@@ -50,8 +50,8 @@ public class CountOfSubsetSum {
             return dp[n][sum] = countOfSubsetMemo(nums, sum, n - 1);
     }
 
-    // -------------------------- Top down dp -----------------------------
-    private static int countOfSubsetSumTD(int[] nums, int sum, int n) {
+    // -------------------------- Tabulation dp -----------------------------
+    private static int countOfSubsetSumTabulation(int[] nums, int sum, int n) {
         int[][] dp = new int[nums.length + 1][sum + 1];
         for (int i = 0; i < nums.length; i++)
             dp[i][0] = 1;

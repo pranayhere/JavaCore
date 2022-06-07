@@ -7,69 +7,61 @@ import java.util.Arrays;
  * https://leetcode.com/problems/longest-common-subsequence/
  */
 public class LongestCommonSubsequence {
+    static int[][] memo;
     public static void main(String[] args) {
         String text1 = "abcde", text2 = "ace";
 
         LongestCommonSubsequence lcs = new LongestCommonSubsequence();
         int len = lcs.longestCommonSubsequence(text1, text2);
-        int len2 = lcs.longestCommonSubsequenceTopDown(text1, text2);
-        System.out.println("Longest common subsequence : "  + len + " ---- " + len2);
+
+        memo = new int[text1.length() + 1][text2.length() + 1];
+        int lcnMemo = lcs.longestCommonSubsequenceMemo(text1, text2, text1.length(), text2.length());
+        int lcsTab = lcs.longestCommonSubsequenceTab(text1, text2);
+
+        System.out.println("len Rec : "  + len);
+        System.out.println("Memo : "  + lcnMemo);
+        System.out.println("Tab : "  + lcsTab);
     }
 
-    public int longestCommonSubsequence(String text1, String text2) {
-        int m = text1.length();
-        int n = text2.length();
-
-        int[][] memo = new int[m][n];
-        int ans = lcs(text1, text2, m, n, memo);
-        int ans2 = lcsRec(text1, text2, m, n);
-
-        return ans2;
+    public int longestCommonSubsequence(String s1, String s2) {
+        return longestCommonSubsequenceRec(s1, s2, s1.length(), s2.length());
     }
 
-    private int lcsRec(String s1, String s2, int m, int n) {
+    private int longestCommonSubsequenceRec(String s1, String s2, int m, int n) {
         if (m == 0 || n == 0)
             return 0;
 
         if (s1.charAt(m - 1) == s2.charAt(n - 1))
-            return 1 + lcsRec(s1, s2, m - 1, n - 1);
+            return 1 + longestCommonSubsequenceRec(s1, s2, m - 1, n - 1);
         else
-            return Math.max(lcsRec(s1, s2, m - 1, n), lcsRec(s1, s2, m, n - 1));
+            return Math.max(longestCommonSubsequenceRec(s1, s2, m - 1, n), longestCommonSubsequenceRec(s1, s2, m, n - 1));
     }
 
-
-    public int lcs(String s1, String s2, int m, int n, int[][] memo) {
+    private int longestCommonSubsequenceMemo(String s1, String s2, int m, int n) {
         if (m == 0 || n == 0)
             return 0;
 
-        if (memo[m - 1][n - 1] > 0)
-            return memo[m - 1][n - 1];
+        if (memo[m][n] > 0)
+            return memo[m][n];
 
         if (s1.charAt(m - 1) == s2.charAt(n - 1))
-            return memo[m - 1][n - 1] = 1 + lcs(s1, s2, m - 1, n - 1, memo);
+            return memo[m][n] = 1 + longestCommonSubsequenceMemo(s1, s2, m - 1, n - 1);
         else
-            return memo[m - 1][n - 1] = Math.max(lcs(s1, s2, m - 1, n, memo), lcs(s1, s2, m, n - 1, memo));
+            return memo[m][n] = Math.max(longestCommonSubsequenceMemo(s1, s2, m - 1, n), longestCommonSubsequenceMemo(s1, s2, m, n - 1));
     }
 
-    public int longestCommonSubsequenceTopDown(String s1, String s2) {
-        int n = s1.length();
-        int m = s2.length();
-
-        int[][] dp = new int[n + 1][m + 1];
+    public int longestCommonSubsequenceTab(String s1, String s2) {
+        int[][] dp = new int[s1.length() + 1][s2.length() + 1];
 
         for (int i = 1; i < dp.length; i++) {
             for (int j = 1; j < dp[0].length; j++) {
                 if (s1.charAt(i - 1) == s2.charAt(j - 1))
                     dp[i][j] = 1 + dp[i - 1][j - 1];
                 else
-                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
             }
         }
 
-        for (int[] row: dp) {
-            System.out.println(Arrays.toString(row));
-        }
-
-        return dp[n][m];
+        return dp[dp.length - 1][dp[0].length - 1];
     }
 }

@@ -17,7 +17,7 @@ public class SubsetSum {
         boolean ans2 = subsetSumMemo(nums, sum, nums.length);
         System.out.println("Memo : " + ans2);
 
-        boolean ans3 = subsetSumTD(nums, sum, nums.length);
+        boolean ans3 = subsetSumTab(nums, sum, nums.length);
         System.out.println("top down : " + ans3);
     }
 
@@ -55,9 +55,9 @@ public class SubsetSum {
             return dp[n][sum] = subsetSumMemo(nums, sum, n - 1);
     }
 
-    // ----------------------------- top down --------------------------
-    private static boolean subsetSumTD(int[] nums, int sum, int n) {
-        boolean[][] dp = new boolean[nums.length + 1][sum + 1];
+    // ----------------------------- tabulation  --------------------------
+    private static boolean subsetSumTab(int[] nums, int sum, int n) {
+        boolean[][] dp = new boolean[n + 1][sum + 1];
         Arrays.fill(dp[0], false);
         for (int i = 0; i < dp.length; i++)
             dp[i][0] = true;
@@ -71,7 +71,6 @@ public class SubsetSum {
             }
         }
 
-        System.out.println(Arrays.deepToString(dp));
         return dp[dp.length - 1][dp[0].length - 1];
     }
 }

@@ -21,7 +21,7 @@ public class EqualSumPartition {
         boolean ansMemo = espMemo(nums, sum / 2, nums.length);
         System.out.println("Ans memo : " + ansMemo);
 
-        boolean ansTD = espTopDown(nums, sum / 2, nums.length);
+        boolean ansTD = espTab(nums, sum / 2, nums.length);
         System.out.println("Ans TD : " + ansTD);
 
         return ansMemo;
@@ -59,8 +59,8 @@ public class EqualSumPartition {
             return dp[n][sum] = espMemo(nums, sum, n - 1);
     }
 
-    // ----------------------- top down -----------------------
-    public static boolean espTopDown(int[] nums, int sum, int n) {
+    // ----------------------- Tabulation -----------------------
+    public static boolean espTab(int[] nums, int sum, int n) {
         boolean[][] dp = new boolean[nums.length + 1][sum + 1];
         for (int i = 0; i < dp.length; i++)
             dp[i][0] = true;

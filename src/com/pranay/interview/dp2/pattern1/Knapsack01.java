@@ -16,7 +16,7 @@ public class Knapsack01 {
         int maxProfitMemo = knapsack01Memo(wt, val, W);
         System.out.println("Max Profit Memo : " + maxProfitMemo);
 
-        int maxProfitTD = knapsack01TopDown(wt, val, W);
+        int maxProfitTD = knapsack01Tab(wt, val, W);
         System.out.println("Max profit : " + maxProfitTD);
     }
 
@@ -26,14 +26,14 @@ public class Knapsack01 {
     }
 
     private static int knapsack(int[] wt, int[] val, int W, int n) {
-        if (n == 0 || W == 0)
+        if (W <= 0 || n == 0)
             return 0;
 
-        if (wt[n - 1] <= W) {
+        if (wt[n - 1] <= W)
             return Math.max(val[n - 1] + knapsack(wt, val, W - wt[n - 1], n - 1), knapsack(wt, val, W, n - 1));
-        } else {
+        else
             return knapsack(wt, val, W, n - 1);
-        }
+
     }
 
     // ---------------------------------- Memo Recursive ----------------------
@@ -46,32 +46,33 @@ public class Knapsack01 {
         return knapsackMemo(wt, val, W, wt.length);
     }
 
-    private static int knapsackMemo(int[] wt, int[] val, int w, int n) {
-        if (n == 0 || w == 0)
+    private static int knapsackMemo(int[] wt, int[] val, int W, int n) {
+        if (n == 0 || W == 0)
             return 0;
 
-        if (dp[w][n] >= 0)
-            return dp[w][n];
+        if (dp[W][n] >= 0)
+            return dp[W][n];
 
         int profit = 0;
-        if (wt[n - 1] <= w)
-            profit =  Math.max(val[n - 1] + knapsackMemo(wt, val, w - wt[n - 1], n - 1), knapsackMemo(wt, val, w, n - 1));
+        if (wt[n - 1] <= W)
+            profit =  Math.max(val[n - 1] + knapsackMemo(wt, val, W - wt[n - 1], n - 1), knapsackMemo(wt, val, W, n - 1));
         else
-            profit = knapsackMemo(wt, val, w, n - 1);
+            profit = knapsackMemo(wt, val, W, n - 1);
 
-        return dp[w][n] = profit;
+        return dp[W][n] = profit;
     }
 
-    // ---------------------------------- top down dp --------------------------
-    private static int knapsack01TopDown(int[] wt, int[] val, int W) {
+    // ---------------------------------- Tabulation  --------------------------
+    private static int knapsack01Tab(int[] wt, int[] val, int W) {
         int[][] dp = new int[wt.length + 1][W + 1];
 
         for (int i = 1; i < dp.length; i++) {
             for (int j = 1; j < dp[0].length; j++) {
-                if (j < wt[i - 1])
+                if (j < wt[i - 1]) {
                     dp[i][j] = dp[i - 1][j];
-                else
+                } else {
                     dp[i][j] = Math.max(dp[i - 1][j], val[i - 1] + dp[i - 1][j - wt[i - 1]]);
+                }
             }
         }
 
