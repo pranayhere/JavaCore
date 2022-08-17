@@ -5,10 +5,10 @@ package com.pranay.interview.graph;
  * https://leetcode.com/problems/surrounded-regions/solution/
  */
 
-import javafx.util.Pair;
-
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SurroundedRegions {
     public static void main(String[] args) {
@@ -28,29 +28,29 @@ public class SurroundedRegions {
     private static char[][] solve(char[][] board) {
         int nr = board.length;
         int nc = board[0].length;
-        List<Pair<Integer, Integer>> list = new ArrayList<>();
+        List<Map.Entry<Integer, Integer>> list = new ArrayList<>();
 
         for (int i = 0; i < nr; i++) {
             if (board[i][0] == '0') {
-                list.add(new Pair<>(i, 0));
+                list.add(new AbstractMap.SimpleEntry<>(i, 0));
             }
 
             if (board[i][nc - 1] == '0') {
-                list.add(new Pair<>(i, nc - 1));
+                list.add(new AbstractMap.SimpleEntry<>(i, nc - 1));
             }
         }
 
         for (int i = 0; i < nc; i++) {
             if (board[0][i] == '0') {
-                list.add(new Pair<>(0, i));
+                list.add(new AbstractMap.SimpleEntry<>(0, i));
             }
 
             if (board[nr - 1][i] == '0') {
-                list.add(new Pair<>(nr - 1, i));
+                list.add(new AbstractMap.SimpleEntry<>(nr - 1, i));
             }
         }
 
-        for (Pair<Integer, Integer> pair : list) {
+        for (Map.Entry<Integer, Integer> pair : list) {
             dfs(board, pair.getKey(), pair.getValue());
         }
 

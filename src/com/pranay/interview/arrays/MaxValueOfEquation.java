@@ -1,10 +1,6 @@
 package com.pranay.interview.arrays;
 
-import javafx.util.Pair;
-
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
+import java.util.*;
 
 public class MaxValueOfEquation {
     public static void main(String[] args) {
@@ -18,7 +14,7 @@ public class MaxValueOfEquation {
     }
 
     private static int findMaxValueOfEquation(int[][] points, int k) {
-        Deque<Pair<Integer, Integer>> ms = new ArrayDeque<>();
+        Deque<Map.Entry<Integer, Integer>> ms = new ArrayDeque<>();
         int res = Integer.MIN_VALUE;
 
         for (int[] point : points) {
@@ -35,7 +31,7 @@ public class MaxValueOfEquation {
                 ms.pollLast();
             }
 
-            ms.offerLast(new Pair<>(point[1] - point[0], point[0]));
+            ms.offerLast(new AbstractMap.SimpleEntry<>(point[1] - point[0], point[0]));
         }
 
         return res;

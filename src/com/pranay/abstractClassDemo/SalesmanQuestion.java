@@ -1,11 +1,6 @@
 package com.pranay.abstractClassDemo;
 
-import javafx.util.Pair;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 class Salesman {
     String name;
@@ -40,21 +35,21 @@ public class SalesmanQuestion {
     }
 
     public static List<Salesman> aggregate(List<Salesman> salesmans) {
-        Stack<Pair<String, Integer>> stk = new Stack<>();
+        Stack<Map.Entry<String, Integer>> stk = new Stack<>();
 
         for (Salesman s: salesmans) {
             if (!stk.isEmpty() && stk.peek().getKey().equals(s.name)) {
-                Pair<String, Integer> curr = stk.pop();
-                stk.push(new Pair<>(curr.getKey(), curr.getValue() + s.cost));
+                Map.Entry<String, Integer> curr = stk.pop();
+                stk.push(new AbstractMap.SimpleEntry<>(curr.getKey(), curr.getValue() + s.cost));
             } else {
-                stk.push(new Pair<>(s.name, s.cost));
+                stk.push(new AbstractMap.SimpleEntry<>(s.name, s.cost));
             }
         }
 
 
         LinkedList<Salesman> ans = new LinkedList<>();
         while (!stk.isEmpty()) {
-            Pair<String, Integer> curr = stk.pop();
+            Map.Entry<String, Integer> curr = stk.pop();
             ans.addFirst(new Salesman(curr.getKey(), curr.getValue()));
         }
 

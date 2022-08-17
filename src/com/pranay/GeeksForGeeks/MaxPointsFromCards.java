@@ -1,12 +1,6 @@
 package com.pranay.GeeksForGeeks;
 
-import javafx.util.Pair;
-
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class MaxPointsFromCards {
     public static void main(String[] args) {
@@ -17,10 +11,10 @@ public class MaxPointsFromCards {
     }
 
     private static int maxScore(int[] nums, int givenK) {
-        Queue<Pair<Pair<Integer, Integer>, Integer>> q = new ArrayDeque<>();
+        Queue<Map.Entry<Map.Entry<Integer, Integer>, Integer>> q = new ArrayDeque<>();
         int score = 0;
         int n = nums.length - 1;
-        q.offer(new Pair<>(new Pair<>(0, n), 1));
+        q.offer(new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>(0, n), 1));
 
         int[] leftSum = new int[nums.length];
         int[] rightSum = new int[nums.length];
@@ -37,8 +31,8 @@ public class MaxPointsFromCards {
 
         while (!q.isEmpty() && q.peek().getValue() <= givenK) {
             System.out.println(q);
-            Pair<Pair<Integer, Integer>, Integer> p = q.poll();
-            Pair<Integer, Integer> key = p.getKey();
+            Map.Entry<Map.Entry<Integer, Integer>, Integer> p = q.poll();
+            Map.Entry<Integer, Integer> key = p.getKey();
             int l = key.getKey();
             int r = key.getValue();
             int k = p.getValue();
@@ -55,8 +49,8 @@ public class MaxPointsFromCards {
             int newR = r - 1;
             k++;
 
-            q.offer(new Pair<>(new Pair<>(newL, r), k));
-            q.offer(new Pair<>(new Pair<>(l, newR), k));
+            q.offer(new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>(newL, r), k));
+            q.offer(new AbstractMap.SimpleEntry<>(new AbstractMap.SimpleEntry<>(l, newR), k));
         }
         return score;
     }

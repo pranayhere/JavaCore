@@ -1,14 +1,6 @@
 package com.pranay.interview.trees;
 
-import javafx.util.Pair;
-
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * https://leetcode.com/problems/binary-tree-vertical-order-traversal/
@@ -55,11 +47,11 @@ public class VerticalOrderTraversal {
             return null;
         }
 
-        Queue<Pair<Node, Integer>> q = new ArrayDeque<>();
-        q.offer(new Pair<>(root, 0));
+        Queue<Map.Entry<Node, Integer>> q = new ArrayDeque<>();
+        q.offer(new AbstractMap.SimpleEntry<>(root, 0));
 
         while (!q.isEmpty()) {
-            Pair<Node, Integer> p = q.poll();
+            Map.Entry<Node, Integer> p = q.poll();
             Node curr = p.getKey();
             Integer columnIdx = p.getValue();
 
@@ -71,8 +63,8 @@ public class VerticalOrderTraversal {
             maxColIdx = Math.max(maxColIdx, columnIdx);
 
             columnTable.computeIfAbsent(columnIdx, k -> new LinkedList<>()).add(curr.data);
-            q.offer(new Pair<>(curr.left, columnIdx - 1));
-            q.offer(new Pair<>(curr.right, columnIdx + 1));
+            q.offer(new AbstractMap.SimpleEntry<>(curr.left, columnIdx - 1));
+            q.offer(new AbstractMap.SimpleEntry<>(curr.right, columnIdx + 1));
         }
 
         for (int i = minColIdx; i<= maxColIdx; i++) {

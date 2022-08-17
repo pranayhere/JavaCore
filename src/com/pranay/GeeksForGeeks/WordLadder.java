@@ -1,17 +1,6 @@
 package com.pranay.GeeksForGeeks;
 
-import javafx.util.Pair;
-
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class WordLadder {
 	public static void main(String[] args) {
@@ -33,13 +22,13 @@ public class WordLadder {
         }
         hm.forEach((k, v) -> System.out.println(k + " - " + v));
 
-		Queue<Pair<String, Integer>> q = new ArrayDeque<>();
+		Queue<Map.Entry<String, Integer>> q = new ArrayDeque<>();
 		Set<String> seen = new HashSet<>();
 
-		q.offer(new Pair<>(beginWord, 1));
+		q.offer(new AbstractMap.SimpleEntry<>(beginWord, 1));
 
 		while (!q.isEmpty()) {
-		    Pair<String, Integer> p = q.poll();
+		    Map.Entry<String, Integer> p = q.poll();
 		    String w = p.getKey();
 		    int level = p.getValue();
 
@@ -55,7 +44,7 @@ public class WordLadder {
 
                     if (!seen.contains(adjWord)) {
                         seen.add(adjWord);
-                        q.offer(new Pair<>(adjWord, level + 1));
+                        q.offer(new AbstractMap.SimpleEntry<>(adjWord, level + 1));
                     }
                 }
             }

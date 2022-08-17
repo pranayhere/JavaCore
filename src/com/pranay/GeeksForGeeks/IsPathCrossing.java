@@ -1,8 +1,6 @@
 package com.pranay.GeeksForGeeks;
 
-
-import javafx.util.Pair;
-
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,11 +12,11 @@ public class IsPathCrossing {
     }
 
     private static boolean isPathCrossing(String path) {
-        Pair<Integer, Integer> init = new Pair<>(0,  0);
+        Map.Entry<Integer, Integer> init = new AbstractMap.SimpleEntry<>(0,  0);
         char[] dirs = path.toCharArray();
-        Map<Pair<Integer, Integer>, Integer> hm = new HashMap<>();
+        Map<Map.Entry<Integer, Integer>, Integer> hm = new HashMap<>();
         hm.put(init, 0);
-        Pair<Integer, Integer> pair = init;
+        Map.Entry<Integer, Integer> pair = init;
         for (char dir: dirs) {
             int x = pair.getKey();
             int y = pair.getValue();
@@ -32,7 +30,7 @@ public class IsPathCrossing {
             } else if (dir == 'N') {
                 y += 1;
             }
-            pair = new Pair<>(x, y);
+            pair = new AbstractMap.SimpleEntry<>(x, y);
             System.out.println(pair);
             if (hm.containsKey(pair)) {
                 return true;

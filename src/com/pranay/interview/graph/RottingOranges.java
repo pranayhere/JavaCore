@@ -1,8 +1,8 @@
 package com.pranay.interview.graph;
 
-import javafx.util.Pair;
-
+import java.util.AbstractMap;
 import java.util.ArrayDeque;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -17,7 +17,7 @@ public class RottingOranges {
 	}
 
     private static int orangesRotting(int[][] grid) {
-        Queue<Pair<Integer, Integer>> q = new ArrayDeque<>();
+        Queue<Map.Entry<Integer, Integer>> q = new ArrayDeque<>();
         int freshOranges = 0;
         int nr = grid.length;
         int nc = grid[0].length;
@@ -25,7 +25,7 @@ public class RottingOranges {
         for (int r = 0; r < nr; r++) {
             for (int c = 0; c < nc; c++) {
                 if (grid[r][c] == 2)
-                    q.offer(new Pair<>(r, c));
+                    q.offer(new AbstractMap.SimpleEntry<>(r, c));
                 else if (grid[r][c] == 1)
                     freshOranges++;
             }
@@ -38,7 +38,7 @@ public class RottingOranges {
             int size = q.size();
             minutesElapsed++;
             for (int i = 0; i<size; i++) {
-                Pair<Integer, Integer> p = q.poll();
+                Map.Entry<Integer, Integer> p = q.poll();
                 int r = p.getKey();
                 int c = p.getValue();
 
@@ -52,7 +52,7 @@ public class RottingOranges {
 
                     if (grid[newR][newC] == 1) {
                         grid[newR][newC] = 2;
-                        q.offer(new Pair<>(newR, newC));
+                        q.offer(new AbstractMap.SimpleEntry<>(newR, newC));
                         freshOranges--;
                     }
                 }

@@ -1,13 +1,6 @@
 package com.pranay.interview.graph;
 
-import javafx.util.Pair;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class WordLadder {
     public static void main(String[] args) {
@@ -29,14 +22,14 @@ public class WordLadder {
             }
         }
 
-        Queue<Pair<String, Integer>> q = new LinkedList<>();
-        q.offer(new Pair<>(beginWord, 1));
+        Queue<Map.Entry<String, Integer>> q = new LinkedList<>();
+        q.offer(new AbstractMap.SimpleEntry<>(beginWord, 1));
 
         Map<String, Boolean> visited = new HashMap<>();
         visited.put(beginWord, true);
 
         while (!q.isEmpty()) {
-            Pair<String, Integer> curr = q.poll();
+            Map.Entry<String, Integer> curr = q.poll();
             String word = curr.getKey();
             int steps = curr.getValue();
 
@@ -50,7 +43,7 @@ public class WordLadder {
                     }
                     if (!visited.containsKey(next)) {
                         visited.put(next, true);
-                        q.offer(new Pair<>(next, steps + 1));
+                        q.offer(new AbstractMap.SimpleEntry<>(next, steps + 1));
                     }
                 }
             }

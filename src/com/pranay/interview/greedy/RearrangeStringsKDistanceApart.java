@@ -1,7 +1,5 @@
 package com.pranay.interview.greedy;
 
-import javafx.util.Pair;
-
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;

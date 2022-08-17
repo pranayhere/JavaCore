@@ -1,7 +1,6 @@
 package com.pranay.interview.stacks;
 
-import javafx.util.Pair;
-
+import java.util.Stack;
 import java.util.Stack;
 
 /**

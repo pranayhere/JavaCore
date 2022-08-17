@@ -1,8 +1,8 @@
 package com.pranay.interview.trees;
 
-import javafx.util.Pair;
-
+import java.util.AbstractMap;
 import java.util.ArrayDeque;
+import java.util.Map;
 import java.util.Queue;
 
 public class WidthOfTheBinaryTree {
@@ -24,23 +24,23 @@ public class WidthOfTheBinaryTree {
         }
 
         int maxWidth = 0;
-        Queue<Pair<Node, Integer>> q = new ArrayDeque<>();
-        q.add(new Pair<>(root, 0));
+        Queue<Map.Entry<Node, Integer>> q = new ArrayDeque<>();
+        q.add(new AbstractMap.SimpleEntry<>(root, 0));
 
         while (!q.isEmpty()) {
-            Pair<Node, Integer> head = q.peek();
+            Map.Entry<Node, Integer> head = q.peek();
             int size = q.size();
             int currIdx = 0;
 
             for (int i = 0; i< size; i++) {
-                Pair<Node, Integer> currPair = q.poll();
+                Map.Entry<Node, Integer> currPair = q.poll();
                 Node curr = currPair.getKey();
                 currIdx = currPair.getValue();
 
                 if (curr.left != null)
-                    q.offer(new Pair<>(curr.left, 2 * currIdx));
+                    q.offer(new AbstractMap.SimpleEntry<>(curr.left, 2 * currIdx));
                 if (curr.right != null)
-                    q.offer(new Pair<>(curr.right, 2 * currIdx + 1));
+                    q.offer(new AbstractMap.SimpleEntry<>(curr.right, 2 * currIdx + 1));
             }
 
             maxWidth = Math.max(maxWidth, (2 * currIdx) - head.getValue());
