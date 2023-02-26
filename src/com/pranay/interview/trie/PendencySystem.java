@@ -1,12 +1,11 @@
-package com.pranay.interview.misc;
+package com.pranay.interview.trie;
 
 import java.util.*;
-
-class Node {
-    Map<String, Node> nodes; // tags
+class PendencyNode {
+    Map<String, PendencyNode> nodes; // tags
     Set<Integer> processes;
 
-    public Node() {
+    public PendencyNode() {
         this.nodes = new HashMap<>();
         this.processes = new HashSet<>();
     }
@@ -14,7 +13,7 @@ class Node {
 
 public class PendencySystem {
     public static void main(String[] args) {
-        Node root = new Node();
+        PendencyNode root = new PendencyNode();
         PendencySystem ps = new PendencySystem();
         ps.startTracking(root,1112, new String[]{"UPI", "Karnataka", "Bangalore"});
         ps.startTracking(root,2451, new String[]{"UPI", "Karnataka", "Mysore"});
@@ -36,32 +35,32 @@ public class PendencySystem {
         System.out.println(ps.getCount(root, new String[]{"UPI", "Karnataka", "Bangalore"}));
     }
 
-    private void startTracking(Node node, int process, String[] tags) {
+    private void startTracking(PendencyNode pendencyNode, int process, String[] tags) {
         for (String tag: tags) {
-            if (!node.nodes.containsKey(tag)) {
-                node.nodes.put(tag, new Node());
+            if (!pendencyNode.nodes.containsKey(tag)) {
+                pendencyNode.nodes.put(tag, new PendencyNode());
             }
-            node = node.nodes.get(tag);
-            node.processes.add(process);
+            pendencyNode = pendencyNode.nodes.get(tag);
+            pendencyNode.processes.add(process);
         }
     }
 
-    private Integer getCount(Node node, String[] tags) {
+    private Integer getCount(PendencyNode pendencyNode, String[] tags) {
         for (String tag: tags) {
-            if (node.nodes.containsKey(tag))
-                node = node.nodes.get(tag);
+            if (pendencyNode.nodes.containsKey(tag))
+                pendencyNode = pendencyNode.nodes.get(tag);
             else
                 return 0;
         }
 
-        return node.processes.size();
+        return pendencyNode.processes.size();
     }
 
-    private void stopTracking(Node node, int process, String[] tags) {
+    private void stopTracking(PendencyNode pendencyNode, int process, String[] tags) {
         for (String tag: tags) {
-            if (node.nodes.containsKey(tag)) {
-                node = node.nodes.get(tag);
-                node.processes.remove(process);
+            if (pendencyNode.nodes.containsKey(tag)) {
+                pendencyNode = pendencyNode.nodes.get(tag);
+                pendencyNode.processes.remove(process);
             }
         }
     }
