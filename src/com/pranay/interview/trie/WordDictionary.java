@@ -62,7 +62,7 @@ public class WordDictionary {
             if (!trie.childs.containsKey(ch)) {
                 if (ch == '.') {
                     for (char x : node.childs.keySet()) {
-                        TrieNode child = node.childs.get(x);
+                         TrieNode child = node.childs.get(x);
                         if (searchInNode(word.substring(i + 1), child))
                             return true;
                     }
