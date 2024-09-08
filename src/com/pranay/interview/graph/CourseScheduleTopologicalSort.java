@@ -19,32 +19,19 @@ public class CourseScheduleTopologicalSort {
 
 	private static boolean canFinish(int numCourses, int[][] prerequisites) {
 		int[] indegree = new int[numCourses];
-		for (int[] prerequisite: prerequisites) {
-		    indegree[prerequisite[0]]++;
+        for (int[] prerequisite: prerequisites) {
+            indegree[prerequisite[0]]++;
         }
 
-        System.out.println(Arrays.toString(indegree));
-
         Queue<Integer> q = new ArrayDeque<>();
-        for (int i=0; i<indegree.length; i++) {
+        for (int i = 0; i < indegree.length; i++) {
             if (indegree[i] == 0) {
                 q.offer(i);
             }
         }
 
-        int count = 0;
-        while (!q.isEmpty()) {
-            int curr = q.poll();
-            count++;
-            for (int i = 0; i<prerequisites.length; i++) {
-                if (prerequisites[i][1] == curr) {
-                    indegree[prerequisites[i][0]]--;
-                    if (indegree[prerequisites[i][0]] == 0) {
-                        q.offer(prerequisites[i][0]);
-                    }
-                }
-            }
-        }
-		return count == numCourses;
+
+
+        return false;
 	}
 }

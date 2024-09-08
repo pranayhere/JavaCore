@@ -1,12 +1,6 @@
 package com.pranay.interview.graph;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Explanation
@@ -50,12 +44,11 @@ public class EvaluateDivisionDFS {
     }
 
     Map<String, Map<String, Double>> g = new HashMap<>();
-    Set<String> seen = new HashSet<>();
-    HashMap<String, String> root = new HashMap<>();
-    HashMap<String, Double> vals = new HashMap<>();
+    Map<String, Boolean> seen = new HashMap<>();
+    Map<String, String> roots = new HashMap<>();
+    Map<String, Double> vals = new HashMap<>();
 
-    private double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         for (int i = 0; i < equations.size(); i++) {
             String src = equations.get(i).get(0);
             String dest = equations.get(i).get(1);
@@ -64,21 +57,23 @@ public class EvaluateDivisionDFS {
             g.computeIfAbsent(dest, k -> new HashMap<>()).put(src, 1 / values[i]);
         }
 
-        for (String x: g.keySet()) {
-            if (!seen.contains(x))
-                dfs(x, x, 1);
+        for (String vertex: g.keySet()) {
+            if (!seen.containsKey(vertex)) {
+                dfs(vertex, vertex, 1);
+            }
         }
 
-        System.out.println(g);
-        System.out.println(vals);
-        System.out.println(root);
-
         int m = queries.size();
-        double[] res    = new double[m];
-        for (int i = 0; i < m; ++i) {
-            String x = queries.get(i).get(0), y = queries.get(i).get(1);
-            String px = root.getOrDefault(x, x), py = root.getOrDefault(y, y);
-            if (px != py)
+        double[] res = new double[m];
+
+        for (int i = 0; i < m; i++) {
+            String x = queries.get(i).get(0);
+            String y = queries.get(i).get(1);
+
+            String rootX = roots.getOrDefault(x, x);
+            String rootY = roots.getOrDefault(y, y);
+
+            if (rootX != rootY)
                 res[i] = -1.0;
             else
                 res[i] = vals.get(x) / vals.get(y);
@@ -87,14 +82,15 @@ public class EvaluateDivisionDFS {
         return res;
     }
 
-    private void dfs(String src, String dest, double val) {
-        vals.put(src, val);
-        root.put(src, dest);
-        seen.add(src);
+    public void dfs(String curr, String parent, double val) {
+        seen.put(curr, true);
+        roots.put(curr, parent);
+        vals.put(curr, val);
 
-        for (String next: g.get(src).keySet()) {
-            if (!seen.contains(next))
-                dfs(next, dest, val * g.get(next).get(src));
+        for (String neigh: g.getOrDefault(curr, new HashMap<>()).keySet()) {
+            if (!seen.containsKey(neigh)) {
+                dfs(neigh, parent, val * g.get(neigh).get(curr));
+            }
         }
     }
 }
