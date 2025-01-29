@@ -1,6 +1,7 @@
 package com.pranay.interview.trees;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class PathSum3 {
     static Node root;
@@ -21,23 +22,20 @@ public class PathSum3 {
         System.out.println("Count : " + count);
     }
 
-
     int count = 0;
     int k;
-    HashMap<Integer, Integer> hm = new HashMap<>();
-
+    Map<Integer, Integer> hm = new HashMap<>();
     private int pathSum(Node root, int sum) {
         k = sum;
         preorder(root, 0);
         return count;
     }
 
-    private void preorder(Node node, int currSum) {
+    public void preorder(Node node, int currSum) {
         if (node == null)
             return;
 
         currSum += node.data;
-
         if (currSum == k)
             count++;
 

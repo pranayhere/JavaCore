@@ -1,5 +1,6 @@
 package com.pranay.interview.graph;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,45 +23,49 @@ public class The24Game {
     public static void main(String[] args) {
         int[] nums = {4, 3, 2, 1};
         // int[] nums = {3, 3, 8, 8};
-        boolean ans = judgePoint24(nums);
+
+        The24Game g = new The24Game();
+        boolean ans = g.judgePoint24(nums);
         System.out.println("Ans : " + ans);
     }
 
-    private static boolean judgePoint24(int[] nums) {
+    public boolean judgePoint24(int[] nums) {
         List<Double> list = new ArrayList<>();
-        for (int i : nums) {
+        for (int i: nums) {
             list.add((double) i);
         }
+
         return dfs(list);
     }
 
-    private static boolean dfs(List<Double> nums) {
-        double DIFF_TOLERANT = 0.1;
-        if (nums.size() == 1) {
-            System.out.println("Printing evaluated expression : " + nums.get(0));
-            return Math.abs(nums.get(0) - 24) <= DIFF_TOLERANT;
-        }
+    public boolean dfs(List<Double> nums) {
+        double DIFF_TOLERANCE = 0.1;
 
-        for (int i = 0; i < nums.size(); i++) {
+        if (nums.size() == 1)
+            return Math.abs(nums.get(0) - 24) <= DIFF_TOLERANCE;
+
+        for (int i = 1; i < nums.size(); i++) {
             for (int j = 0; j < i; j++) {
                 double a = nums.get(i);
                 double b = nums.get(j);
 
-                List<Double> eval = Arrays.asList(a+b, a-b, b-a, a*b, a/b, b/a);
-                List<Double> copyNums = new ArrayList<>(nums);
-                copyNums.remove(i);
-                copyNums.remove(j);
+                List<Double> eval = List.of(a + b, a - b, b - a, a * b, a / b, b / a);
+                List<Double> copy = new ArrayList<>(nums);
+
+                copy.remove(i);
+                copy.remove(j);
 
                 for (double val: eval) {
-                    copyNums.add(val);
+                    copy.add(val);
 
-                    if (dfs (copyNums)) {
+                    if (dfs(copy))
                         return true;
-                    }
-                    copyNums.remove(copyNums.size() - 1);
+
+                    copy.remove(copy.size() - 1);
                 }
             }
         }
+        
         return false;
     }
 }

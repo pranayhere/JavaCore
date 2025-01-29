@@ -2,9 +2,23 @@ package com.pranay.interview.dp2.pattern1;
 
 import java.util.Arrays;
 
+/**
+ * Given an array arr[] of length n and an integer target, the task is to find the number of subsets with a sum equal to target.
+ *
+ * Examples:
+ *
+ * Input: arr[] = [1, 2, 3, 3], target = 6
+ * Output: 3
+ * Explanation: All the possible subsets are [1, 2, 3], [1, 2, 3] and [3, 3]
+ *
+ *
+ * Input: arr[] = [1, 1, 1, 1], target = 1
+ * Output: 4
+ * Explanation: All the possible subsets are [1], [1], [1] and [1]
+ */
 public class CountOfSubsetSum {
     public static void main(String[] args) {
-        int[] nums = {2, 3, 5, 6, 8, 10};
+        int[] nums = {2, 3, 5, 6, 8, 10}; // [2,3,5] [2,8] [10]
         int sum = 10;
         int count = countOfSubsetSum(nums, sum, nums.length);
         System.out.println("Count Rec : " + count );

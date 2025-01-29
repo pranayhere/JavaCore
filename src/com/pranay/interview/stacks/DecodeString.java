@@ -5,9 +5,9 @@ import java.util.Stack;
 
 public class DecodeString {
     public static void main(String[] args) {
-        String s = "3[a]2[bc]";
-        // String s = "3[a2[c]]";
-        String output = decodeString(s);
+        String s = "3[a2[c]]"; // "3[a]2[bc]";
+//        String s = "2[abc]3[cd]ef";
+        String output = decodeString2(s);
         System.out.println("Output : " + output);
     }
 
@@ -36,6 +36,36 @@ public class DecodeString {
                 curr += ch;
             }
         }
+        return curr;
+    }
+
+    public static String decodeString2(String s) {
+        Stack<Integer> intStk = new Stack<>();
+        Stack<String> strStk = new Stack<>();
+
+        int num = 0;
+        String curr = "";
+
+        for (char ch: s.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                num = num * 10 + ch - '0';
+            } else if (ch == '[') {
+                intStk.push(num);
+                strStk.push(curr);
+                num = 0;
+                curr = "";
+            } else if (ch == ']') {
+                String tmp = curr;
+                curr = strStk.pop();
+
+                for (num = intStk.pop(); num > 0; num--) {
+                    curr += tmp;
+                }
+            } else {
+                curr += ch;
+            }
+        }
+
         return curr;
     }
 }
