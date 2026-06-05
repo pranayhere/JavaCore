@@ -1,0 +1,140 @@
+//package com.pranay.cses.SortingAndSearching;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.TreeMap;
+
+public class ConcertTickets {
+    public static void main(String[] args) throws IOException {
+        FastScanner fs = new FastScanner(System.in);
+        int n = fs.nextInt();
+        int m = fs.nextInt();
+
+        TreeMap<Integer, Integer> prices = new TreeMap<>();
+        for (int i = 0; i < n; i++) {
+            int curr = fs.nextInt();
+            prices.put(curr, prices.getOrDefault(curr, 0) + 1);
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < m; i++) {
+            int curr = fs.nextInt();
+
+            Integer floorKey = prices.floorKey(curr);
+            if (floorKey == null) {
+                sb.append(-1).append('\n');
+            } else {
+                sb.append(floorKey).append('\n');
+                int cnt = prices.get(floorKey);
+                if (cnt == 1) {
+                    prices.remove(floorKey);
+                } else {
+                    prices.put(floorKey, cnt - 1);
+                }
+            }
+        }
+
+        System.out.println(sb);
+    }
+
+
+    public static void main2(String[] args) throws IOException {
+        FastScanner fs = new FastScanner(System.in);
+        int n = fs.nextInt();
+        int m = fs.nextInt(); // customers
+
+        List<Integer> price = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            price.add(fs.nextInt());
+        }
+
+        Collections.sort(price);
+
+        for (int i = 0; i < m; i++) {
+            int curr = fs.nextInt();
+
+            int idx = search(price, curr);
+            if (idx < 0) {
+                System.out.println(-1);
+                continue;
+            }
+
+            System.out.println(price.get(idx));
+            price.remove(idx);
+        }
+    }
+
+    public static int search(List<Integer> nums, int k) {
+        int lo = 0;
+        int hi = nums.size() - 1;
+
+        int ans = -1;
+
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+
+            if (nums.get(mid) <= k) {
+                ans = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+
+    static class FastScanner {
+        private final InputStream in;
+        private final byte[] buffer = new byte[1 << 16];
+
+        private int ptr = 0, len = 0;
+
+        FastScanner(InputStream is) {
+            in = is;
+        }
+
+        private int read() throws IOException {
+            if (ptr >= len) {
+                len = in.read(buffer);
+                ptr = 0;
+
+                if (len <= 0) return -1;
+            }
+
+            return buffer[ptr++];
+        }
+
+        int nextInt() throws IOException {
+            return (int) nextLong();
+        }
+
+        long nextLong() throws IOException {
+            int c;
+
+            while ((c = read()) <= ' ') {
+                if (c == -1) return -1;
+            }
+
+            int sign = 1;
+
+            if (c == '-') {
+                sign = -1;
+                c = read();
+            }
+
+            long val = 0;
+
+            while (c > ' ') {
+                val = val * 10 + (c - '0');
+                c = read();
+            }
+
+            return val * sign;
+        }
+    }
+}
