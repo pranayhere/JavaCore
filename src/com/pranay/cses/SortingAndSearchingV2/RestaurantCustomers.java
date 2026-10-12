@@ -2,6 +2,7 @@ package com.pranay.cses.SortingAndSearchingV2;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.TreeMap;
 
 /**
@@ -37,25 +38,54 @@ import java.util.TreeMap;
  * 2
  */
 public class RestaurantCustomers {
+//    public static void main(String[] args) throws IOException {
+//        FastScanner fs = new FastScanner(System.in);
+//        TreeMap<Integer, Integer> tm = new TreeMap<>();
+//
+//        int n = fs.nextInt();
+//        for (int i = 0; i < n; i++) {
+//            int arr = fs.nextInt();
+//            int dept = fs.nextInt();
+//
+//            tm.put(arr, tm.getOrDefault(arr, 0) + 1);
+//            tm.put(dept, tm.getOrDefault(dept, 0) - 1);
+//        }
+//
+//        int count = 0;
+//        int ans = 0;
+//
+//        for (int curr: tm.keySet()) {
+//            count += tm.get(curr);
+//            ans = Math.max(ans, count);
+//        }
+//
+//        System.out.println(ans);
+//    }
+
     public static void main(String[] args) throws IOException {
         FastScanner fs = new FastScanner(System.in);
-        TreeMap<Integer, Integer> tm = new TreeMap<>();
-
         int n = fs.nextInt();
-        for (int i = 0; i < n; i++) {
-            int arr = fs.nextInt();
-            int dept = fs.nextInt();
+        int[] arr = new int[n];
+        int[] dept = new int[n];
 
-            tm.put(arr, tm.getOrDefault(arr, 0) + 1);
-            tm.put(dept, tm.getOrDefault(dept, 0) - 1);
+        for (int i = 0; i < n; i++) {
+            arr[i] = fs.nextInt();
+            dept[i] = fs.nextInt();
         }
 
-        int count = 0;
-        int ans = 0;
+        Arrays.sort(arr);
+        Arrays.sort(dept);
 
-        for (int curr: tm.keySet()) {
-            count += tm.get(curr);
-            ans = Math.max(ans, count);
+        int i = 0, j = 0, count = 0, ans = 0;
+        while (i < n) {
+            if (arr[i] < dept[j]) {
+                i++;
+                count++;
+                ans = Math.max(ans, count);
+            } else {
+                j++;
+                count--;
+            }
         }
 
         System.out.println(ans);

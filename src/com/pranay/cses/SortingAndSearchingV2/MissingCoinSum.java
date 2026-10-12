@@ -1,0 +1,108 @@
+package com.pranay.cses.SortingAndSearchingV2;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+
+/**
+ * https://cses.fi/problemset/task/2183
+ *
+ * Missing Coin Sum
+ *
+ * You have n coins with positive integer values. What is the smallest sum you
+ * cannot create using a subset of the coins?
+ *
+ * Input
+ * The first line has an integer n: the number of coins.
+ * The second line has n integers x1, x2, ..., xn: the value of each coin.
+ *
+ * Output
+ * Print one integer: the smallest coin sum.
+ *
+ * Constraints
+ * - 1 <= n <= 2 * 10^5
+ * - 1 <= xi <= 10^9
+ *
+ * Example
+ * Input:
+ * 5
+ * 2 9 1 2 7
+ *
+ * Output:
+ * 6
+ */
+public class MissingCoinSum {
+    public static void main(String[] args) throws IOException {
+        FastScanner fs = new FastScanner(System.in);
+        int n = fs.nextInt();
+
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = fs.nextInt();
+        }
+
+        Arrays.sort(nums);
+        long reach = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > reach + 1) {
+                System.out.println(reach + 1);
+                return;
+            }
+
+            reach += nums[i];
+        }
+
+        System.out.println(reach + 1);
+    }
+
+    static class FastScanner {
+        private final InputStream in;
+        private final byte[] buffer = new byte[1 << 16];
+
+        private int ptr = 0, len = 0;
+
+        FastScanner(InputStream is) {
+            in = is;
+        }
+
+        private int read() throws IOException {
+            if (ptr >= len) {
+                len = in.read(buffer);
+                ptr = 0;
+
+                if (len <= 0) return -1;
+            }
+
+            return buffer[ptr++];
+        }
+
+        int nextInt() throws IOException {
+            return (int) nextLong();
+        }
+
+        long nextLong() throws IOException {
+            int c;
+
+            while ((c = read()) <= ' ') {
+                if (c == -1) return -1;
+            }
+
+            int sign = 1;
+
+            if (c == '-') {
+                sign = -1;
+                c = read();
+            }
+
+            long val = 0;
+
+            while (c > ' ') {
+                val = val * 10 + (c - '0');
+                c = read();
+            }
+
+            return val * sign;
+        }
+    }
+}
