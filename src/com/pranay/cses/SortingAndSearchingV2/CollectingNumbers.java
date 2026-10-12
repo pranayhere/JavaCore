@@ -37,27 +37,19 @@ import java.util.Map;
 public class CollectingNumbers {
     public static void main(String[] args) throws IOException {
         FastScanner fs = new FastScanner(System.in);
-        Map<Integer, Integer> hm = new HashMap<>();
-
         int n = fs.nextInt();
+        boolean[] seen = new boolean[n + 1];   // seen[0] stays false, so 1 always starts a round
+        int rounds = 0;
+
         for (int i = 0; i < n; i++) {
             int num = fs.nextInt();
-
-            if (!hm.containsKey(num - 1)) {
-                hm.put(num, 0);
-            } else {
-                hm.put(num, num - 1);
+            if (!seen[num - 1]) {
+                rounds++;                       // num - 1 comes later, so num needs a new round
             }
+            seen[num] = true;
         }
 
-        int count = 0;
-        for (int key: hm.keySet()) {
-            if (hm.get(key) == 0) {
-                count++;
-            }
-        }
-
-        System.out.println(count);
+        System.out.println(rounds);
     }
 
     static class FastScanner {
